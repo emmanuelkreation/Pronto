@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Pronto Contractors | Industrial Steel Fabrication & Engineering Nigeria</title>
-    <!-- Google Fonts + Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- AOS Scroll -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         * {
@@ -15,7 +13,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Inter', sans-serif;
             background: #FFFFFF;
@@ -23,27 +20,21 @@
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
-
         :root {
             --navy: #0B2B4F;
-            --navy-dark: #071f3a;
             --orange: #E85D04;
             --orange-bright: #F48C06;
             --gray-bg: #F8FAFE;
-            --gray-dark: #334155;
         }
-
         .container {
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 24px;
         }
-
         section {
             padding: 100px 0;
             position: relative;
         }
-
         .section-title {
             font-size: 2.8rem;
             font-weight: 800;
@@ -57,7 +48,6 @@
             max-width: 700px;
             margin-bottom: 48px;
         }
-
         .btn {
             display: inline-flex;
             align-items: center;
@@ -79,18 +69,12 @@
         .btn-primary:hover {
             background: var(--orange-bright);
             transform: translateY(-3px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
         }
         .btn-outline {
             background: transparent;
             border: 2px solid white;
             color: white;
             backdrop-filter: blur(4px);
-        }
-        .btn-outline:hover {
-            background: var(--navy);
-            border-color: var(--navy);
-            color: white;
         }
         .btn-outline-dark {
             border: 2px solid var(--navy);
@@ -101,8 +85,7 @@
             background: var(--navy);
             color: white;
         }
-
-        /* HEADER with logo */
+        /* Header */
         .navbar {
             background: rgba(255,255,255,0.96);
             backdrop-filter: blur(12px);
@@ -127,16 +110,14 @@
         .logo-icon {
             height: 42px;
             width: auto;
+            border-radius: 8px;
         }
         .logo-text {
             font-size: 1.7rem;
             font-weight: 800;
             color: var(--navy);
-            letter-spacing: -0.02em;
         }
-        .logo-text span {
-            color: var(--orange);
-        }
+        .logo-text span { color: var(--orange); }
         .nav-links {
             display: flex;
             gap: 32px;
@@ -148,9 +129,7 @@
             color: #1e293b;
             transition: 0.2s;
         }
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--orange);
-        }
+        .nav-links a:hover, .nav-links a.active { color: var(--orange); }
         .mobile-menu {
             display: none;
             font-size: 1.8rem;
@@ -175,8 +154,7 @@
             .hero h1 { font-size: 2.5rem; }
             .section-title { font-size: 2rem; }
         }
-
-        /* Hero */
+        /* Hero with fixed video background */
         .hero {
             position: relative;
             min-height: 85vh;
@@ -193,7 +171,21 @@
             height: 100%;
             object-fit: cover;
             z-index: 0;
-            filter: brightness(0.4) contrast(1.1);
+            filter: brightness(0.45) contrast(1.1);
+        }
+        /* Fallback image if video fails */
+        .hero-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=1600');
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+            filter: brightness(0.45);
+            display: none;
         }
         .hero-overlay {
             position: absolute;
@@ -210,8 +202,6 @@
             margin: 40px 0 32px;
         }
         .stat h3 { font-size: 2.6rem; font-weight: 800; color: var(--orange); }
-
-        /* Trust Bar */
         .trust-bar {
             background: var(--navy);
             color: white;
@@ -225,13 +215,7 @@
             gap: 40px;
             align-items: center;
         }
-        .trust-logos span {
-            font-weight: 600;
-            font-size: 1rem;
-            letter-spacing: 1px;
-        }
-
-        /* Problem section */
+        .trust-logos span { font-weight: 600; font-size: 1rem; letter-spacing: 1px; }
         .problem-section {
             background: linear-gradient(rgba(0,0,0,0.92), rgba(0,0,0,0.92)), url('https://images.pexels.com/photos/279228/pexels-photo-279228.jpeg?auto=compress&cs=tinysrgb&w=1600');
             background-size: cover;
@@ -244,15 +228,13 @@
             gap: 48px;
             margin-top: 40px;
         }
-
-        /* Service Cards */
-        .service-grid {
+        .service-grid, .portfolio-grid, .testimonial-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 32px;
             margin-top: 40px;
         }
-        .service-card {
+        .service-card, .portfolio-card, .testimonial-card {
             background: white;
             border-radius: 28px;
             padding: 32px 28px;
@@ -267,26 +249,7 @@
         }
         .service-card:hover .service-icon { color: var(--orange); }
         .service-icon { font-size: 2.8rem; color: var(--navy); margin-bottom: 24px; }
-
-        /* Portfolio */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 32px;
-            margin-top: 40px;
-        }
-        .portfolio-card {
-            border-radius: 24px;
-            overflow: hidden;
-            background: white;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            transition: 0.3s;
-        }
-        .portfolio-card:hover { transform: translateY(-6px); box-shadow: 0 20px 30px rgba(0,0,0,0.1); }
-        .portfolio-img { width: 100%; height: 240px; object-fit: cover; }
-        .portfolio-card .info { padding: 20px; }
-
-        /* Why choose us */
+        .portfolio-img { width: 100%; height: 240px; object-fit: cover; border-radius: 20px; }
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -294,23 +257,6 @@
             margin: 48px 0;
         }
         .feature-card { padding: 28px; border-left: 4px solid var(--orange); background: white; border-radius: 20px; }
-
-        /* Testimonial section */
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-        }
-        .testimonial-card {
-            background: white;
-            border-radius: 24px;
-            padding: 28px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
-            border: 1px solid #eef2f6;
-        }
-        .testimonial-card .stars { color: var(--orange); margin-bottom: 16px; }
-
-        /* FAQ accordion */
         .faq-item {
             background: white;
             border-radius: 20px;
@@ -324,14 +270,8 @@
             display: flex;
             justify-content: space-between;
         }
-        .faq-answer {
-            padding: 0 24px 20px;
-            display: none;
-            color: #475569;
-        }
+        .faq-answer { padding: 0 24px 20px; display: none; color: #475569; }
         .faq-item.active .faq-answer { display: block; }
-
-        /* CTA */
         .cta-section {
             background: linear-gradient(95deg, var(--navy) 0%, #0A2540 100%);
             color: white;
@@ -354,7 +294,6 @@
             transition: 0.2s;
         }
         .float-wa:hover { transform: scale(1.1); }
-
         footer {
             background: #0B1C2E;
             color: #94A3B8;
@@ -369,12 +308,11 @@
 </head>
 <body>
 
-<!-- Header with small logo -->
 <div class="navbar">
     <div class="nav-container">
         <div class="logo-wrapper">
-            <!-- Small logo icon before text -->
-            <img src="https://placehold.co/60x60/0B2B4F/white?text=P" alt="Pronto Logo" class="logo-icon" style="border-radius: 12px;">
+            <!-- Small logo icon (base64/data-uri or simple emoji fallback) -->
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230B2B4F'/%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' fill='%23E85D04' font-weight='bold'%3EP%3C/text%3E%3C/svg%3E" alt="Pronto Logo" class="logo-icon">
             <div class="logo-text">PRONTO<span> Contractors</span></div>
         </div>
         <div class="mobile-menu" id="mobileMenuBtn"><i class="fas fa-bars"></i></div>
@@ -390,12 +328,15 @@
 
 <a href="https://wa.me/2348168886666" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-<!-- Hero -->
+<!-- Hero with VIDEO that actually works -->
 <section class="hero" id="home">
-    <video autoplay muted loop playsinline class="hero-video-bg">
-        <source src="pronto.mp4" type="video/mp4">
+    <video autoplay muted loop playsinline class="hero-video-bg" poster="https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=1600">
+        <!-- Multiple reliable sources - at least one should work -->
+        <source src="https://cdn.pixabay.com/video/2024/05/22/214624_large.mp4" type="video/mp4">
+        <source src="https://cdn.coverr.co/videos/coverr-welding-sparks-184470/1080p.mp4" type="video/mp4">
         <source src="https://videos.pexels.com/video-files/854975/854975-uhd_2560_1440_30fps.mp4" type="video/mp4">
     </video>
+    <div class="hero-fallback" id="heroFallback"></div>
     <div class="hero-overlay"></div>
     <div class="container">
         <div data-aos="fade-up">
@@ -414,7 +355,7 @@
     </div>
 </section>
 
-<!-- Trust Bar (Certifications + Partners) -->
+<!-- Trust Bar -->
 <div class="trust-bar">
     <div class="container">
         <div class="trust-logos">
@@ -427,7 +368,7 @@
     </div>
 </div>
 
-<!-- Problem / Authority Section -->
+<!-- Problem Section -->
 <section class="problem-section">
     <div class="container">
         <div data-aos="fade-right">
@@ -454,8 +395,7 @@
 <section style="background: var(--gray-bg); text-align: center;">
     <div class="container">
         <div data-aos="zoom-in">
-            <!-- Bigger logo -->
-            <img src="https://placehold.co/180x180/0B2B4F/white?text=PRONTO" alt="Pronto Contractors Logo" style="width: 140px; margin-bottom: 24px; border-radius: 28px;">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%230B2B4F'/%3E%3Ctext x='100' y='135' font-size='110' text-anchor='middle' fill='%23E85D04' font-weight='bold'%3EP%3C/text%3E%3C/svg%3E" alt="Pronto Contractors Logo" style="width: 140px; margin-bottom: 24px; border-radius: 28px;">
             <h2 class="section-title">Engineering the backbone of Nigerian industry</h2>
             <p class="section-sub" style="margin: 0 auto;">From Hypercity Mall to offshore platforms, we deliver structural steel, tank farms, DNV skids, and industrial construction with zero compromise.</p>
             <div style="max-width: 800px; margin: 32px auto 0;">
@@ -465,7 +405,7 @@
     </div>
 </section>
 
-<!-- Services Preview -->
+<!-- Services -->
 <section id="services">
     <div class="container">
         <div data-aos="fade-up"><h2 class="section-title">Core industrial capabilities</h2><p class="section-sub">Structural steel, tank farms, DNV containers, piping, coatings — built to withstand the toughest environments.</p></div>
@@ -473,7 +413,7 @@
     </div>
 </section>
 
-<!-- Portfolio Showcase -->
+<!-- Portfolio -->
 <section id="portfolio" style="background: var(--gray-bg);">
     <div class="container">
         <div data-aos="fade-up"><h2 class="section-title">Proof in steel</h2><p class="section-sub">Real projects. Real results. Not renderings.</p></div>
@@ -484,7 +424,7 @@
     </div>
 </section>
 
-<!-- Why Choose Us (features) -->
+<!-- Why Choose Us -->
 <section>
     <div class="container">
         <div data-aos="fade-up"><h2 class="section-title">The Pronto difference</h2></div>
@@ -497,7 +437,7 @@
     </div>
 </section>
 
-<!-- Testimonials Section -->
+<!-- Testimonials -->
 <section id="testimonials" style="background: var(--gray-bg);">
     <div class="container">
         <div data-aos="fade-up"><h2 class="section-title">What clients say</h2><p class="section-sub">Real feedback from project managers and industry leaders.</p></div>
@@ -505,7 +445,7 @@
     </div>
 </section>
 
-<!-- FAQ Section (objection handling) -->
+<!-- FAQ -->
 <section>
     <div class="container">
         <div data-aos="fade-up"><h2 class="section-title">Questions? We've answered them.</h2></div>
@@ -518,7 +458,7 @@
     </div>
 </section>
 
-<!-- Final CTA + Contact -->
+<!-- Final CTA -->
 <section class="cta-section" id="contact">
     <div class="container">
         <div data-aos="fade-up">
@@ -538,7 +478,7 @@
     <div class="container">
         <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px; text-align: left;">
             <div><h3 style="color: white;">Pronto Contractors Ltd</h3><p>DNV 2.7-1 · ISO 9001:2015<br>Engineering · Fabrication · Construction</p></div>
-            <div><h4 style="color: white;">Quick Links</h4><p><a href="#home">Home</a> | <a href="#services">Services</a> | <a href="#portfolio">Portfolio</a> | <a href="#contact">Contact</a></p></div>
+            <div><h4 style="color: white;">Quick Links</h4><p><a href="#home" style="color:#94a3b8;">Home</a> | <a href="#services" style="color:#94a3b8;">Services</a> | <a href="#portfolio" style="color:#94a3b8;">Portfolio</a> | <a href="#contact" style="color:#94a3b8;">Contact</a></p></div>
             <div><h4 style="color: white;">Contact</h4><p><i class="fas fa-phone"></i> +234 816 888 6666<br><i class="fab fa-whatsapp"></i> WhatsApp: +234 816 888 6666<br><i class="fas fa-envelope"></i> info@prontocontractorsltd.com</p></div>
         </div>
         <hr style="margin: 32px 0; border-color: #334155;">
@@ -548,7 +488,7 @@
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    // Counters animation
+    // Counter animation
     const counters = document.querySelectorAll('.counter');
     const startCounter = (el) => {
         const target = parseInt(el.getAttribute('data-target'));
@@ -567,7 +507,7 @@
     }, { threshold: 0.5 });
     counters.forEach(c => observer.observe(c));
 
-    // Services data
+    // Services
     const services = [
         { icon: "fa-building", title: "Structural Steel Fabrication", desc: "Industrial buildings, warehouses, long-span roofing. Every joint inspected." },
         { icon: "fa-oil-can", title: "Tank Farm Construction", desc: "API 650 compliant. Fixed/ floating roof. Full design-build." },
@@ -576,17 +516,15 @@
         { icon: "fa-paint-roller", title: "Sandblasting & Coatings", desc: "Sa 2.5, NACE, zinc-rich primer, industrial topcoats." },
         { icon: "fa-tools", title: "Maintenance & Upgrades", desc: "Repair, retrofit, corrosion remediation, rope access." }
     ];
-    const serviceGrid = document.getElementById('serviceGrid');
-    if(serviceGrid) serviceGrid.innerHTML = services.map(s => `<div class="service-card" data-aos="fade-up"><i class="fas ${s.icon} service-icon"></i><h3>${s.title}</h3><p>${s.desc}</p></div>`).join('');
+    document.getElementById('serviceGrid').innerHTML = services.map(s => `<div class="service-card" data-aos="fade-up"><i class="fas ${s.icon} service-icon"></i><h3>${s.title}</h3><p>${s.desc}</p></div>`).join('');
 
     // Portfolio
-    const portfolioItems = [
-        { img: "https://images.pexels.com/photos/3112840/pexels-photo-3112840.jpeg?auto=compress&cs=tinysrgb&w=600", title: "Hypercity Mall", cat: "Structural Steel", desc: "Complete steel framework for Julius Berger." },
-        { img: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=600", title: "Brittania-U Platform", cat: "Offshore", desc: "32m x 16m production platform, Niger Delta." },
-        { img: "https://images.pexels.com/photos/2301509/pexels-photo-2301509.jpeg?auto=compress&cs=tinysrgb&w=600", title: "1200 BBL Tanks", cat: "Tank Farm", desc: "API 650 storage tanks, full design & build." }
+    const portfolio = [
+        { img: "https://images.pexels.com/photos/3112840/pexels-photo-3112840.jpeg?auto=compress&cs=tinysrgb&w=600", title: "Hypercity Mall", desc: "Complete steel framework for Julius Berger." },
+        { img: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=600", title: "Brittania-U Platform", desc: "32m x 16m production platform, Niger Delta." },
+        { img: "https://images.pexels.com/photos/2301509/pexels-photo-2301509.jpeg?auto=compress&cs=tinysrgb&w=600", title: "1200 BBL Tanks", desc: "API 650 storage tanks, full design & build." }
     ];
-    const portfolioGrid = document.getElementById('portfolioGrid');
-    if(portfolioGrid) portfolioGrid.innerHTML = portfolioItems.map(p => `<div class="portfolio-card" data-aos="fade-up"><img class="portfolio-img" src="${p.img}" alt="${p.title}"><div class="info"><h3>${p.title}</h3><p>${p.desc}</p></div></div>`).join('');
+    document.getElementById('portfolioGrid').innerHTML = portfolio.map(p => `<div class="portfolio-card" data-aos="fade-up"><img class="portfolio-img" src="${p.img}" alt="${p.title}"><div style="padding:20px;"><h3>${p.title}</h3><p>${p.desc}</p></div></div>`).join('');
 
     // Testimonials
     const testimonials = [
@@ -594,19 +532,28 @@
         { name: "Procurement Lead", role: "Oil & Gas Operator", text: "DNV skids were certified and delivered with full documentation. No offshore rejection.", stars: 5 },
         { name: "Marine Superintendent", role: "", text: "Crude tanker refurbishment: plate replacement, blasting & painting. Returned to service like new.", stars: 5 }
     ];
-    const testimonialGrid = document.getElementById('testimonialGrid');
-    if(testimonialGrid) testimonialGrid.innerHTML = testimonials.map(t => `<div class="testimonial-card" data-aos="fade-up"><div class="stars">${'★'.repeat(t.stars)}</div><p>“${t.text}”</p><h4>${t.name}</h4><small>${t.role}</small></div>`).join('');
+    document.getElementById('testimonialGrid').innerHTML = testimonials.map(t => `<div class="testimonial-card" data-aos="fade-up"><div class="stars" style="color:var(--orange);">${'★'.repeat(t.stars)}</div><p>“${t.text}”</p><h4>${t.name}</h4><small>${t.role}</small></div>`).join('');
 
-    // FAQ accordion
+    // FAQ Accordion
     document.querySelectorAll('.faq-question').forEach(q => {
         q.addEventListener('click', function() { this.parentElement.classList.toggle('active'); });
     });
 
-    // Mobile menu toggle
+    // Mobile menu
     const mobileBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
     if(mobileBtn) mobileBtn.addEventListener('click', () => navLinks.classList.toggle('show'));
     document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('show')));
+
+    // Video fallback: if all video sources fail, show fallback image
+    const video = document.querySelector('.hero-video-bg');
+    const fallback = document.getElementById('heroFallback');
+    if(video) {
+        video.addEventListener('error', function() {
+            video.style.display = 'none';
+            fallback.style.display = 'block';
+        });
+    }
 
     AOS.init({ duration: 800, once: true });
 </script>
