@@ -180,10 +180,6 @@
             0% { opacity: 0; transform: translateX(40px); }
             100% { opacity: 1; transform: translateX(0); }
         }
-        .animate-fade-up { animation: fadeUp 0.8s ease forwards; }
-        .animate-scale { animation: scaleIn 0.6s ease forwards; }
-        .animate-left { animation: slideInLeft 0.7s ease forwards; }
-        .animate-right { animation: slideInRight 0.7s ease forwards; }
         /* Hero */
         .hero {
             position: relative;
@@ -460,12 +456,12 @@
         .social-icons a:hover { background: var(--orange); transform: translateY(-3px); }
         .copyright { text-align: center; padding-top: 30px; border-top: 1px solid #1e2f44; font-size: 0.9rem; }
         .design-credit { text-align: center; margin-top: 20px; font-size: 0.8rem; color: #6c86a3; }
-        /* ===== MOBILE MENU FIX ===== */
+        /* ===== MOBILE MENU FIX - HIDDEN BY DEFAULT ===== */
         @media (max-width: 900px) {
             .nav-links {
                 position: fixed;
                 top: 0;
-                right: -100%;
+                right: 0;
                 width: 80%;
                 max-width: 320px;
                 height: 100vh;
@@ -475,13 +471,14 @@
                 gap: 32px;
                 padding: 80px 32px;
                 box-shadow: -5px 0 30px rgba(0,0,0,0.15);
-                transition: right 0.3s ease-in-out;
+                transition: transform 0.3s ease-in-out;
                 z-index: 999;
                 display: flex;
                 align-items: flex-start;
+                transform: translateX(100%);
             }
             .nav-links.show {
-                right: 0;
+                transform: translateX(0);
             }
             .mobile-menu {
                 display: block;
@@ -620,7 +617,7 @@
     </div>
 </section>
 
-<!-- Why Choose Us (same, no removal) -->
+<!-- Why Choose Us -->
 <section>
     <div class="container">
         <div data-aos="fade-up"><h2 class="section-title">Why choose Pronto?</h2><p class="section-sub">We don't just promise — we deliver with certified excellence.</p></div>
@@ -806,7 +803,7 @@
     ];
     document.getElementById('portfolioGrid').innerHTML = portfolio.map(p => `<div class="portfolio-card" data-aos="fade-up"><img class="portfolio-img" src="${p.img}" alt="${p.title}"><h3>${p.title}</h3><div class="project-details"><span><i class="fas fa-map-marker-alt"></i> ${p.loc}</span><span><i class="fas fa-calendar-alt"></i> ${p.timeline}</span><span><i class="fas fa-chart-line"></i> ${p.budget}</span></div><p>${p.desc}</p><small style="color:var(--orange);">Material: ${p.material}</small></div>`).join('');
 
-    // Testimonials (unchanged)
+    // Testimonials
     const testimonials = [
         { name: "Engr. James Oke", role: "Project Director, Strukton Nigeria", text: "Pronto delivered the steel structure for our 5,000sqm warehouse three weeks ahead of schedule. Quality was impeccable.", stars: 5 },
         { name: "Mrs. Adeola Williams", role: "Procurement Lead, Major Oil & Gas", text: "DNV certified skids arrived with full documentation. No customs delay, no offshore rejection.", stars: 5 },
@@ -820,7 +817,7 @@
     // FAQ Accordion
     document.querySelectorAll('.faq-question').forEach(q => q.addEventListener('click', function() { this.parentElement.classList.toggle('active'); }));
 
-    // Mobile Menu Toggle with Overlay - FIXED
+    // Mobile Menu Toggle - FIXED: using transform instead of right
     const mobileBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
     const overlay = document.getElementById('menuOverlay');
