@@ -194,28 +194,7 @@
             transition: 0.2s;
         }
         .mobile-nav a:hover, .mobile-nav a.active { color: var(--orange); }
-        /* Responsive */
-        @media (max-width: 900px) {
-            .desktop-nav {
-                display: none;
-            }
-            .mobile-menu-btn {
-                display: block;
-            }
-            .hero h1 { font-size: 2rem; }
-            .section-title { font-size: 2rem; }
-            .hero { min-height: 65vh; }
-            .hero-stats { gap: 20px; margin: 20px 0; }
-            .stat h3 { font-size: 1.5rem; }
-            .btn { padding: 10px 18px; font-size: 0.85rem; }
-            .problem-grid { grid-template-columns: 1fr; }
-            .about-grid { grid-template-columns: 1fr; text-align: center; }
-            .about-highlight { border-left: none; border-top: 2px solid var(--orange); padding-top: 16px; }
-            .cta-glass { padding: 32px 20px; margin: 0 16px; }
-            .contact-form-card { padding: 32px 24px; }
-            section { padding: 60px 0; }
-        }
-        /* Hero */
+        /* Hero - ORIGINAL STYLES RESTORED */
         .hero {
             position: relative;
             min-height: 85vh;
@@ -281,7 +260,7 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
             font-size: 0.9rem;
         }
-        /* Problem section */
+        /* Problem section (background image unchanged) */
         .problem-section {
             background: linear-gradient(rgba(0,0,0,0.92), rgba(0,0,0,0.92)), url('https://images.pexels.com/photos/279228/pexels-photo-279228.jpeg?auto=compress&cs=tinysrgb&w=1600');
             background-size: cover;
@@ -491,10 +470,56 @@
         .social-icons a:hover { background: var(--orange); transform: translateY(-3px); }
         .copyright { text-align: center; padding-top: 30px; border-top: 1px solid #1e2f44; font-size: 0.9rem; }
         .design-credit { text-align: center; margin-top: 20px; font-size: 0.8rem; color: #6c86a3; }
-        @media (max-width: 768px) {
-            .problem-grid { grid-template-columns: 1fr; }
-            .about-grid { grid-template-columns: 1fr; text-align: center; }
-            .cta-glass h2 { font-size: 1.8rem; }
+        /* Responsive - ORIGINAL HERO STYLES for mobile (restored) */
+        @media (max-width: 900px) {
+            .desktop-nav {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero {
+                min-height: 65vh;
+            }
+            .hero-stats {
+                gap: 20px;
+                margin: 20px 0;
+            }
+            .stat h3 {
+                font-size: 1.5rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .btn {
+                padding: 10px 18px;
+                font-size: 0.85rem;
+            }
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .about-highlight {
+                border-left: none;
+                border-top: 2px solid var(--orange);
+                padding-top: 16px;
+            }
+            .cta-glass {
+                padding: 32px 20px;
+                margin: 0 16px;
+            }
+            .contact-form-card {
+                padding: 32px 24px;
+            }
+            section {
+                padding: 60px 0;
+            }
         }
     </style>
 </head>
@@ -521,7 +546,7 @@
     </div>
 </div>
 
-<!-- Mobile Menu Drawer (hidden by default, only for mobile) -->
+<!-- Mobile Menu Drawer (hidden by default) -->
 <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 <div class="mobile-nav" id="mobileNav">
     <a href="#home">Home</a>
@@ -828,7 +853,7 @@
     // FAQ Accordion
     document.querySelectorAll('.faq-question').forEach(q => q.addEventListener('click', function() { this.parentElement.classList.toggle('active'); }));
 
-    // Mobile Menu Toggle - CLEAN SEPARATE MENU
+    // Mobile Menu Toggle - CLEAN
     const mobileBtn = document.getElementById('mobileMenuBtn');
     const mobileNav = document.getElementById('mobileNav');
     const mobileOverlay = document.getElementById('mobileMenuOverlay');
@@ -859,7 +884,6 @@
 
     mobileOverlay.addEventListener('click', closeMobileMenu);
 
-    // Close menu when clicking any mobile nav link
     document.querySelectorAll('.mobile-nav a').forEach(link => {
         link.addEventListener('click', () => {
             closeMobileMenu();
@@ -870,7 +894,7 @@
     const leadForm = document.getElementById('leadForm');
     if(leadForm) leadForm.addEventListener('submit', function(e) { e.preventDefault(); alert('Thank you! Your project request has been received. We will contact you within 24 hours.'); leadForm.reset(); });
 
-    // Active link highlight on scroll
+    // Active link highlight
     const sections = ['home', 'services', 'portfolio', 'about', 'contact'];
     window.addEventListener('scroll', () => {
         let current = '';
