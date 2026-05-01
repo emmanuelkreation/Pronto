@@ -163,23 +163,6 @@
             display: block;
             opacity: 1;
         }
-        /* Animations */
-        @keyframes fadeUp {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes scaleIn {
-            0% { opacity: 0; transform: scale(0.9); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-        @keyframes slideInLeft {
-            0% { opacity: 0; transform: translateX(-40px); }
-            100% { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes slideInRight {
-            0% { opacity: 0; transform: translateX(40px); }
-            100% { opacity: 1; transform: translateX(0); }
-        }
         /* Hero */
         .hero {
             position: relative;
@@ -456,12 +439,12 @@
         .social-icons a:hover { background: var(--orange); transform: translateY(-3px); }
         .copyright { text-align: center; padding-top: 30px; border-top: 1px solid #1e2f44; font-size: 0.9rem; }
         .design-credit { text-align: center; margin-top: 20px; font-size: 0.8rem; color: #6c86a3; }
-        /* ===== MOBILE MENU FIX - HIDDEN BY DEFAULT ===== */
+        /* ===== MOBILE MENU FIX (Right positioning) ===== */
         @media (max-width: 900px) {
             .nav-links {
                 position: fixed;
                 top: 0;
-                right: 0;
+                right: -100%; /* Completely hidden */
                 width: 80%;
                 max-width: 320px;
                 height: 100vh;
@@ -471,14 +454,13 @@
                 gap: 32px;
                 padding: 80px 32px;
                 box-shadow: -5px 0 30px rgba(0,0,0,0.15);
-                transition: transform 0.3s ease-in-out;
+                transition: right 0.3s ease-in-out;
                 z-index: 999;
                 display: flex;
                 align-items: flex-start;
-                transform: translateX(100%);
             }
             .nav-links.show {
-                transform: translateX(0);
+                right: 0;
             }
             .mobile-menu {
                 display: block;
@@ -817,7 +799,7 @@
     // FAQ Accordion
     document.querySelectorAll('.faq-question').forEach(q => q.addEventListener('click', function() { this.parentElement.classList.toggle('active'); }));
 
-    // Mobile Menu Toggle - FIXED: using transform instead of right
+    // Mobile Menu Toggle - using right positioning
     const mobileBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
     const overlay = document.getElementById('menuOverlay');
