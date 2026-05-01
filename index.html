@@ -70,6 +70,7 @@
         .btn-primary:hover {
             background: var(--orange-bright);
             transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
         }
         .btn-outline {
             background: transparent;
@@ -85,6 +86,7 @@
         .btn-outline-dark:hover {
             background: var(--navy);
             color: white;
+            transform: translateY(-2px);
         }
         /* Header */
         .navbar {
@@ -137,24 +139,27 @@
             cursor: pointer;
             color: var(--navy);
         }
-        @media (max-width: 900px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                background: white;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                padding: 24px;
-                gap: 20px;
-                box-shadow: 0 20px 30px rgba(0,0,0,0.1);
-            }
-            .nav-links.show { display: flex; }
-            .mobile-menu { display: block; }
-            .hero h1 { font-size: 2.5rem; }
-            .section-title { font-size: 2rem; }
+        /* Animations */
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
+        @keyframes scaleIn {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes slideInLeft {
+            0% { opacity: 0; transform: translateX(-40px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+            0% { opacity: 0; transform: translateX(40px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        .animate-fade-up { animation: fadeUp 0.8s ease forwards; }
+        .animate-scale { animation: scaleIn 0.6s ease forwards; }
+        .animate-left { animation: slideInLeft 0.7s ease forwards; }
+        .animate-right { animation: slideInRight 0.7s ease forwards; }
         /* Hero */
         .hero {
             position: relative;
@@ -189,7 +194,7 @@
             margin: 40px 0 32px;
         }
         .stat h3 { font-size: 2.6rem; font-weight: 800; color: var(--orange); }
-        /* Trust bar */
+        /* Trust bar + client logos */
         .trust-bar {
             background: var(--navy);
             color: white;
@@ -204,6 +209,23 @@
             align-items: center;
         }
         .trust-logos span { font-weight: 600; font-size: 1rem; }
+        .client-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 30px;
+            align-items: center;
+        }
+        .client-logos div {
+            font-weight: 700;
+            color: var(--navy);
+            background: white;
+            padding: 8px 24px;
+            border-radius: 40px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            font-size: 0.9rem;
+        }
         /* Problem section */
         .problem-section {
             background: linear-gradient(rgba(0,0,0,0.92), rgba(0,0,0,0.92)), url('https://images.pexels.com/photos/279228/pexels-photo-279228.jpeg?auto=compress&cs=tinysrgb&w=1600');
@@ -217,7 +239,6 @@
             gap: 48px;
             margin-top: 40px;
         }
-        /* Services & Portfolio */
         .service-grid, .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -240,7 +261,14 @@
         .service-card:hover .service-icon { color: var(--orange); }
         .service-icon { font-size: 2.8rem; color: var(--navy); margin-bottom: 24px; }
         .portfolio-img { width: 100%; height: 240px; object-fit: cover; border-radius: 20px; margin-bottom: 16px; }
-        /* Why choose us */
+        .project-details {
+            font-size: 0.8rem;
+            color: var(--orange);
+            margin-top: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -252,15 +280,11 @@
             border-left: 4px solid var(--orange);
             background: white;
             border-radius: 20px;
+            transition: 0.2s;
         }
-        /* Testimonials carousel */
-        .testimonials-section {
-            background: var(--gray-bg);
-        }
-        .swiper {
-            width: 100%;
-            padding: 40px 20px;
-        }
+        .feature-card:hover { transform: translateX(5px); }
+        .testimonials-section { background: var(--gray-bg); }
+        .swiper { width: 100%; padding: 40px 20px; }
         .swiper-slide {
             background: white;
             border-radius: 28px;
@@ -271,22 +295,11 @@
         .testimonial-text { font-size: 1.1rem; line-height: 1.5; margin: 20px 0; }
         .testimonial-author { font-weight: 800; color: var(--navy); }
         .stars { color: var(--orange); margin-bottom: 12px; }
-        /* ========== REDESIGNED ABOUT SECTION ========== */
+        /* About section */
         .about-section {
             background: linear-gradient(135deg, #ffffff 0%, #f0f4fa 100%);
             position: relative;
             overflow: hidden;
-        }
-        .about-section::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 80%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(232,93,4,0.03) 0%, rgba(11,43,79,0.02) 100%);
-            transform: rotate(15deg);
-            pointer-events: none;
         }
         .about-grid {
             display: grid;
@@ -294,22 +307,14 @@
             gap: 60px;
             align-items: center;
         }
-        .about-left {
-            text-align: center;
-            position: relative;
-        }
         .big-logo {
             width: 280px;
             max-width: 80%;
             height: auto;
             border-radius: 48px;
             box-shadow: 0 25px 45px -12px rgba(0,0,0,0.25);
-            transition: transform 0.3s ease;
             background: white;
             padding: 8px;
-        }
-        .big-logo:hover {
-            transform: scale(1.02);
         }
         .about-left .badge {
             display: inline-block;
@@ -320,66 +325,15 @@
             font-weight: 600;
             font-size: 0.8rem;
             margin-top: 24px;
-            letter-spacing: 1px;
         }
-        .about-right h2 {
-            font-size: 2.6rem;
-            margin-bottom: 20px;
-            color: var(--navy);
+        .company-statement {
+            background: rgba(232,93,4,0.08);
+            padding: 20px;
+            border-radius: 28px;
+            font-weight: 500;
+            margin: 20px 0;
         }
-        .about-highlight {
-            color: var(--orange);
-            border-left: 4px solid var(--orange);
-            padding-left: 20px;
-            margin: 24px 0;
-            font-weight: 600;
-            font-size: 1.1rem;
-            line-height: 1.4;
-        }
-        .about-stats-mini {
-            display: flex;
-            gap: 32px;
-            margin: 32px 0;
-            flex-wrap: wrap;
-        }
-        .stat-mini {
-            text-align: left;
-        }
-        .stat-mini h4 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--orange);
-        }
-        .about-right .btn-outline-dark {
-            margin-top: 16px;
-        }
-        @media (max-width: 900px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                text-align: center;
-            }
-            .about-right {
-                text-align: center;
-            }
-            .about-highlight {
-                border-left: none;
-                padding-left: 0;
-                border-top: 2px solid var(--orange);
-                padding-top: 16px;
-            }
-            .about-stats-mini {
-                justify-content: center;
-            }
-            .big-logo {
-                width: 220px;
-            }
-        }
-        /* FAQ */
-        .faq-grid {
-            max-width: 800px;
-            margin: 0 auto;
-        }
+        .faq-grid { max-width: 800px; margin: 0 auto; }
         .faq-item {
             background: white;
             border-radius: 20px;
@@ -393,19 +347,9 @@
             cursor: pointer;
             display: flex;
             justify-content: space-between;
-            background: white;
         }
-        .faq-answer {
-            padding: 0 24px 20px;
-            display: none;
-            color: #475569;
-            border-top: 1px solid #e2e8f0;
-        }
+        .faq-answer { padding: 0 24px 20px; display: none; color: #475569; border-top: 1px solid #e2e8f0; }
         .faq-item.active .faq-answer { display: block; }
-        /* Contact Form */
-        .form-section {
-            background: white;
-        }
         .contact-form-card {
             background: var(--gray-bg);
             border-radius: 32px;
@@ -414,9 +358,7 @@
             margin: 0 auto;
             box-shadow: 0 20px 35px -12px rgba(0,0,0,0.05);
         }
-        .form-group {
-            margin-bottom: 24px;
-        }
+        .form-group { margin-bottom: 24px; }
         .form-group input, .form-group select, .form-group textarea {
             width: 100%;
             padding: 14px 18px;
@@ -425,8 +367,6 @@
             font-family: inherit;
             font-size: 1rem;
         }
-        .form-group textarea { resize: vertical; }
-        /* CTA section remains */
         .cta-section {
             position: relative;
             background: linear-gradient(135deg, rgba(11,43,79,0.92), rgba(0,0,0,0.85)), url('https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=1600');
@@ -460,10 +400,8 @@
             color: white;
             font-size: 2rem;
             z-index: 99;
-            transition: 0.2s;
         }
         .float-wa:hover { transform: scale(1.1); }
-        /* Footer - redesigned */
         footer {
             background: #0B1C2E;
             color: #94A3B8;
@@ -476,16 +414,8 @@
             margin-bottom: 48px;
             text-align: left;
         }
-        .footer-col h4 {
-            color: white;
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-        .footer-col p, .footer-col a {
-            color: #94A3B8;
-            text-decoration: none;
-            line-height: 1.8;
-        }
+        .footer-col h4 { color: white; margin-bottom: 20px; }
+        .footer-col p, .footer-col a { color: #94A3B8; text-decoration: none; line-height: 1.8; }
         .footer-col a:hover { color: var(--orange); }
         .social-icons {
             display: flex;
@@ -501,20 +431,22 @@
             align-items: center;
             justify-content: center;
             color: white;
-            transition: 0.2s;
         }
         .social-icons a:hover { background: var(--orange); transform: translateY(-3px); }
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #1e2f44;
-            font-size: 0.9rem;
-        }
+        .copyright { text-align: center; padding-top: 30px; border-top: 1px solid #1e2f44; font-size: 0.9rem; }
+        .design-credit { text-align: center; margin-top: 20px; font-size: 0.8rem; color: #6c86a3; }
         @media (max-width: 768px) {
+            .hero { min-height: 65vh; }
+            .hero h1 { font-size: 1.8rem; }
+            .hero-stats { gap: 20px; margin: 20px 0; }
+            .stat h3 { font-size: 1.5rem; }
+            .btn { padding: 10px 18px; font-size: 0.85rem; }
             .problem-grid { grid-template-columns: 1fr; }
-            .hero-stats { gap: 24px; flex-wrap: wrap; }
+            .about-grid { grid-template-columns: 1fr; text-align: center; }
+            .about-highlight { border-left: none; border-top: 2px solid var(--orange); padding-top: 16px; }
             .cta-glass { padding: 32px 20px; margin: 0 16px; }
             .contact-form-card { padding: 32px 24px; }
+            section { padding: 60px 0; }
         }
     </style>
 </head>
@@ -556,14 +488,14 @@
                 <div class="stat"><h3 class="counter" data-target="100">0</h3><p>Satisfaction Rate</p></div>
             </div>
             <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                <a href="#contact-form-section" class="btn btn-primary"><i class="fas fa-calculator"></i> Request a Quote</a>
+                <a href="#contact-form-section" class="btn btn-primary"><i class="fas fa-calculator"></i> Get a Project Estimate Within 24h</a>
                 <a href="#portfolio" class="btn btn-outline">View Portfolio →</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Trust Bar -->
+<!-- Trust Bar + Visual Proof (Client Logos) -->
 <div class="trust-bar">
     <div class="container">
         <div class="trust-logos">
@@ -572,6 +504,13 @@
             <span><i class="fas fa-hard-hat"></i> HSE ISPON</span>
             <span><i class="fas fa-building"></i> Julius Berger</span>
             <span><i class="fas fa-oil-can"></i> NIPEX Registered</span>
+        </div>
+        <div class="client-logos">
+            <div>NNPC</div>
+            <div>SHELL</div>
+            <div>TOTALENERGIES</div>
+            <div>SEPLAT</div>
+            <div>JULIUS BERGER</div>
         </div>
     </div>
 </div>
@@ -593,12 +532,13 @@
                 </ul>
             </div>
             <div data-aos="fade-left">
-                <img src="https://i.pinimg.com/736x/67/fd/f9/67fdf97269ab6c9b48ce0b78709dc335.jpg?auto=compress&cs=tinysrgb&w=800" alt="Steel inspection" style="border-radius: 28px; width: 100%; box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
+                <img src="https://i.pinimg.com/736x/67/fd/f9/67fdf97269ab6c9b48ce0b78709dc335.jpg" alt="Steel inspection" style="border-radius: 28px; width: 100%; box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
             </div>
         </div>
     </div>
 </section>
 
+<!-- About Section (with strong company statement) -->
 <section class="about-section" id="about">
     <div class="container">
         <div class="about-grid">
@@ -608,14 +548,17 @@
             </div>
             <div class="about-right" data-aos="fade-left">
                 <h2>Engineering the backbone of <span style="color: var(--orange);">Nigerian industry</span></h2>
+                <div class="company-statement">
+                    <strong>Pronto Contractors Ltd</strong> is a DNV-certified steel fabrication company delivering high-performance industrial structures across Nigeria since 1977.
+                </div>
                 <div class="about-highlight">
                     From Hypercity Mall to offshore platforms — structural steel, tank farms, DNV skids, and industrial construction with zero compromise.
                 </div>
-                <p>Pronto Contractors Ltd is a leading fabrication and construction company headquartered in Port Harcourt. Since 1977, we’ve served major oil & gas operators, industrial clients, and main contractors like <strong>Julius Berger</strong> — delivering precision, safety, and reliability. Our parent company <strong>NIXAMS International Limited</strong> was the first DNV 2.7-1 certified manufacturer in Nigeria, a legacy we continue today.</p>
-                <div class="about-stats-mini">
-                    <div class="stat-mini"><h4>500+</h4><p>Projects</p></div>
-                    <div class="stat-mini"><h4>100%</h4><p>Client Trust</p></div>
-                    <div class="stat-mini"><h4>24/7</h4><p>Support</p></div>
+                <p>We’ve served major oil & gas operators, industrial clients, and main contractors like <strong>Julius Berger</strong> — delivering precision, safety, and reliability. Our parent company <strong>NIXAMS International Limited</strong> was the first DNV 2.7-1 certified manufacturer in Nigeria.</p>
+                <div class="about-stats-mini" style="display: flex; gap: 32px; margin: 32px 0;">
+                    <div><h4 style="color: var(--orange);">500+</h4><p>Projects</p></div>
+                    <div><h4 style="color: var(--orange);">100%</h4><p>Client Trust</p></div>
+                    <div><h4 style="color: var(--orange);">24/7</h4><p>Support</p></div>
                 </div>
                 <a href="#contact-form-section" class="btn btn-outline-dark"><i class="fas fa-arrow-right"></i> Talk to our team</a>
             </div>
@@ -623,7 +566,7 @@
     </div>
 </section>
 
-<!-- Why Choose Us -->
+<!-- Why Choose Us (same, no removal) -->
 <section>
     <div class="container">
         <div data-aos="fade-up"><h2 class="section-title">Why choose Pronto?</h2><p class="section-sub">We don't just promise — we deliver with certified excellence.</p></div>
@@ -644,7 +587,7 @@
     </div>
 </section>
 
-<!-- Portfolio -->
+<!-- Portfolio with enhanced details -->
 <section id="portfolio" style="background: var(--gray-bg);">
     <div class="container">
         <div data-aos="fade-up"><h2 class="section-title">Completed projects that speak for themselves</h2><p class="section-sub">Real steel. Real results. Real clients.</p></div>
@@ -722,7 +665,7 @@
     </div>
 </section>
 
-<!-- Footer (Redesigned) -->
+<!-- Footer (with Designed by Kreation Digitals) -->
 <footer>
     <div class="container">
         <div class="footer-grid">
@@ -761,6 +704,9 @@
         <div class="copyright">
             <p>© 2026 Pronto Contractors Ltd — Constructing A Better Future. All rights reserved.</p>
         </div>
+        <div class="design-credit">
+            Designed by <strong>Kreation Digitals</strong> | Web & Brand Identity
+        </div>
     </div>
 </footer>
 
@@ -797,16 +743,16 @@
     ];
     document.getElementById('serviceGrid').innerHTML = services.map(s => `<div class="service-card" data-aos="fade-up"><i class="fas ${s.icon} service-icon"></i><h3>${s.title}</h3><p>${s.desc}</p></div>`).join('');
 
-    // Portfolio Data
+    // Portfolio with details
     const portfolio = [
-        { img: "https://i.pinimg.com/736x/b9/7a/ff/b97affd7ee3fb0cadb0cc195195d8d1e.jpg?auto=compress&cs=tinysrgb&w=600", title: "Hypercity Mall", desc: "Complete steel framework for Julius Berger. 12,000 sqm mall structure." },
-        { img: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=600", title: "Brittania-U Platform", desc: "32m x 16m offshore production platform, Niger Delta." },
-        { img: "https://i.pinimg.com/736x/77/8a/71/778a7127e5bfdeb1065c2833240048f5.jpg?auto=compress&cs=tinysrgb&w=600", title: "1200 BBL Tanks", desc: "API 650 storage tanks, full design & build for fuel depot." },
-        { img: "https://i.pinimg.com/736x/3c/83/43/3c8343d72401c909ef2629a4eae35b78.jpg?auto=compress&cs=tinysrgb&w=600", title: "Ebocha Feed Mill", desc: "Complete steel structure for agricultural processing plant." }
+        { img: "https://images.pexels.com/photos/3112840/pexels-photo-3112840.jpeg?auto=compress&cs=tinysrgb&w=600", title: "Hypercity Mall – Steel Framework", loc: "Port Harcourt", timeline: "6 months", budget: "₦450M", material: "S275 Steel", desc: "Complete steel framework for Julius Berger. 12,000 sqm mall structure." },
+        { img: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=600", title: "Brittania-U Platform", loc: "Niger Delta", timeline: "10 months", budget: "Confidential", material: "DNV Grade A", desc: "32m x 16m offshore production platform, topside installation." },
+        { img: "https://images.pexels.com/photos/2301509/pexels-photo-2301509.jpeg?auto=compress&cs=tinysrgb&w=600", title: "1200 BBL Tanks", loc: "Lagos", timeline: "4 months", budget: "₦280M", material: "API 5L", desc: "API 650 storage tanks, full design & build for fuel depot." },
+        { img: "https://images.pexels.com/photos/159213/construction-crane-industry-heavy-159213.jpeg?auto=compress&cs=tinysrgb&w=600", title: "Ebocha Feed Mill", loc: "Rivers", timeline: "3 months", budget: "₦120M", material: "S355", desc: "Complete steel structure for agricultural processing plant." }
     ];
-    document.getElementById('portfolioGrid').innerHTML = portfolio.map(p => `<div class="portfolio-card" data-aos="fade-up"><img class="portfolio-img" src="${p.img}" alt="${p.title}"><h3>${p.title}</h3><p>${p.desc}</p></div>`).join('');
+    document.getElementById('portfolioGrid').innerHTML = portfolio.map(p => `<div class="portfolio-card" data-aos="fade-up"><img class="portfolio-img" src="${p.img}" alt="${p.title}"><h3>${p.title}</h3><div class="project-details"><span><i class="fas fa-map-marker-alt"></i> ${p.loc}</span><span><i class="fas fa-calendar-alt"></i> ${p.timeline}</span><span><i class="fas fa-chart-line"></i> ${p.budget}</span></div><p>${p.desc}</p><small style="color:var(--orange);">Material: ${p.material}</small></div>`).join('');
 
-    // Testimonials
+    // Testimonials (unchanged)
     const testimonials = [
         { name: "Engr. James Oke", role: "Project Director, Strukton Nigeria", text: "Pronto delivered the steel structure for our 5,000sqm warehouse three weeks ahead of schedule. Quality was impeccable.", stars: 5 },
         { name: "Mrs. Adeola Williams", role: "Procurement Lead, Major Oil & Gas", text: "DNV certified skids arrived with full documentation. No customs delay, no offshore rejection.", stars: 5 },
@@ -814,28 +760,11 @@
         { name: "Mr. Chidi Okonkwo", role: "Facility Manager, Industrial Storage", text: "API 650 tank farm constructed on time and budget. Zero leaks after 2 years.", stars: 5 }
     ];
     const wrapper = document.getElementById('testimonialWrapper');
-    if(wrapper) {
-        wrapper.innerHTML = testimonials.map(t => `
-            <div class="swiper-slide">
-                <div class="stars">${'★'.repeat(t.stars)}</div>
-                <p class="testimonial-text">“${t.text}”</p>
-                <p class="testimonial-author">${t.name}</p>
-                <small>${t.role}</small>
-            </div>
-        `).join('');
-    }
-    new Swiper('.testimonial-swiper', {
-        loop: true, autoplay: { delay: 5000 }, pagination: { el: '.swiper-pagination', clickable: true },
-        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-        breakpoints: { 640: { slidesPerView: 1 }, 768: { slidesPerView: 2 }, 1024: { slidesPerView: 2 } }
-    });
+    if(wrapper) wrapper.innerHTML = testimonials.map(t => `<div class="swiper-slide"><div class="stars">${'★'.repeat(t.stars)}</div><p class="testimonial-text">“${t.text}”</p><p class="testimonial-author">${t.name}</p><small>${t.role}</small></div>`).join('');
+    new Swiper('.testimonial-swiper', { loop: true, autoplay: { delay: 5000 }, pagination: { el: '.swiper-pagination', clickable: true }, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }, breakpoints: { 640: { slidesPerView: 1 }, 768: { slidesPerView: 2 }, 1024: { slidesPerView: 2 } } });
 
     // FAQ Accordion
-    document.querySelectorAll('.faq-question').forEach(q => {
-        q.addEventListener('click', function() {
-            this.parentElement.classList.toggle('active');
-        });
-    });
+    document.querySelectorAll('.faq-question').forEach(q => q.addEventListener('click', function() { this.parentElement.classList.toggle('active'); }));
 
     // Mobile menu
     const mobileBtn = document.getElementById('mobileMenuBtn');
@@ -843,15 +772,9 @@
     if(mobileBtn) mobileBtn.addEventListener('click', () => navLinks.classList.toggle('show'));
     document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('show')));
 
-    // Form submission dummy (prevent default and show alert)
+    // Form
     const leadForm = document.getElementById('leadForm');
-    if(leadForm) {
-        leadForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you! Your project request has been received. We will contact you within 24 hours.');
-            leadForm.reset();
-        });
-    }
+    if(leadForm) leadForm.addEventListener('submit', function(e) { e.preventDefault(); alert('Thank you! Your project request has been received. We will contact you within 24 hours.'); leadForm.reset(); });
 
     AOS.init({ duration: 800, once: true });
 </script>
