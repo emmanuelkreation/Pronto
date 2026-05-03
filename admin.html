@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Admin Dashboard | Pronto Contractors – Manage Portfolio & Reviews</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F8FAFE;
+            color: #1A2C3E;
+            overflow-x: hidden;
+        }
+        :root {
+            --navy: #0B2B4F;
+            --orange: #E85D04;
+            --gray-bg: #F8FAFE;
+        }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin: 20px 0;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .btn-primary { background: var(--orange); color: white; }
+        .btn-primary:hover { background: #c45102; transform: translateY(-2px); }
+        .btn-outline { border: 2px solid var(--navy); color: var(--navy); background: white; }
+        .btn-outline:hover { background: var(--navy); color: white; }
+        .btn-danger { background: #dc2626; color: white; }
+        .btn-danger:hover { background: #b91c1c; }
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        .login-box {
+            max-width: 400px;
+            margin: 80px auto;
+            text-align: center;
+        }
+        .login-box input {
+            width: 100%;
+            padding: 14px;
+            margin: 16px 0;
+            border: 1px solid #cbd5e1;
+            border-radius: 40px;
+            font-size: 1rem;
+        }
+        .admin-header {
+            background: white;
+            padding: 16px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 32px;
+        }
+        .admin-header h2 { color: var(--navy); }
+        .review-item, .portfolio-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            background: white;
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid #e2e8f0;
+        }
+        .review-content, .portfolio-content { flex: 1; }
+        .review-actions, .portfolio-actions { display: flex; gap: 12px; }
+        .stars { color: var(--orange); }
+        .badge { background: #e2e8f0; padding: 2px 8px; border-radius: 20px; font-size: 0.7rem; }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .form-grid input, .form-grid select, .form-grid textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 16px;
+            font-family: inherit;
+        }
+        .full-width { grid-column: span 2; }
+        textarea { resize: vertical; }
+        .tabs {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .tab-btn.active {
+            color: var(--orange);
+            border-bottom: 2px solid var(--orange);
+            margin-bottom: -10px;
+        }
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; }
+        footer {
+            background: #0B1C2E;
+            color: #94A3B8;
+            text-align: center;
+            padding: 32px 0;
+            margin-top: 48px;
+        }
+        @media (max-width: 700px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+            .review-item, .portfolio-item { flex-direction: column; align-items: flex-start; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="admin-header">
+    <div class="container">
+        <h2>🔧 Admin Dashboard</h2>
+        <p>Manage portfolio projects and client reviews</p>
+    </div>
+</div>
+
+<div class="container" id="adminApp">
+    <!-- LOGIN FORM -->
+    <div id="loginSection" class="login-box card">
+        <h3 style="color: var(--navy);">Admin Login</h3>
+        <input type="password" id="adminPass" placeholder="Enter password">
+        <button id="loginBtn" class="btn btn-primary">Login</button>
+        <p style="margin-top: 12px; font-size: 0.8rem;">Demo password: pronto2026</p>
+    </div>
+
+    <!-- ADMIN CONTENT (hidden until login) -->
+    <div id="adminContent" style="display: none;">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="portfolio">📁 Portfolio Management</button>
+            <button class="tab-btn" data-tab="reviews">⭐ Review Moderation</button>
+        </div>
+
+        <!-- PORTFOLIO TAB -->
+        <div id="portfolioTab" class="tab-pane active">
+            <div class="card">
+                <h3>➕ Add New Project</h3>
+                <form id="addProjectForm" class="form-grid">
+                    <input type="text" id="projTitle" placeholder="Project Title" required>
+                    <select id="projCategory">
+                        <option>Structural Steel</option><option>Industrial Buildings</option><option>Tank Farms</option>
+                        <option>Offshore & DNV</option><option>Piping</option><option>Coatings</option><option>Maintenance</option>
+                    </select>
+                    <input type="url" id="projImage" placeholder="Image URL (high-res)" required>
+                    <input type="text" id="projLocation" placeholder="Location">
+                    <input type="text" id="projTimeline" placeholder="Timeline (e.g., 6 months)">
+                    <input type="text" id="projBudget" placeholder="Budget (e.g., ₦450M)">
+                    <input type="text" id="projMaterial" placeholder="Material (e.g., S275 Steel)">
+                    <textarea id="projDesc" rows="2" placeholder="Short description" required></textarea>
+                    <input type="text" id="projClient" placeholder="Client name">
+                    <textarea id="projScope" rows="2" placeholder="Scope of work"></textarea>
+                    <textarea id="projResult" rows="2" placeholder="Result / outcome"></textarea>
+                    <button type="submit" class="btn btn-primary full-width">➕ Create Project</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h3>📂 Existing Projects (click to edit inline)</h3>
+                <div id="portfolioList"></div>
+            </div>
+        </div>
+
+        <!-- REVIEWS TAB -->
+        <div id="reviewsTab" class="tab-pane">
+            <div class="card">
+                <h3>⏳ Pending Reviews</h3>
+                <div id="pendingReviewsList"></div>
+            </div>
+            <div class="card">
+                <h3>✅ Approved Reviews</h3>
+                <div id="approvedReviewsList"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <p>© 2026 Pronto Contractors Ltd — Admin Dashboard</p>
+        <p style="margin-top: 8px; font-size: 0.8rem;">Designed by Kreation Digitals</p>
+    </div>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+<script>
+    // Firebase Config (same as before)
+    const firebaseConfig = {
+        apiKey: "AIzaSyDw4Aq8qippb9ySuks2_aLlTLyU0rYFsEs",
+        authDomain: "pronto-cc198.firebaseapp.com",
+        databaseURL: "https://pronto-cc198-default-rtdb.firebaseio.com",
+        projectId: "pronto-cc198",
+        storageBucket: "pronto-cc198.firebasestorage.app",
+        messagingSenderId: "587558230969",
+        appId: "1:587558230969:web:11a2ff80b0c1040198f468f"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    // Global references
+    let portfolioRef = db.ref('portfolio');
+    let reviewsRef = db.ref('reviews');
+    let projectsArray = [];
+
+    // Helper: load all data
+    function loadAllData() {
+        portfolioRef.on('value', (snap) => {
+            if (snap.val()) {
+                projectsArray = Object.keys(snap.val()).map(key => ({ id: key, ...snap.val()[key] }));
+            } else {
+                projectsArray = [];
+            }
+            renderPortfolioList();
+        });
+        renderPendingReviews();
+        renderApprovedReviews();
+    }
+
+    // Render portfolio list (with edit/delete)
+    function renderPortfolioList() {
+        const container = document.getElementById('portfolioList');
+        if (!container) return;
+        if (projectsArray.length === 0) {
+            container.innerHTML = '<p>No projects yet. Add one above.</p>';
+            return;
+        }
+        container.innerHTML = projectsArray.map(proj => `
+            <div class="portfolio-item" data-id="${proj.id}">
+                <div class="portfolio-content">
+                    <strong>${escapeHtml(proj.title)}</strong> <span class="badge">${proj.category}</span>
+                    <p style="font-size:0.8rem; margin-top:4px;">${proj.location || ''} | ${proj.timeline || ''}</p>
+                </div>
+                <div class="portfolio-actions">
+                    <button class="btn btn-outline edit-proj" data-id="${proj.id}" style="padding:6px 12px;">✏️ Edit</button>
+                    <button class="btn btn-danger delete-proj" data-id="${proj.id}" style="padding:6px 12px;">🗑️ Delete</button>
+                </div>
+            </div>
+        `).join('');
+        // attach event listeners
+        document.querySelectorAll('.edit-proj').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = btn.getAttribute('data-id');
+                editProject(id);
+            });
+        });
+        document.querySelectorAll('.delete-proj').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = btn.getAttribute('data-id');
+                if (confirm('Delete this project permanently?')) {
+                    portfolioRef.child(id).remove().then(() => {
+                        alert('Project deleted');
+                    }).catch(err => alert(err));
+                }
+            });
+        });
+    }
+
+    function editProject(id) {
+        const proj = projectsArray.find(p => p.id === id);
+        if (!proj) return;
+        // fill form for editing
+        document.getElementById('projTitle').value = proj.title || '';
+        document.getElementById('projCategory').value = proj.category || '';
+        document.getElementById('projImage').value = proj.image || '';
+        document.getElementById('projLocation').value = proj.location || '';
+        document.getElementById('projTimeline').value = proj.timeline || '';
+        document.getElementById('projBudget').value = proj.budget || '';
+        document.getElementById('projMaterial').value = proj.material || '';
+        document.getElementById('projDesc').value = proj.description || '';
+        document.getElementById('projClient').value = proj.client || '';
+        document.getElementById('projScope').value = proj.scope || '';
+        document.getElementById('projResult').value = proj.result || '';
+        // change submit button text and behavior
+        const addBtn = document.querySelector('#addProjectForm button[type="submit"]');
+        addBtn.textContent = '✏️ Update Project';
+        addBtn.classList.add('updating');
+        addBtn.dataset.editId = id;
+
+        // scroll to form
+        document.querySelector('#addProjectForm').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // handle add/update project
+    document.getElementById('addProjectForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        const isUpdating = submitBtn.classList.contains('updating');
+        const editId = submitBtn.dataset.editId;
+
+        const projectData = {
+            title: document.getElementById('projTitle').value,
+            category: document.getElementById('projCategory').value,
+            image: document.getElementById('projImage').value,
+            location: document.getElementById('projLocation').value,
+            timeline: document.getElementById('projTimeline').value,
+            budget: document.getElementById('projBudget').value,
+            material: document.getElementById('projMaterial').value,
+            description: document.getElementById('projDesc').value,
+            client: document.getElementById('projClient').value,
+            scope: document.getElementById('projScope').value,
+            result: document.getElementById('projResult').value
+        };
+        if (isUpdating && editId) {
+            portfolioRef.child(editId).update(projectData).then(() => {
+                alert('Project updated');
+                resetForm();
+            }).catch(err => alert(err));
+        } else {
+            const newRef = portfolioRef.push();
+            newRef.set(projectData).then(() => {
+                alert('Project added');
+                resetForm();
+            }).catch(err => alert(err));
+        }
+    });
+
+    function resetForm() {
+        document.getElementById('addProjectForm').reset();
+        const btn = document.querySelector('#addProjectForm button[type="submit"]');
+        btn.textContent = '➕ Create Project';
+        btn.classList.remove('updating');
+        delete btn.dataset.editId;
+    }
+
+    // Reviews moderation
+    function renderPendingReviews() {
+        reviewsRef.orderByChild('status').equalTo('pending').once('value', (snap) => {
+            const container = document.getElementById('pendingReviewsList');
+            if (!container) return;
+            const reviews = [];
+            snap.forEach(child => reviews.push({ id: child.key, ...child.val() }));
+            if (reviews.length === 0) {
+                container.innerHTML = '<p>No pending reviews.</p>';
+                return;
+            }
+            container.innerHTML = reviews.map(r => `
+                <div class="review-item">
+                    <div>
+                        <div class="stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
+                        <p><strong>${escapeHtml(r.name)}</strong> ${r.company ? `(${escapeHtml(r.company)})` : ''}</p>
+                        <p style="margin:8px 0;">“${escapeHtml(r.comment)}”</p>
+                        <small>${new Date(r.timestamp).toLocaleString()}</small>
+                    </div>
+                    <div class="review-actions">
+                        <button class="btn btn-primary approve-review" data-id="${r.id}" style="padding:6px 12px;">✅ Approve</button>
+                        <button class="btn btn-danger delete-review" data-id="${r.id}" style="padding:6px 12px;">🗑️ Delete</button>
+                    </div>
+                </div>
+            `).join('');
+            attachReviewButtons();
+        });
+    }
+
+    function renderApprovedReviews() {
+        reviewsRef.orderByChild('status').equalTo('approved').once('value', (snap) => {
+            const container = document.getElementById('approvedReviewsList');
+            if (!container) return;
+            const reviews = [];
+            snap.forEach(child => reviews.push({ id: child.key, ...child.val() }));
+            if (reviews.length === 0) {
+                container.innerHTML = '<p>No approved reviews yet.</p>';
+                return;
+            }
+            container.innerHTML = reviews.map(r => `
+                <div class="review-item">
+                    <div>
+                        <div class="stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
+                        <p><strong>${escapeHtml(r.name)}</strong> ${r.company ? `(${escapeHtml(r.company)})` : ''}</p>
+                        <p>“${escapeHtml(r.comment)}”</p>
+                        <small>${new Date(r.timestamp).toLocaleString()}</small>
+                    </div>
+                    <div class="review-actions">
+                        <button class="btn btn-danger delete-review-approved" data-id="${r.id}" style="padding:6px 12px;">🗑️ Delete</button>
+                    </div>
+                </div>
+            `).join('');
+            document.querySelectorAll('.delete-review-approved').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.getAttribute('data-id');
+                    if (confirm('Delete this approved review?')) {
+                        reviewsRef.child(id).remove().then(() => {
+                            alert('Review deleted');
+                            renderPendingReviews();
+                            renderApprovedReviews();
+                        });
+                    }
+                });
+            });
+        });
+    }
+
+    function attachReviewButtons() {
+        document.querySelectorAll('.approve-review').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.getAttribute('data-id');
+                reviewsRef.child(id).update({ status: 'approved' }).then(() => {
+                    alert('Review approved');
+                    renderPendingReviews();
+                    renderApprovedReviews();
+                });
+            });
+        });
+        document.querySelectorAll('.delete-review').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.getAttribute('data-id');
+                if (confirm('Delete this review permanently?')) {
+                    reviewsRef.child(id).remove().then(() => {
+                        alert('Review deleted');
+                        renderPendingReviews();
+                        renderApprovedReviews();
+                    });
+                }
+            });
+        });
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    // Login logic
+    document.getElementById('loginBtn').addEventListener('click', () => {
+        const pwd = document.getElementById('adminPass').value;
+        if (pwd === 'pronto2026') {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('adminContent').style.display = 'block';
+            loadAllData();
+        } else {
+            alert('Wrong password');
+        }
+    });
+
+    // Tab switching
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const panes = document.querySelectorAll('.tab-pane');
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tabId = btn.getAttribute('data-tab');
+            tabBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            panes.forEach(pane => pane.classList.remove('active'));
+            if (tabId === 'portfolio') document.getElementById('portfolioTab').classList.add('active');
+            else document.getElementById('reviewsTab').classList.add('active');
+            if (tabId === 'reviews') {
+                renderPendingReviews();
+                renderApprovedReviews();
+            }
+        });
+    });
+</script>
+</body>
+</html>
