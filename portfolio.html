@@ -71,7 +71,7 @@
             background: var(--navy);
             color: white;
         }
-        /* Header (same as services page) */
+        /* Header */
         .navbar {
             background: rgba(255,255,255,0.96);
             backdrop-filter: blur(12px);
@@ -143,7 +143,6 @@
         .mobile-nav.show { right: 0; }
         .mobile-nav a { text-decoration: none; font-weight: 600; font-size: 1.2rem; color: #1e293b; }
         .mobile-nav a:hover, .mobile-nav a.active { color: var(--orange); }
-        /* Hero with background image */
         .hero {
             position: relative;
             background: linear-gradient(135deg, rgba(11,43,79,0.92), rgba(0,0,0,0.85)), url('https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=1600');
@@ -156,7 +155,6 @@
         }
         .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 16px; }
         .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; opacity: 0.9; }
-        /* Filter buttons */
         .filter-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -191,15 +189,45 @@
             box-shadow: 0 12px 30px rgba(0,0,0,0.05);
             border: 1px solid #EDF2F7;
             cursor: pointer;
+            position: relative;
         }
         .portfolio-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
         }
+        /* Image container for hover effect */
+        .card-img-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
         .portfolio-img {
             width: 100%;
             height: 240px;
             object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .portfolio-card:hover .portfolio-img {
+            transform: scale(1.05);
+        }
+        /* Overlay that appears on hover (desktop) */
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11,43,79,0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            color: white;
+            font-weight: 700;
+            gap: 8px;
+        }
+        .portfolio-card:hover .card-overlay {
+            opacity: 1;
         }
         .portfolio-card h3 {
             font-size: 1.3rem;
@@ -217,11 +245,29 @@
             margin: 0 20px 8px;
         }
         .portfolio-card p {
-            margin: 0 20px 20px;
+            margin: 0 20px 16px;
             color: #475569;
             line-height: 1.4;
         }
-        /* Modal */
+        /* Visible click indicator (always present) */
+        .click-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--orange);
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 40px;
+            margin: 0 20px 20px;
+            transition: background 0.2s;
+            width: fit-content;
+        }
+        .portfolio-card:hover .click-indicator {
+            background: var(--orange-bright);
+        }
+        /* Modal Gallery */
         .modal {
             display: none;
             position: fixed;
@@ -229,7 +275,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             z-index: 2000;
             align-items: center;
             justify-content: center;
@@ -237,7 +283,7 @@
         }
         .modal-content {
             background: white;
-            max-width: 800px;
+            max-width: 1000px;
             width: 90%;
             border-radius: 28px;
             padding: 32px;
@@ -251,52 +297,69 @@
             top: 20px;
             font-size: 28px;
             cursor: pointer;
+            z-index: 10;
         }
-        .modal-img {
-            width: 100%;
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin: 24px 0;
+        }
+        .gallery-item {
+            position: relative;
             border-radius: 20px;
-            margin: 16px 0;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+        .image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(11,43,79,0.9), transparent);
+            color: white;
+            font-weight: 800;
+            font-size: 1rem;
+            padding: 12px 16px 8px;
+            text-align: center;
+            backdrop-filter: blur(4px);
         }
         .modal-detail {
-            margin: 12px 0;
+            margin: 20px 0 0;
             display: flex;
             flex-wrap: wrap;
             gap: 16px;
             font-size: 0.9rem;
-        }
-        /* Admin Panel (hidden by default) */
-        .admin-panel {
             background: var(--gray-bg);
-            border-radius: 28px;
-            padding: 32px;
-            margin-top: 60px;
-            display: none;
-        }
-        .admin-panel.show { display: block; }
-        .admin-form input, .admin-form textarea, .admin-form select {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 16px;
-            border: 1px solid #cbd5e1;
-            border-radius: 16px;
-            font-family: inherit;
-        }
-        .admin-form textarea { resize: vertical; }
-        .project-admin-item {
-            background: white;
-            border-radius: 16px;
             padding: 16px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
+            border-radius: 20px;
         }
-        /* CTA section */
+        .modal-detail strong { color: var(--navy); }
+        /* Unified CTA */
         .cta-section {
-            background: var(--gray-bg);
+            position: relative;
+            background: linear-gradient(135deg, rgba(11,43,79,0.92), rgba(0,0,0,0.85)), url('https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=1600');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: white;
             text-align: center;
-            padding: 60px 0;
+            padding: 120px 0;
+        }
+        .cta-glass {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 48px;
+            padding: 48px 32px;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid rgba(255,255,255,0.2);
         }
         footer {
             background: #0B1C2E;
@@ -350,6 +413,12 @@
             .mobile-menu-btn { display: block; }
             .hero h1 { font-size: 2rem; }
             .section-title { font-size: 2rem; }
+            .cta-section { padding: 80px 0; background-attachment: scroll; }
+            .cta-glass { padding: 32px 20px; margin: 0 16px; }
+            .modal-gallery { grid-template-columns: 1fr; }
+            /* On mobile, always show overlay hint? Not needed because click indicator is always visible */
+            .card-overlay { display: none; } /* Hide hover overlay on mobile to avoid clutter */
+            .click-indicator { margin: 12px 20px 20px; }
         }
     </style>
 </head>
@@ -398,62 +467,22 @@
         <div class="filter-buttons" id="filterButtons"></div>
         <div class="portfolio-grid" id="portfolioGrid"></div>
         <div style="text-align: center; margin-top: 48px;">
-            <a href="#contact" class="btn btn-outline-dark">Request full case studies →</a>
+            <a href="#contact-cta" class="btn btn-outline-dark">Request full case studies →</a>
         </div>
     </div>
 </section>
 
-<!-- Admin Toggle Button (visible only after login) -->
-<div class="container" style="text-align: right; margin-bottom: 20px;">
-    <button id="adminToggleBtn" class="btn btn-outline-dark" style="font-size:0.8rem; padding: 8px 20px;"><i class="fas fa-lock"></i> Admin Panel</button>
-</div>
-
-<!-- Admin Panel (hidden) -->
-<div id="adminPanel" class="admin-panel container">
-    <h3 style="color: var(--navy); margin-bottom: 20px;">Manage Portfolio Projects</h3>
-    <div id="adminLogin">
-        <input type="password" id="adminPassword" placeholder="Enter password">
-        <button id="loginAdminBtn" class="btn btn-primary">Login</button>
-        <p style="margin-top: 8px; font-size: 0.8rem;">Demo password: pronto2026</p>
-    </div>
-    <div id="adminContent" style="display: none;">
-        <form id="projectForm" class="admin-form">
-            <h4>Add / Edit Project</h4>
-            <input type="hidden" id="projectId">
-            <input type="text" id="projTitle" placeholder="Project Title" required>
-            <select id="projCategory">
-                <option value="Structural Steel">Structural Steel</option>
-                <option value="Industrial Buildings">Industrial Buildings</option>
-                <option value="Tank Farms">Tank Farms</option>
-                <option value="Offshore & DNV">Offshore & DNV</option>
-                <option value="Piping">Piping</option>
-                <option value="Coatings">Coatings</option>
-                <option value="Maintenance">Maintenance</option>
-            </select>
-            <input type="text" id="projImg" placeholder="Image URL (high-res)" required>
-            <input type="text" id="projLocation" placeholder="Location">
-            <input type="text" id="projTimeline" placeholder="Timeline (e.g., 6 months)">
-            <input type="text" id="projBudget" placeholder="Budget (e.g., ₦450M)">
-            <input type="text" id="projMaterial" placeholder="Material (e.g., S275 Steel)">
-            <textarea id="projDesc" rows="2" placeholder="Short description" required></textarea>
-            <input type="text" id="projClient" placeholder="Client name">
-            <textarea id="projScope" rows="2" placeholder="Scope of work"></textarea>
-            <textarea id="projResult" rows="2" placeholder="Result / outcome"></textarea>
-            <button type="submit" class="btn btn-primary">Save Project</button>
-            <button type="button" id="cancelEditBtn" class="btn-outline-dark" style="margin-left: 10px;">Cancel</button>
-        </form>
-        <hr style="margin: 30px 0;">
-        <h4>Existing Projects (click to edit)</h4>
-        <div id="projectsListAdmin"></div>
-    </div>
-</div>
-
-<!-- CTA Section -->
-<section class="cta-section" id="contact">
+<!-- Unified CTA Section -->
+<section class="cta-section" id="contact-cta">
     <div class="container">
-        <h2 data-aos="fade-up">Want your project in this gallery?</h2>
-        <p data-aos="fade-up" class="section-sub" style="margin-bottom: 32px;">Call us before you start. Let us quote your next building, tank, or offshore component.</p>
-        <a href="contact.html" class="btn btn-primary" data-aos="zoom-in"><i class="fab fa-whatsapp"></i> WhatsApp +234 816 888 6666</a>
+        <div class="cta-glass" data-aos="zoom-in-up">
+            <h2 style="font-size: 2.5rem; margin-bottom: 16px;">Want your project in this gallery?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 32px;">Call us before you start. Let us quote your next building, tank, or offshore component.</p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://wa.me/2348168886666" class="btn btn-primary" style="background: var(--orange);"><i class="fab fa-whatsapp"></i> WhatsApp +234 816 888 6666</a>
+                <a href="tel:+2348168886666" class="btn btn-outline-dark" style="border-color: white; color: white;">Call Now</a>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -513,7 +542,7 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 <script>
-    // -------------------- FIREBASE CONFIG (REPLACE WITH YOUR OWN) --------------------
+    // Firebase config
     const firebaseConfig = {
         apiKey: "AIzaSyDw4Aq8qippb9ySuks2_aLlTLyU0rYFsEs",
         authDomain: "pronto-cc198.firebaseapp.com",
@@ -523,271 +552,187 @@
         messagingSenderId: "587558230969",
         appId: "1:587558230969:web:11a2ff80b0c1040198f468f"
     };
-    // -------------------- END CONFIG --------------------
     
-    let db;
-    let realtimeMode = false;
+    let db, realtimeMode = false;
     try {
-        if (firebaseConfig.apiKey !== "AIzaSyDummyPlaceholderReplaceWithRealKey") {
-            firebase.initializeApp(firebaseConfig);
-            db = firebase.database();
-            realtimeMode = true;
-            console.log("Firebase connected");
-        } else {
-            console.warn("Using localStorage fallback (Firebase not configured)");
-        }
+        firebase.initializeApp(firebaseConfig);
+        db = firebase.database();
+        realtimeMode = true;
     } catch(e) { console.warn(e); }
 
-    // Data store
     let projects = [];
     let currentFilter = "all";
-    let editingId = null;
 
-    // Default sample projects
+    // Default projects (same as before, with 4+ images)
     const defaultProjects = [
-        { id: "1", title: "Hypercity Mall – Steel Framework", category: "Structural Steel", image: "https://i.pinimg.com/736x/b9/7a/ff/b97affd7ee3fb0cadb0cc195195d8d1e.jpg", location: "Port Harcourt", timeline: "6 months", budget: "₦450M", material: "S275 Steel", description: "Complete steel framework for Julius Berger. 12,000 sqm mall structure.", client: "Julius Berger", scope: "Fabrication & erection of all structural steel", result: "Completed on schedule, passed all inspections" },
-        { id: "2", title: "Brittania-U Platform", category: "Offshore & DNV", image: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg", location: "Niger Delta", timeline: "10 months", budget: "Confidential", material: "DNV Grade A", description: "32m x 16m offshore production platform, topside installation.", client: "Ajapa Field", scope: "Full EPCI of platform", result: "Commissioned and producing" },
-        { id: "3", title: "1200 BBL Tanks", category: "Tank Farms", image: "https://i.pinimg.com/736x/77/8a/71/778a7127e5bfdeb1065c2833240048f5.jpg", location: "Lagos", timeline: "4 months", budget: "₦280M", material: "API 5L", description: "API 650 storage tanks, full design & build for fuel depot.", client: "Industrial Storage Ltd", scope: "Design, fabrication, installation", result: "Zero leaks, operational" }
+        {
+            id: "1",
+            title: "Hypercity Mall – Eastern Bypass Branch",
+            category: "Structural Steel",
+            thumb: "https://i.pinimg.com/736x/b9/7a/ff/b97affd7ee3fb0cadb0cc195195d8d1e.jpg",
+            location: "Eastern Bypass, Rivers State, Nigeria",
+            roofType: "Multi-Slope Roof Steel Structure with PU Insulated Roofing System",
+            steelQty: "~150 Tons",
+            duration: "2 Months",
+            steelGrade: "S275 / S355 Structural Steel",
+            description: "Complete steel framework for Julius Berger. 12,000 sqm mall structure. Full turnkey execution.",
+            client: "Julius Berger",
+            scope: "Fabrication & erection of all structural steel, roofing system, and finishes.",
+            result: "Completed on schedule, passed all inspections with zero defects.",
+            images: [
+                { url: "https://i.pinimg.com/736x/b9/7a/ff/b97affd7ee3fb0cadb0cc195195d8d1e.jpg", label: "🔧 FOUNDATION & ERECTION" },
+                { url: "https://images.pexels.com/photos/3112840/pexels-photo-3112840.jpeg?auto=compress&cs=tinysrgb&w=800", label: "🏗️ STEEL FABRICATION" },
+                { url: "https://images.pexels.com/photos/256255/pexels-photo-256255.jpeg?auto=compress&cs=tinysrgb&w=800", label: "🔩 STRUCTURAL ASSEMBLY" },
+                { url: "https://images.pexels.com/photos/159213/construction-crane-industry-heavy-159213.jpeg?auto=compress&cs=tinysrgb&w=800", label: "✅ COMPLETED ROOF STRUCTURE" }
+            ]
+        },
+        {
+            id: "2",
+            title: "Brittania-U Platform (Ajapa Field)",
+            category: "Offshore & DNV",
+            thumb: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=800",
+            location: "Niger Delta, Nigeria",
+            roofType: "Offshore Production Platform – 2 Levels",
+            steelQty: "320 Tons",
+            duration: "10 months",
+            steelGrade: "DNV Grade A / API 2H",
+            description: "32m x 16m offshore production platform, topside modules, helideck, and process piping.",
+            client: "Ajapa Field Operators",
+            scope: "Full EPCI – engineering, procurement, fabrication, installation, and commissioning.",
+            result: "Commissioned on time, zero HSE incidents, exceeded production targets.",
+            images: [
+                { url: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=800", label: "🌊 OFFSHORE TRANSPORT" },
+                { url: "https://images.pexels.com/photos/279228/pexels-photo-279228.jpeg?auto=compress&cs=tinysrgb&w=800", label: "🏭 JACKET INSTALLATION" },
+                { url: "https://images.pexels.com/photos/163132/construction-site-building-construction-work-163132.jpeg?auto=compress&cs=tinysrgb&w=800", label: "🔧 TOPSIDE MODULES" },
+                { url: "https://images.pexels.com/photos/696357/pexels-photo-696357.jpeg?auto=compress&cs=tinysrgb&w=800", label: "✅ PLATFORM COMPLETE" }
+            ]
+        },
+        {
+            id: "3",
+            title: "1200 BBL Tanks – Lagos Depot",
+            category: "Tank Farms",
+            thumb: "https://i.pinimg.com/736x/77/8a/71/778a7127e5bfdeb1065c2833240048f5.jpg",
+            location: "Lagos, Nigeria",
+            roofType: "Floating Roof Tanks (API 650)",
+            steelQty: "210 Tons",
+            duration: "4 months",
+            steelGrade: "API 5L / S275",
+            description: "Design, fabrication, and installation of 4 x 1200 BBL storage tanks for fuel depot.",
+            client: "Industrial Storage Ltd",
+            scope: "Complete EPC – civil works, tank shell assembly, roofing, piping, and testing.",
+            result: "Zero leaks after hydrostatic testing, operational within deadlines.",
+            images: [
+                { url: "https://i.pinimg.com/736x/77/8a/71/778a7127e5bfdeb1065c2833240048f5.jpg", label: "📐 FOUNDATION & RINGWALL" },
+                { url: "https://images.pexels.com/photos/2301509/pexels-photo-2301509.jpeg?auto=compress&cs=tinysrgb&w=800", label: "🔧 SHELL ASSEMBLY" },
+                { url: "https://images.pexels.com/photos/280252/pexels-photo-280252.jpeg?auto=compress&cs=tinysrgb&w=800", label: "🏗️ ROOF INSTALLATION" },
+                { url: "https://images.pexels.com/photos/209241/pexels-photo-209241.jpeg?auto=compress&cs=tinysrgb&w=800", label: "✅ COMPLETED TANK FARM" }
+            ]
+        }
     ];
 
-    function saveToLocalStorage() {
-        localStorage.setItem('pronto_portfolio', JSON.stringify(projects));
-    }
-
-    function loadFromLocalStorage() {
+    function saveLocal() { localStorage.setItem('pronto_portfolio', JSON.stringify(projects)); }
+    function loadLocal() {
         const stored = localStorage.getItem('pronto_portfolio');
-        if (stored) projects = JSON.parse(stored);
-        else projects = defaultProjects;
-        saveToLocalStorage();
+        projects = stored ? JSON.parse(stored) : defaultProjects;
+        saveLocal();
     }
-
-    function loadFromFirebase() {
+    function loadFirebase() {
         if (!realtimeMode) return;
-        db.ref('portfolio').on('value', (snap) => {
-            if (snap.val()) {
-                const data = snap.val();
-                projects = Object.keys(data).map(key => ({ id: key, ...data[key] }));
-            } else {
-                projects = defaultProjects;
-                defaultProjects.forEach(p => db.ref(`portfolio/${p.id}`).set(p));
-            }
+        db.ref('portfolio').on('value', snap => {
+            if (snap.val()) projects = Object.keys(snap.val()).map(k => ({ id: k, ...snap.val()[k] }));
+            else projects = defaultProjects;
             renderFilterButtons();
             renderPortfolio();
-            renderAdminList();
         });
     }
 
-    function syncToFirebase() {
-        if (!realtimeMode) return;
-        projects.forEach(p => { db.ref(`portfolio/${p.id}`).set(p); });
-    }
-
-    // Render filter buttons
     function renderFilterButtons() {
-        const categories = ["all", ...new Set(projects.map(p => p.category))];
+        const cats = ["all", ...new Set(projects.map(p => p.category))];
         const container = document.getElementById('filterButtons');
-        if (!container) return;
-        container.innerHTML = categories.map(cat => `<button class="filter-btn ${currentFilter === cat ? 'active' : ''}" data-filter="${cat}">${cat === 'all' ? 'All Projects' : cat}</button>`).join('');
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                currentFilter = btn.getAttribute('data-filter');
-                renderFilterButtons();
-                renderPortfolio();
-            });
-        });
+        if(!container) return;
+        container.innerHTML = cats.map(c => `<button class="filter-btn ${currentFilter === c ? 'active' : ''}" data-filter="${c}">${c === 'all' ? 'All Projects' : c}</button>`).join('');
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
+            currentFilter = btn.dataset.filter;
+            renderFilterButtons();
+            renderPortfolio();
+        }));
     }
 
-    // Render portfolio grid
     function renderPortfolio() {
         const grid = document.getElementById('portfolioGrid');
-        if (!grid) return;
+        if(!grid) return;
         let filtered = currentFilter === 'all' ? projects : projects.filter(p => p.category === currentFilter);
         grid.innerHTML = filtered.map(p => `
             <div class="portfolio-card" data-id="${p.id}">
-                <img class="portfolio-img" src="${p.image}" alt="${p.title}">
+                <div class="card-img-wrapper">
+                    <img class="portfolio-img" src="${p.thumb}" alt="${p.title}">
+                    <div class="card-overlay">
+                        <i class="fas fa-search-plus"></i> View Gallery
+                    </div>
+                </div>
                 <span class="category-badge">${p.category}</span>
                 <h3>${p.title}</h3>
-                <p>${p.description.substring(0, 100)}${p.description.length > 100 ? '…' : ''}</p>
+                <p>${(p.description || '').substring(0, 100)}${(p.description || '').length > 100 ? '…' : ''}</p>
+                <div class="click-indicator">
+                    <i class="fas fa-arrow-right"></i> Click to view full project
+                </div>
             </div>
         `).join('');
-        document.querySelectorAll('.portfolio-card').forEach(card => {
-            card.addEventListener('click', (e) => {
-                const id = card.getAttribute('data-id');
-                openModal(id);
-            });
-        });
+        document.querySelectorAll('.portfolio-card').forEach(card => card.addEventListener('click', () => openModal(card.dataset.id)));
     }
 
-    // Modal
     function openModal(id) {
-        const proj = projects.find(p => p.id === id);
-        if (!proj) return;
+        const p = projects.find(proj => proj.id === id);
+        if (!p) return;
         const modalBody = document.getElementById('modalBody');
-        modalBody.innerHTML = `
-            <h2 style="color:var(--navy)">${proj.title}</h2>
-            <img class="modal-img" src="${proj.image}" alt="${proj.title}">
-            <div class="modal-detail">
-                <span><i class="fas fa-map-marker-alt"></i> ${proj.location || 'N/A'}</span>
-                <span><i class="fas fa-calendar-alt"></i> ${proj.timeline || 'N/A'}</span>
-                <span><i class="fas fa-chart-line"></i> ${proj.budget || 'N/A'}</span>
-                <span><i class="fas fa-cube"></i> ${proj.material || 'N/A'}</span>
+        
+        const galleryHtml = p.images && p.images.length ? `
+            <div class="modal-gallery">
+                ${p.images.map(img => `
+                    <div class="gallery-item">
+                        <img src="${img.url}" alt="${img.label}">
+                        <div class="image-label">${img.label}</div>
+                    </div>
+                `).join('')}
             </div>
-            <p><strong>Client:</strong> ${proj.client || 'Confidential'}</p>
-            <p><strong>Scope:</strong> ${proj.scope || proj.description}</p>
-            <p><strong>Result:</strong> ${proj.result || 'Completed successfully'}</p>
-            <p><strong>Full Description:</strong> ${proj.description}</p>
+        ` : `<img src="${p.thumb}" alt="${p.title}" style="width:100%; border-radius:20px; margin:20px 0;">`;
+        
+        modalBody.innerHTML = `
+            <h2 style="color:var(--navy);">${p.title}</h2>
+            ${galleryHtml}
+            <div class="modal-detail">
+                <div><strong>📍 Location:</strong> ${p.location || 'N/A'}</div>
+                <div><strong>🏗️ Structure:</strong> ${p.roofType || p.description || 'N/A'}</div>
+                <div><strong>⚙️ Steel Quantity:</strong> ${p.steelQty || 'N/A'}</div>
+                <div><strong>⏱️ Duration:</strong> ${p.duration || 'N/A'}</div>
+                <div><strong>🔩 Steel Grade:</strong> ${p.steelGrade || 'N/A'}</div>
+            </div>
+            <p><strong>👥 Client:</strong> ${p.client || 'Confidential'}</p>
+            <p><strong>📋 Scope:</strong> ${p.scope || p.description}</p>
+            <p><strong>🏆 Result:</strong> ${p.result || 'Completed successfully'}</p>
+            <p><strong>📝 Full Description:</strong> ${p.description}</p>
         `;
         document.getElementById('projectModal').style.display = 'flex';
     }
 
-    // Admin list rendering
-    function renderAdminList() {
-        const container = document.getElementById('projectsListAdmin');
-        if (!container) return;
-        container.innerHTML = projects.map(p => `
-            <div class="project-admin-item">
-                <div><strong>${p.title}</strong> (${p.category})</div>
-                <div>
-                    <button class="btn-outline-dark" style="padding:4px 12px; margin-right:8px;" onclick="editProject('${p.id}')">Edit</button>
-                    <button class="btn-outline-dark" style="padding:4px 12px; background:crimson; color:white;" onclick="deleteProject('${p.id}')">Delete</button>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    window.editProject = (id) => {
-        const p = projects.find(proj => proj.id === id);
-        if (!p) return;
-        editingId = id;
-        document.getElementById('projectId').value = p.id;
-        document.getElementById('projTitle').value = p.title;
-        document.getElementById('projCategory').value = p.category;
-        document.getElementById('projImg').value = p.image;
-        document.getElementById('projLocation').value = p.location || '';
-        document.getElementById('projTimeline').value = p.timeline || '';
-        document.getElementById('projBudget').value = p.budget || '';
-        document.getElementById('projMaterial').value = p.material || '';
-        document.getElementById('projDesc').value = p.description;
-        document.getElementById('projClient').value = p.client || '';
-        document.getElementById('projScope').value = p.scope || '';
-        document.getElementById('projResult').value = p.result || '';
-        scrollToAdmin();
-    };
-
-    window.deleteProject = (id) => {
-        if (confirm('Delete this project permanently?')) {
-            projects = projects.filter(p => p.id !== id);
-            if (realtimeMode) db.ref(`portfolio/${id}`).remove();
-            else saveToLocalStorage();
-            renderFilterButtons();
-            renderPortfolio();
-            renderAdminList();
-        }
-    };
-
-    function scrollToAdmin() {
-        document.getElementById('adminPanel').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // Admin form submit
-    document.getElementById('projectForm')?.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const id = editingId || Date.now().toString();
-        const project = {
-            id: id,
-            title: document.getElementById('projTitle').value,
-            category: document.getElementById('projCategory').value,
-            image: document.getElementById('projImg').value,
-            location: document.getElementById('projLocation').value,
-            timeline: document.getElementById('projTimeline').value,
-            budget: document.getElementById('projBudget').value,
-            material: document.getElementById('projMaterial').value,
-            description: document.getElementById('projDesc').value,
-            client: document.getElementById('projClient').value,
-            scope: document.getElementById('projScope').value,
-            result: document.getElementById('projResult').value
-        };
-        if (editingId) {
-            const index = projects.findIndex(p => p.id === editingId);
-            if (index !== -1) projects[index] = project;
-        } else {
-            projects.push(project);
-        }
-        if (realtimeMode) db.ref(`portfolio/${id}`).set(project);
-        else saveToLocalStorage();
-        editingId = null;
-        document.getElementById('projectForm').reset();
-        renderFilterButtons();
-        renderPortfolio();
-        renderAdminList();
-        scrollToAdmin();
-    });
-
-    document.getElementById('cancelEditBtn')?.addEventListener('click', () => {
-        editingId = null;
-        document.getElementById('projectForm').reset();
-    });
-
-    // Admin login
-    document.getElementById('loginAdminBtn')?.addEventListener('click', () => {
-        const pwd = document.getElementById('adminPassword').value;
-        if (pwd === 'pronto2026') {
-            document.getElementById('adminLogin').style.display = 'none';
-            document.getElementById('adminContent').style.display = 'block';
-            renderAdminList();
-        } else alert('Wrong password');
-    });
-
-    // Toggle admin panel visibility
-    document.getElementById('adminToggleBtn')?.addEventListener('click', () => {
-        const panel = document.getElementById('adminPanel');
-        if (panel.classList.contains('show')) {
-            panel.classList.remove('show');
-        } else {
-            panel.classList.add('show');
-        }
-    });
-
     // Modal close
-    document.querySelector('.modal-close')?.addEventListener('click', () => {
-        document.getElementById('projectModal').style.display = 'none';
-    });
-    window.onclick = function(e) {
-        if (e.target === document.getElementById('projectModal')) {
-            document.getElementById('projectModal').style.display = 'none';
-        }
-    };
+    document.querySelector('.modal-close')?.addEventListener('click', () => document.getElementById('projectModal').style.display = 'none');
+    window.onclick = e => { if(e.target === document.getElementById('projectModal')) document.getElementById('projectModal').style.display = 'none'; };
 
-    // Mobile menu logic
+    // Mobile menu
     const mobileBtn = document.getElementById('mobileMenuBtn');
     const mobileNav = document.getElementById('mobileNav');
     const overlay = document.getElementById('mobileMenuOverlay');
     const menuIcon = mobileBtn?.querySelector('i');
-
-    function closeMenu() {
-        mobileNav.classList.remove('show');
-        overlay.classList.remove('active');
-        document.body.classList.remove('menu-open');
-        if (menuIcon) menuIcon.className = 'fas fa-bars';
-    }
-    function openMenu() {
-        mobileNav.classList.add('show');
-        overlay.classList.add('active');
-        document.body.classList.add('menu-open');
-        if (menuIcon) menuIcon.className = 'fas fa-times';
-    }
-    mobileBtn?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (mobileNav.classList.contains('show')) closeMenu();
-        else openMenu();
-    });
+    function closeMenu() { mobileNav.classList.remove('show'); overlay.classList.remove('active'); document.body.classList.remove('menu-open'); if(menuIcon) menuIcon.className = 'fas fa-bars'; }
+    function openMenu() { mobileNav.classList.add('show'); overlay.classList.add('active'); document.body.classList.add('menu-open'); if(menuIcon) menuIcon.className = 'fas fa-times'; }
+    mobileBtn?.addEventListener('click', (e) => { e.stopPropagation(); mobileNav.classList.contains('show') ? closeMenu() : openMenu(); });
     overlay?.addEventListener('click', closeMenu);
     document.querySelectorAll('.mobile-nav a').forEach(link => link.addEventListener('click', closeMenu));
 
     // Initialize
-    if (realtimeMode) loadFromFirebase();
-    else { loadFromLocalStorage(); renderFilterButtons(); renderPortfolio(); }
-
+    if(realtimeMode) loadFirebase();
+    else { loadLocal(); renderFilterButtons(); renderPortfolio(); }
     AOS.init({ duration: 800, once: true });
 </script>
 </body>
