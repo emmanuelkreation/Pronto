@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Our Portfolio | Pronto Contractors – Steel Fabrication & Industrial Projects</title>
+    <title>Contact Us | Pronto Contractors – Get a Quote or Visit Our Yard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -71,7 +71,7 @@
             background: var(--navy);
             color: white;
         }
-        /* Header (same as services page) */
+        /* Header */
         .navbar {
             background: rgba(255,255,255,0.96);
             backdrop-filter: blur(12px);
@@ -143,7 +143,7 @@
         .mobile-nav.show { right: 0; }
         .mobile-nav a { text-decoration: none; font-weight: 600; font-size: 1.2rem; color: #1e293b; }
         .mobile-nav a:hover, .mobile-nav a.active { color: var(--orange); }
-        /* Hero with background image */
+        /* Hero */
         .hero {
             position: relative;
             background: linear-gradient(135deg, rgba(11,43,79,0.92), rgba(0,0,0,0.85)), url('https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=1600');
@@ -156,143 +156,82 @@
         }
         .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 16px; }
         .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; opacity: 0.9; }
-        /* Filter buttons */
-        .filter-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 40px;
-            justify-content: center;
-        }
-        .filter-btn {
-            background: #f1f5f9;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .filter-btn.active, .filter-btn:hover {
-            background: var(--navy);
-            color: white;
-        }
-        /* Portfolio Grid */
-        .portfolio-grid {
+        /* Contact Grid */
+        .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 32px;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
         }
-        .portfolio-card {
+        .contact-details {
             background: white;
-            border-radius: 28px;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 32px;
+            padding: 32px;
             box-shadow: 0 12px 30px rgba(0,0,0,0.05);
-            border: 1px solid #EDF2F7;
-            cursor: pointer;
         }
-        .portfolio-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
-        }
-        .portfolio-img {
-            width: 100%;
-            height: 240px;
-            object-fit: cover;
-        }
-        .portfolio-card h3 {
-            font-size: 1.3rem;
-            margin: 16px 20px 8px;
+        .contact-details h3 {
+            font-size: 1.5rem;
             color: var(--navy);
+            margin-bottom: 24px;
         }
-        .category-badge {
-            display: inline-block;
-            background: var(--orange);
-            color: white;
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 4px 12px;
-            border-radius: 20px;
-            margin: 0 20px 8px;
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
         }
-        .portfolio-card p {
-            margin: 0 20px 20px;
-            color: #475569;
-            line-height: 1.4;
-        }
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(232,93,4,0.1);
+            border-radius: 50%;
+            display: flex;
             align-items: center;
             justify-content: center;
-            overflow-y: auto;
+            color: var(--orange);
+            font-size: 1.3rem;
         }
-        .modal-content {
-            background: white;
-            max-width: 800px;
-            width: 90%;
-            border-radius: 28px;
-            padding: 32px;
-            position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        .modal-close {
-            position: absolute;
-            right: 24px;
-            top: 20px;
-            font-size: 28px;
-            cursor: pointer;
-        }
-        .modal-img {
-            width: 100%;
-            border-radius: 20px;
-            margin: 16px 0;
-        }
-        .modal-detail {
-            margin: 12px 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            font-size: 0.9rem;
-        }
-        /* Admin Panel (hidden by default) */
-        .admin-panel {
+        .contact-text p { margin: 0; line-height: 1.4; }
+        .contact-text strong { color: var(--navy); }
+        .contact-form-card {
             background: var(--gray-bg);
-            border-radius: 28px;
+            border-radius: 32px;
             padding: 32px;
-            margin-top: 60px;
-            display: none;
         }
-        .admin-panel.show { display: block; }
-        .admin-form input, .admin-form textarea, .admin-form select {
+        .form-group { margin-bottom: 20px; }
+        .form-group input, .form-group textarea, .form-group select {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 16px;
+            padding: 14px 18px;
             border: 1px solid #cbd5e1;
-            border-radius: 16px;
+            border-radius: 20px;
             font-family: inherit;
+            font-size: 1rem;
         }
-        .admin-form textarea { resize: vertical; }
-        .project-admin-item {
+        .form-group textarea { resize: vertical; }
+        .map-container {
+            margin-top: 60px;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin: 60px 0 0;
+        }
+        .info-card {
             background: white;
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
+            border-radius: 28px;
+            padding: 28px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
         }
-        /* ===== REPLACED CTA SECTION (unified with homepage) ===== */
+        .info-card i {
+            font-size: 2rem;
+            color: var(--orange);
+            margin-bottom: 16px;
+        }
+        /* CTA (same as homepage) */
         .cta-section {
             position: relative;
             background: linear-gradient(135deg, rgba(11,43,79,0.92), rgba(0,0,0,0.85)), url('https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=1600');
@@ -312,18 +251,6 @@
             margin: 0 auto;
             border: 1px solid rgba(255,255,255,0.2);
         }
-        .cta-section .btn-primary {
-            background: var(--orange);
-        }
-        .cta-section .btn-outline-dark {
-            border-color: white;
-            color: white;
-        }
-        .cta-section .btn-outline-dark:hover {
-            background: white;
-            color: var(--navy);
-        }
-        /* ===== END CTA UPDATE ===== */
         footer {
             background: #0B1C2E;
             color: #94A3B8;
@@ -376,9 +303,9 @@
             .mobile-menu-btn { display: block; }
             .hero h1 { font-size: 2rem; }
             .section-title { font-size: 2rem; }
+            .contact-grid { grid-template-columns: 1fr; gap: 32px; }
             .cta-section { padding: 80px 0; background-attachment: scroll; }
             .cta-glass { padding: 32px 20px; margin: 0 16px; }
-            .cta-glass h2 { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -391,24 +318,24 @@
             <div class="logo-text">PRONTO<span> Contractors</span></div>
         </div>
         <div class="desktop-nav">
-           <a href="index.html">Home</a>
+            <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="services.html">Services</a>
             <a href="portfolio.html">Portfolio</a>
             <a href="reviews.html">Reviews</a>
-            <a href="contact.html">Contact</a>
+            <a href="contact.html" class="active">Contact</a>
         </div>
         <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
     </div>
 </div>
 <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 <div class="mobile-nav" id="mobileNav">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="services.html">Services</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="reviews.html">Reviews</a>
-            <a href="contact.html">Contact</a>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="contact.html" class="active">Contact</a>
 </div>
 
 <a href="https://wa.me/2348168886666" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
@@ -416,73 +343,130 @@
 <!-- Hero Section -->
 <section class="hero">
     <div class="container">
-        <h1 data-aos="fade-up">Proof in Steel</h1>
-        <p data-aos="fade-up" data-aos-delay="100">Real projects. Real results. Not renderings.</p>
+        <h1 data-aos="fade-up">Let's talk about your project</h1>
+        <p data-aos="fade-up" data-aos-delay="100">Stop emailing contractors who never respond. We answer. We respond. We show up.</p>
     </div>
 </section>
 
-<!-- Portfolio Filter & Grid -->
+<!-- Contact Form & Details -->
 <section>
     <div class="container">
-        <div class="filter-buttons" id="filterButtons"></div>
-        <div class="portfolio-grid" id="portfolioGrid"></div>
-        <div style="text-align: center; margin-top: 48px;">
-            <a href="#contact" class="btn btn-outline-dark">Request full case studies →</a>
+        <div class="contact-grid">
+            <!-- Left: Contact Details -->
+            <div class="contact-details" data-aos="fade-right">
+                <h3><i class="fas fa-phone-alt" style="color: var(--orange); margin-right: 10px;"></i> Get in touch</h3>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="contact-text">
+                        <strong>Visit our yard</strong>
+                        <p>5 National Supply Road, Trans-Amadi Industrial Layout<br>Port Harcourt, Rivers State, Nigeria</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <div class="contact-text">
+                        <strong>Call us</strong>
+                        <p>+234 816 888 6666</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                    <div class="contact-text">
+                        <strong>WhatsApp</strong>
+                        <p>+234 816 888 6666<br><small>Send drawings & RFQ – fastest response</small></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="contact-text">
+                        <strong>Email</strong>
+                        <p>info@prontocontractorsltd.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                    <div class="contact-text">
+                        <strong>Office hours</strong>
+                        <p>Monday – Friday: 8am – 5pm<br>Saturday: By appointment<br>Sunday: Closed (24/7 emergency support for active projects)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Enquiry Form -->
+            <div class="contact-form-card" data-aos="fade-left">
+                <h3 style="margin-bottom: 24px;">Send us a message</h3>
+                <form id="contactForm" action="#" method="POST">
+                    <div class="form-group">
+                        <input type="text" id="fullName" placeholder="Full name *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Email address *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" placeholder="Phone number *" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="serviceInterest">
+                            <option value="">Select service of interest</option>
+                            <option>Structural Steel Fabrication</option>
+                            <option>Tank Farm Construction</option>
+                            <option>DNV Skids & Containers</option>
+                            <option>Piping Fabrication</option>
+                            <option>Sandblasting & Coatings</option>
+                            <option>Marine Maintenance</option>
+                            <option>Equipment Rentals</option>
+                            <option>General Enquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="5" placeholder="Project details, location, timeline, or question..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;"><i class="fas fa-paper-plane"></i> Send Message</button>
+                    <p style="margin-top: 16px; font-size: 0.8rem; text-align: center;">We'll reply within 24 hours. Your data is safe.</p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Live Google Map -->
+        <div class="map-container" data-aos="fade-up">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3975.258316414061!2d7.019964474667718!3d4.823448442089417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1069d3b2d0c0b5f9%3A0x5e7c1b3f8c2a1e4!2sTrans-Amadi%20Industrial%20Layout%2C%20Port%20Harcourt%2C%20Rivers%20State%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1712345678901!5m2!1sen!2sng" 
+                width="100%" 
+                height="400" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+        <!-- Extra info cards (support, fastest response, etc.) -->
+        <div class="info-cards">
+            <div class="info-card" data-aos="fade-up">
+                <i class="fas fa-clock"></i>
+                <h4>Fastest response</h4>
+                <p>We reply to WhatsApp messages within 2 hours during business days.</p>
+            </div>
+            <div class="info-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-hard-hat"></i>
+                <h4>On‑site visits</h4>
+                <p>We can come to your site anywhere in Nigeria – just call ahead.</p>
+            </div>
+            <div class="info-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-file-invoice-dollar"></i>
+                <h4>Free quote</h4>
+                <p>Send your drawings, we'll give you a detailed estimate within 24h.</p>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Admin Toggle Button (visible only after login) -->
-<div class="container" style="text-align: right; margin-bottom: 20px;">
-    <button id="adminToggleBtn" class="btn btn-outline-dark" style="font-size:0.8rem; padding: 8px 20px;"><i class="fas fa-lock"></i> Admin Panel</button>
-</div>
-
-<!-- Admin Panel (hidden) -->
-<div id="adminPanel" class="admin-panel container">
-    <h3 style="color: var(--navy); margin-bottom: 20px;">Manage Portfolio Projects</h3>
-    <div id="adminLogin">
-        <input type="password" id="adminPassword" placeholder="Enter password">
-        <button id="loginAdminBtn" class="btn btn-primary">Login</button>
-        <p style="margin-top: 8px; font-size: 0.8rem;">Demo password: pronto2026</p>
-    </div>
-    <div id="adminContent" style="display: none;">
-        <form id="projectForm" class="admin-form">
-            <h4>Add / Edit Project</h4>
-            <input type="hidden" id="projectId">
-            <input type="text" id="projTitle" placeholder="Project Title" required>
-            <select id="projCategory">
-                <option value="Structural Steel">Structural Steel</option>
-                <option value="Industrial Buildings">Industrial Buildings</option>
-                <option value="Tank Farms">Tank Farms</option>
-                <option value="Offshore & DNV">Offshore & DNV</option>
-                <option value="Piping">Piping</option>
-                <option value="Coatings">Coatings</option>
-                <option value="Maintenance">Maintenance</option>
-            </select>
-            <input type="text" id="projImg" placeholder="Image URL (high-res)" required>
-            <input type="text" id="projLocation" placeholder="Location">
-            <input type="text" id="projTimeline" placeholder="Timeline (e.g., 6 months)">
-            <input type="text" id="projBudget" placeholder="Budget (e.g., ₦450M)">
-            <input type="text" id="projMaterial" placeholder="Material (e.g., S275 Steel)">
-            <textarea id="projDesc" rows="2" placeholder="Short description" required></textarea>
-            <input type="text" id="projClient" placeholder="Client name">
-            <textarea id="projScope" rows="2" placeholder="Scope of work"></textarea>
-            <textarea id="projResult" rows="2" placeholder="Result / outcome"></textarea>
-            <button type="submit" class="btn btn-primary">Save Project</button>
-            <button type="button" id="cancelEditBtn" class="btn-outline-dark" style="margin-left: 10px;">Cancel</button>
-        </form>
-        <hr style="margin: 30px 0;">
-        <h4>Existing Projects (click to edit)</h4>
-        <div id="projectsListAdmin"></div>
-    </div>
-</div>
-
-<!-- ===== REPLACED CTA SECTION (unified with homepage) ===== -->
-<section class="cta-section" id="contact">
+<!-- Unified CTA Section -->
+<section class="cta-section">
     <div class="container">
         <div class="cta-glass" data-aos="zoom-in-up">
-            <h2 style="font-size: 2.5rem; margin-bottom: 16px;">Want your project in this gallery?</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 32px;">Call us before you start. Let us quote your next building, tank, or offshore component.</p>
+            <h2 style="font-size: 2.5rem; margin-bottom: 16px;">Ready to discuss your project?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 32px;">Send your drawings, call us, or walk into our yard. We respond within hours.</p>
             <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
                 <a href="https://wa.me/2348168886666" class="btn btn-primary" style="background: var(--orange);"><i class="fab fa-whatsapp"></i> WhatsApp +234 816 888 6666</a>
                 <a href="tel:+2348168886666" class="btn btn-outline-dark" style="border-color: white; color: white;">Call Now</a>
@@ -490,7 +474,6 @@
         </div>
     </div>
 </section>
-<!-- ===== END OF CTA REPLACEMENT ===== -->
 
 <!-- Footer -->
 <footer>
@@ -500,9 +483,9 @@
                 <h4>Pronto Contractors Ltd</h4>
                 <p>DNV 2.7-1 · ISO 9001:2015<br>Engineering · Fabrication · Construction</p>
                 <div class="social-icons">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/pronto.contractors/"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=100083270536071"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
             <div class="footer-col">
@@ -536,262 +519,32 @@
     </div>
 </footer>
 
-<!-- MODAL -->
-<div id="projectModal" class="modal">
-    <div class="modal-content">
-        <span class="modal-close">&times;</span>
-        <div id="modalBody"></div>
-    </div>
-</div>
-
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 <script>
-    // -------------------- FIREBASE CONFIG (REPLACE WITH YOUR OWN) --------------------
-    const firebaseConfig = {
-        apiKey: "AIzaSyDummyPlaceholderReplaceWithRealKey",
-        authDomain: "pronto-contractors.firebaseapp.com",
-        databaseURL: "https://pronto-contractors-default-rtdb.firebaseio.com",
-        projectId: "pronto-contractors",
-        storageBucket: "pronto-contractors.appspot.com",
-        messagingSenderId: "123456789012",
-        appId: "1:123456789012:web:abcdef"
-    };
-    // -------------------- END CONFIG --------------------
-    
-    let db;
-    let realtimeMode = false;
-    try {
-        if (firebaseConfig.apiKey !== "AIzaSyDummyPlaceholderReplaceWithRealKey") {
-            firebase.initializeApp(firebaseConfig);
-            db = firebase.database();
-            realtimeMode = true;
-            console.log("Firebase connected");
-        } else {
-            console.warn("Using localStorage fallback (Firebase not configured)");
-        }
-    } catch(e) { console.warn(e); }
-
-    // Data store
-    let projects = [];
-    let currentFilter = "all";
-    let editingId = null;
-
-    // Default sample projects
-    const defaultProjects = [
-        { id: "1", title: "Hypercity Mall – Steel Framework", category: "Structural Steel", image: "https://i.pinimg.com/736x/b9/7a/ff/b97affd7ee3fb0cadb0cc195195d8d1e.jpg", location: "Port Harcourt", timeline: "6 months", budget: "₦450M", material: "S275 Steel", description: "Complete steel framework for Julius Berger. 12,000 sqm mall structure.", client: "Julius Berger", scope: "Fabrication & erection of all structural steel", result: "Completed on schedule, passed all inspections" },
-        { id: "2", title: "Brittania-U Platform", category: "Offshore & DNV", image: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg", location: "Niger Delta", timeline: "10 months", budget: "Confidential", material: "DNV Grade A", description: "32m x 16m offshore production platform, topside installation.", client: "Ajapa Field", scope: "Full EPCI of platform", result: "Commissioned and producing" },
-        { id: "3", title: "1200 BBL Tanks", category: "Tank Farms", image: "https://i.pinimg.com/736x/77/8a/71/778a7127e5bfdeb1065c2833240048f5.jpg", location: "Lagos", timeline: "4 months", budget: "₦280M", material: "API 5L", description: "API 650 storage tanks, full design & build for fuel depot.", client: "Industrial Storage Ltd", scope: "Design, fabrication, installation", result: "Zero leaks, operational" }
-    ];
-
-    function saveToLocalStorage() {
-        localStorage.setItem('pronto_portfolio', JSON.stringify(projects));
-    }
-
-    function loadFromLocalStorage() {
-        const stored = localStorage.getItem('pronto_portfolio');
-        if (stored) projects = JSON.parse(stored);
-        else projects = defaultProjects;
-        saveToLocalStorage();
-    }
-
-    function loadFromFirebase() {
-        if (!realtimeMode) return;
-        db.ref('portfolio').on('value', (snap) => {
-            if (snap.val()) {
-                const data = snap.val();
-                projects = Object.keys(data).map(key => ({ id: key, ...data[key] }));
-            } else {
-                projects = defaultProjects;
-                defaultProjects.forEach(p => db.ref(`portfolio/${p.id}`).set(p));
+    // Simple form submission (you can integrate with Firebase or email later)
+    const form = document.getElementById('contactForm');
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Collect data
+            const name = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('serviceInterest').value;
+            const message = document.getElementById('message').value;
+            
+            // Basic validation
+            if (!name || !email || !phone) {
+                alert('Please fill in all required fields (Name, Email, Phone).');
+                return;
             }
-            renderFilterButtons();
-            renderPortfolio();
-            renderAdminList();
+            
+            // For now, show a success message.
+            // You can replace this with Firebase or a backend endpoint.
+            alert(`Thank you ${name}! Your enquiry has been sent. We'll contact you within 24 hours.`);
+            form.reset();
         });
     }
-
-    function syncToFirebase() {
-        if (!realtimeMode) return;
-        projects.forEach(p => { db.ref(`portfolio/${p.id}`).set(p); });
-    }
-
-    // Render filter buttons
-    function renderFilterButtons() {
-        const categories = ["all", ...new Set(projects.map(p => p.category))];
-        const container = document.getElementById('filterButtons');
-        if (!container) return;
-        container.innerHTML = categories.map(cat => `<button class="filter-btn ${currentFilter === cat ? 'active' : ''}" data-filter="${cat}">${cat === 'all' ? 'All Projects' : cat}</button>`).join('');
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                currentFilter = btn.getAttribute('data-filter');
-                renderFilterButtons();
-                renderPortfolio();
-            });
-        });
-    }
-
-    // Render portfolio grid
-    function renderPortfolio() {
-        const grid = document.getElementById('portfolioGrid');
-        if (!grid) return;
-        let filtered = currentFilter === 'all' ? projects : projects.filter(p => p.category === currentFilter);
-        grid.innerHTML = filtered.map(p => `
-            <div class="portfolio-card" data-id="${p.id}">
-                <img class="portfolio-img" src="${p.image}" alt="${p.title}">
-                <span class="category-badge">${p.category}</span>
-                <h3>${p.title}</h3>
-                <p>${p.description.substring(0, 100)}${p.description.length > 100 ? '…' : ''}</p>
-            </div>
-        `).join('');
-        document.querySelectorAll('.portfolio-card').forEach(card => {
-            card.addEventListener('click', (e) => {
-                const id = card.getAttribute('data-id');
-                openModal(id);
-            });
-        });
-    }
-
-    // Modal
-    function openModal(id) {
-        const proj = projects.find(p => p.id === id);
-        if (!proj) return;
-        const modalBody = document.getElementById('modalBody');
-        modalBody.innerHTML = `
-            <h2 style="color:var(--navy)">${proj.title}</h2>
-            <img class="modal-img" src="${proj.image}" alt="${proj.title}">
-            <div class="modal-detail">
-                <span><i class="fas fa-map-marker-alt"></i> ${proj.location || 'N/A'}</span>
-                <span><i class="fas fa-calendar-alt"></i> ${proj.timeline || 'N/A'}</span>
-                <span><i class="fas fa-chart-line"></i> ${proj.budget || 'N/A'}</span>
-                <span><i class="fas fa-cube"></i> ${proj.material || 'N/A'}</span>
-            </div>
-            <p><strong>Client:</strong> ${proj.client || 'Confidential'}</p>
-            <p><strong>Scope:</strong> ${proj.scope || proj.description}</p>
-            <p><strong>Result:</strong> ${proj.result || 'Completed successfully'}</p>
-            <p><strong>Full Description:</strong> ${proj.description}</p>
-        `;
-        document.getElementById('projectModal').style.display = 'flex';
-    }
-
-    // Admin list rendering
-    function renderAdminList() {
-        const container = document.getElementById('projectsListAdmin');
-        if (!container) return;
-        container.innerHTML = projects.map(p => `
-            <div class="project-admin-item">
-                <div><strong>${p.title}</strong> (${p.category})</div>
-                <div>
-                    <button class="btn-outline-dark" style="padding:4px 12px; margin-right:8px;" onclick="editProject('${p.id}')">Edit</button>
-                    <button class="btn-outline-dark" style="padding:4px 12px; background:crimson; color:white;" onclick="deleteProject('${p.id}')">Delete</button>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    window.editProject = (id) => {
-        const p = projects.find(proj => proj.id === id);
-        if (!p) return;
-        editingId = id;
-        document.getElementById('projectId').value = p.id;
-        document.getElementById('projTitle').value = p.title;
-        document.getElementById('projCategory').value = p.category;
-        document.getElementById('projImg').value = p.image;
-        document.getElementById('projLocation').value = p.location || '';
-        document.getElementById('projTimeline').value = p.timeline || '';
-        document.getElementById('projBudget').value = p.budget || '';
-        document.getElementById('projMaterial').value = p.material || '';
-        document.getElementById('projDesc').value = p.description;
-        document.getElementById('projClient').value = p.client || '';
-        document.getElementById('projScope').value = p.scope || '';
-        document.getElementById('projResult').value = p.result || '';
-        scrollToAdmin();
-    };
-
-    window.deleteProject = (id) => {
-        if (confirm('Delete this project permanently?')) {
-            projects = projects.filter(p => p.id !== id);
-            if (realtimeMode) db.ref(`portfolio/${id}`).remove();
-            else saveToLocalStorage();
-            renderFilterButtons();
-            renderPortfolio();
-            renderAdminList();
-        }
-    };
-
-    function scrollToAdmin() {
-        document.getElementById('adminPanel').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // Admin form submit
-    document.getElementById('projectForm')?.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const id = editingId || Date.now().toString();
-        const project = {
-            id: id,
-            title: document.getElementById('projTitle').value,
-            category: document.getElementById('projCategory').value,
-            image: document.getElementById('projImg').value,
-            location: document.getElementById('projLocation').value,
-            timeline: document.getElementById('projTimeline').value,
-            budget: document.getElementById('projBudget').value,
-            material: document.getElementById('projMaterial').value,
-            description: document.getElementById('projDesc').value,
-            client: document.getElementById('projClient').value,
-            scope: document.getElementById('projScope').value,
-            result: document.getElementById('projResult').value
-        };
-        if (editingId) {
-            const index = projects.findIndex(p => p.id === editingId);
-            if (index !== -1) projects[index] = project;
-        } else {
-            projects.push(project);
-        }
-        if (realtimeMode) db.ref(`portfolio/${id}`).set(project);
-        else saveToLocalStorage();
-        editingId = null;
-        document.getElementById('projectForm').reset();
-        renderFilterButtons();
-        renderPortfolio();
-        renderAdminList();
-        scrollToAdmin();
-    });
-
-    document.getElementById('cancelEditBtn')?.addEventListener('click', () => {
-        editingId = null;
-        document.getElementById('projectForm').reset();
-    });
-
-    // Admin login
-    document.getElementById('loginAdminBtn')?.addEventListener('click', () => {
-        const pwd = document.getElementById('adminPassword').value;
-        if (pwd === 'pronto2026') {
-            document.getElementById('adminLogin').style.display = 'none';
-            document.getElementById('adminContent').style.display = 'block';
-            renderAdminList();
-        } else alert('Wrong password');
-    });
-
-    // Toggle admin panel visibility
-    document.getElementById('adminToggleBtn')?.addEventListener('click', () => {
-        const panel = document.getElementById('adminPanel');
-        if (panel.classList.contains('show')) {
-            panel.classList.remove('show');
-        } else {
-            panel.classList.add('show');
-        }
-    });
-
-    // Modal close
-    document.querySelector('.modal-close')?.addEventListener('click', () => {
-        document.getElementById('projectModal').style.display = 'none';
-    });
-    window.onclick = function(e) {
-        if (e.target === document.getElementById('projectModal')) {
-            document.getElementById('projectModal').style.display = 'none';
-        }
-    };
 
     // Mobile menu logic
     const mobileBtn = document.getElementById('mobileMenuBtn');
@@ -818,10 +571,6 @@
     });
     overlay?.addEventListener('click', closeMenu);
     document.querySelectorAll('.mobile-nav a').forEach(link => link.addEventListener('click', closeMenu));
-
-    // Initialize
-    if (realtimeMode) loadFromFirebase();
-    else { loadFromLocalStorage(); renderFilterButtons(); renderPortfolio(); }
 
     AOS.init({ duration: 800, once: true });
 </script>
