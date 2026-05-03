@@ -358,12 +358,38 @@
             padding: 32px;
             box-shadow: 0 12px 30px rgba(0,0,0,0.05);
         }
-        /* Final CTA with bg */
-        .final-cta {
-            background: linear-gradient(135deg, var(--navy), var(--navy-dark));
+        /* ===== REPLACED CTA SECTION (unified with homepage) ===== */
+        .cta-section {
+            position: relative;
+            background: linear-gradient(135deg, rgba(11,43,79,0.92), rgba(0,0,0,0.85)), url('https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=1600');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: white;
             text-align: center;
+            padding: 120px 0;
+        }
+        .cta-glass {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 48px;
+            padding: 48px 32px;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .cta-section .btn-primary {
+            background: var(--orange);
+        }
+        .cta-section .btn-outline-dark {
+            border-color: white;
             color: white;
         }
+        .cta-section .btn-outline-dark:hover {
+            background: white;
+            color: var(--navy);
+        }
+        /* ===== END CTA UPDATE ===== */
         /* Footer */
         footer {
             background: #0B1C2E;
@@ -424,6 +450,9 @@
             .story-grid { grid-template-columns: 1fr; gap: 32px; text-align: center; }
             .ceo-card { flex-direction: column; text-align: center; padding: 32px; }
             .approach-steps { gap: 20px; }
+            .cta-section { padding: 80px 0; background-attachment: scroll; }
+            .cta-glass { padding: 32px 20px; margin: 0 16px; }
+            .cta-glass h2 { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -554,16 +583,20 @@
     </div>
 </section>
 
-<!-- Final CTA -->
-<section class="final-cta">
+<!-- ===== REPLACED CTA SECTION (unified with homepage) ===== -->
+<section class="cta-section">
     <div class="container">
-        <div data-aos="fade-up">
-            <h2 class="section-title" style="color: white;">Come see the yard</h2>
-            <p class="section-sub" style="color: #e2e8f0; margin-bottom: 32px;">Stop reading about us. Come to 5 National Supply Road in Trans-Amadi. Walk our fabrication yard. Talk to the welders. See the DNV containers being built.</p>
-            <a href="contact.html" class="btn btn-primary"><i class="fas fa-map-marker-alt"></i> Visit our yard</a>
+        <div class="cta-glass" data-aos="zoom-in-up">
+            <h2 style="font-size: 2.5rem; margin-bottom: 16px;">Come see the yard</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 32px;">Stop reading about us. Come to 5 National Supply Road in Trans-Amadi. Walk our fabrication yard. Talk to the welders. See the DNV containers being built.</p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://wa.me/2348168886666" class="btn btn-primary" style="background: var(--orange);"><i class="fab fa-whatsapp"></i> WhatsApp +234 816 888 6666</a>
+                <a href="https://maps.google.com/?q=5+National+Supply+Road+Trans-Amadi+Port+Harcourt" target="_blank" class="btn btn-outline-dark" style="border-color: white; color: white;">Get Directions</a>
+            </div>
         </div>
     </div>
 </section>
+<!-- ===== END OF CTA REPLACEMENT ===== -->
 
 <!-- Footer (identical to homepage) -->
 <footer>
