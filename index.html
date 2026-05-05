@@ -409,7 +409,7 @@
             font-size: 0.8rem;
             color: #64748b;
         }
-        /* NEW: Project Carousel (Auto-scrolling) */
+        /* Carousel */
         .project-carousel-section {
             background: var(--gray-light);
         }
@@ -582,6 +582,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
         .float-wa:hover { transform: scale(1.1); }
+        /* ===== FIXED TIMELINE SPACING FOR MOBILE ===== */
         @media (max-width: 900px) {
             .desktop-nav { display: none; }
             .mobile-menu-btn { display: block; }
@@ -589,8 +590,23 @@
             .about-grid, .civil-grid, .project-block { grid-template-columns: 1fr; }
             .work-grid { grid-template-columns: 1fr 1fr; }
             .testimonials-grid { grid-template-columns: 1fr; }
-            .timeline-item { flex-direction: column; gap: 8px; }
-            .timeline-year { margin-bottom: 0; }
+            .timeline-item {
+                flex-direction: column;
+                gap: 8px;
+                margin-bottom: 28px;
+            }
+            .timeline-year {
+                font-size: 1.3rem;
+                min-width: auto;
+                margin-bottom: 4px;
+            }
+            .timeline-desc {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+            .timeline {
+                margin-top: 20px;
+            }
             .contact-form-card { padding: 32px 24px; }
             .float-wa {
                 bottom: 15px;
@@ -606,6 +622,12 @@
         @media (max-width: 600px) {
             .work-grid { grid-template-columns: 1fr; }
             .about-stats { flex-direction: column; gap: 16px; }
+            .timeline-item {
+                margin-bottom: 24px;
+            }
+            .timeline-year {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
@@ -703,7 +725,7 @@
     </div>
 </section>
 
-<!-- Timeline -->
+<!-- Timeline (spacing fixed for mobile) -->
 <section>
     <div class="container">
         <h2 class="section-title" data-aos="fade-up">Our Journey – Building Excellence Since 1977</h2>
@@ -772,15 +794,13 @@
     </div>
 </section>
 
-<!-- ===== NEW PROJECT CAROUSEL SECTION (AUTO-SCROLLING) ===== -->
+<!-- Carousel -->
 <section class="project-carousel-section" id="project-carousel">
     <div class="container">
         <h2 class="section-title" data-aos="fade-up">Offshore & Industrial Projects Gallery</h2>
         <p class="section-subtitle" data-aos="fade-up">A glimpse of our heavy engineering and offshore fabrication work.</p>
         <div class="swiper project-swiper" data-aos="fade-up">
-            <div class="swiper-wrapper" id="carouselWrapper">
-                <!-- Images will be inserted dynamically with JS -->
-            </div>
+            <div class="swiper-wrapper" id="carouselWrapper"></div>
             <div class="swiper-pagination"></div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
@@ -820,7 +840,7 @@
     </div>
 </section>
 
-<!-- Contact Form Section -->
+<!-- Contact Form -->
 <section id="contact-form">
     <div class="container">
         <h2 class="section-title" data-aos="fade-up">Get a Project Estimate</h2>
@@ -930,7 +950,7 @@
         </div>
     `).join('');
 
-    // Testimonials data
+    // Testimonials
     const testimonials = [
         { name: "Engr. James Oke", role: "Project Director, Strukton Nigeria", text: "Pronto delivered the steel structure for our 5,000sqm warehouse three weeks ahead of schedule. Quality was impeccable.", stars: 5 },
         { name: "Mrs. Adeola Williams", role: "Procurement Lead, Major Oil & Gas", text: "DNV certified skids arrived with full documentation. No customs delay, no offshore rejection.", stars: 5 },
@@ -948,7 +968,7 @@
         `).join('');
     }
 
-    // Carousel images (add your own high-res offshore / industrial photos)
+    // Carousel images
     const carouselImages = [
         { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980026/WhatsApp_Image_2026-05-04_at_14.36.21_4_joli7m.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Offshore Platform Installation" },
         { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980026/WhatsApp_Image_2026-05-04_at_14.36.21_hqofom.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Jacket Fabrication & Load-out" },
@@ -967,37 +987,22 @@
         `).join('');
     }
 
-    // Initialize Swiper carousel with autoplay and infinite loop
+    // Swiper init
     new Swiper('.project-swiper', {
         loop: true,
-        autoplay: {
-            delay: 3000,
-            disableOnInteraction: false,
-        },
+        autoplay: { delay: 3000, disableOnInteraction: false },
         speed: 800,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        breakpoints: {
-            640: { slidesPerView: 1, spaceBetween: 20 },
-            768: { slidesPerView: 2, spaceBetween: 30 },
-            1024: { slidesPerView: 3, spaceBetween: 30 },
-        }
+        pagination: { el: '.swiper-pagination', clickable: true },
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        breakpoints: { 640: { slidesPerView: 1, spaceBetween: 20 }, 768: { slidesPerView: 2, spaceBetween: 30 }, 1024: { slidesPerView: 3, spaceBetween: 30 } }
     });
 
-    // FAQ Accordion
+    // FAQ
     document.querySelectorAll('.faq-question').forEach(q => {
-        q.addEventListener('click', function() {
-            this.parentElement.classList.toggle('active');
-        });
+        q.addEventListener('click', function() { this.parentElement.classList.toggle('active'); });
     });
 
-    // Form submission
+    // Form
     const leadForm = document.getElementById('leadForm');
     if(leadForm) {
         leadForm.addEventListener('submit', function(e) {
