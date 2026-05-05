@@ -109,13 +109,7 @@
             width: auto;
             border-radius: 12px;
         }
-        .logo-text {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.7rem;
-            font-weight: 800;
-            color: var(--navy);
-        }
-        .logo-text span { color: var(--orange); }
+        /* No text logo (removed as requested) */
         .desktop-nav {
             display: flex;
             gap: 32px;
@@ -226,7 +220,7 @@
             margin-bottom: 8px;
             color: var(--navy);
         }
-        /* About Section (Premium) */
+        /* About Section (Premium, restored) */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -543,10 +537,11 @@
         .footer-col a:hover { color: var(--orange); }
         .copyright { text-align: center; padding-top: 30px; border-top: 1px solid #1e2f44; }
         .design-credit { text-align: center; margin-top: 20px; font-size: 0.8rem; }
+        /* Floating WhatsApp Button - Responsive */
         .float-wa {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 20px;
+            right: 20px;
             background: #25D366;
             width: 60px;
             height: 60px;
@@ -557,7 +552,11 @@
             color: white;
             font-size: 2rem;
             z-index: 99;
+            transition: 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
+        .float-wa:hover { transform: scale(1.1); }
+        /* Mobile Adjustments */
         @media (max-width: 900px) {
             .desktop-nav { display: none; }
             .mobile-menu-btn { display: block; }
@@ -568,6 +567,13 @@
             .timeline-item { flex-direction: column; gap: 8px; }
             .timeline-year { margin-bottom: 0; }
             .contact-form-card { padding: 32px 24px; }
+            .float-wa {
+                bottom: 15px;
+                right: 15px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.7rem;
+            }
         }
         @media (max-width: 600px) {
             .work-grid { grid-template-columns: 1fr; }
@@ -581,7 +587,6 @@
     <div class="nav-container">
         <div class="logo-wrapper">
             <img src="pronto_cropped.jpg" alt="Pronto Contractors Logo" class="logo-icon">         
-            <div class="logo-text"><span> </span></div>
         </div>
         <div class="desktop-nav">
             <a href="#home" class="nav-link active">Home</a>
@@ -630,7 +635,7 @@
     </div>
 </section>
 
-<!-- About Section (Premium, restored) -->
+<!-- About Section -->
 <section id="about">
     <div class="container">
         <div class="about-grid">
@@ -734,7 +739,7 @@
     </div>
 </section>
 
-<!-- Testimonials Section (Premium) -->
+<!-- Testimonials Section -->
 <section id="testimonials">
     <div class="container">
         <h2 class="section-title" data-aos="fade-up">What Our Clients Say</h2>
