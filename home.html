@@ -177,7 +177,7 @@
             color: #1e293b;
         }
         .mobile-nav a:hover { color: var(--orange); }
-        /* Hero Section with user-provided image */
+        /* Hero Section */
         .hero {
             background: linear-gradient(135deg, rgba(11,31,58,0.92), rgba(11,31,58,0.75)), url('https://res.cloudinary.com/duzgc5usb/image/upload/v1777834593/WhatsApp_Image_2026-05-01_at_15.51.22_kli8hf.jpg');
             background-size: cover;
@@ -225,6 +225,33 @@
             font-size: 1.2rem;
             margin-bottom: 8px;
             color: var(--navy);
+        }
+        /* About Section (Premium) */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-content p {
+            margin-bottom: 24px;
+            line-height: 1.6;
+            color: #2d3a4b;
+        }
+        .about-stats {
+            display: flex;
+            gap: 32px;
+            margin: 32px 0;
+        }
+        .about-stat h4 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--orange);
+        }
+        .about-image img {
+            width: 100%;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
         }
         /* Civil Construction */
         .civil-grid {
@@ -347,6 +374,46 @@
             padding: 8px 24px;
             border-radius: 40px;
             font-size: 0.9rem;
+        }
+        /* Testimonials Grid (Premium) */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 40px;
+        }
+        .testimonial-card {
+            background: white;
+            border-radius: 28px;
+            padding: 32px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+            transition: 0.2s;
+            border: 1px solid var(--gray-border);
+        }
+        .testimonial-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+        }
+        .testimonial-stars {
+            color: var(--orange);
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+        }
+        .testimonial-text {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin: 16px 0;
+            color: #2d3a4b;
+            font-style: italic;
+        }
+        .testimonial-author {
+            font-weight: 800;
+            color: var(--navy);
+            margin-top: 16px;
+        }
+        .testimonial-role {
+            font-size: 0.8rem;
+            color: #64748b;
         }
         /* Standards grid */
         .standards-grid {
@@ -495,14 +562,16 @@
             .desktop-nav { display: none; }
             .mobile-menu-btn { display: block; }
             .hero h1 { font-size: 2.5rem; }
-            .civil-grid, .project-block { grid-template-columns: 1fr; }
+            .about-grid, .civil-grid, .project-block { grid-template-columns: 1fr; }
             .work-grid { grid-template-columns: 1fr 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
             .timeline-item { flex-direction: column; gap: 8px; }
             .timeline-year { margin-bottom: 0; }
             .contact-form-card { padding: 32px 24px; }
         }
         @media (max-width: 600px) {
             .work-grid { grid-template-columns: 1fr; }
+            .about-stats { flex-direction: column; gap: 16px; }
         }
     </style>
 </head>
@@ -517,8 +586,10 @@
         <div class="desktop-nav">
             <a href="#home" class="nav-link active">Home</a>
             <a href="#capabilities">Capabilities</a>
+            <a href="#about">About</a>
             <a href="#civil">Civil</a>
             <a href="#projects">Projects</a>
+            <a href="#testimonials">Testimonials</a>
             <a href="#faq">FAQ</a>
             <a href="#contact">Contact</a>
         </div>
@@ -531,8 +602,10 @@
 <div class="mobile-nav" id="mobileNav">
     <a href="#home">Home</a>
     <a href="#capabilities">Capabilities</a>
+    <a href="#about">About</a>
     <a href="#civil">Civil</a>
     <a href="#projects">Projects</a>
+    <a href="#testimonials">Testimonials</a>
     <a href="#faq">FAQ</a>
     <a href="#contact">Contact</a>
 </div>
@@ -554,6 +627,28 @@
         <h2 class="section-title" data-aos="fade-up">Capabilities</h2>
         <p class="section-subtitle" data-aos="fade-up">Comprehensive engineering and industrial solutions.</p>
         <div class="capabilities-grid" id="capabilitiesGrid"></div>
+    </div>
+</section>
+
+<!-- About Section (Premium, restored) -->
+<section id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-content" data-aos="fade-right">
+                <h2 class="section-title">Engineering the backbone of Nigerian industry</h2>
+                <p><strong>Pronto Contractors Ltd</strong> is a DNV‑certified steel fabrication company delivering high‑performance industrial structures across Nigeria since 1977.</p>
+                <p>From Hypercity Mall to offshore platforms — structural steel, tank farms, DNV skids, and industrial construction with zero compromise. We’ve served major oil & gas operators, industrial clients, and main contractors like <strong>Julius Berger</strong> — delivering precision, safety, and reliability. Our parent company <strong>NIXAMS International Limited</strong> was the first DNV 2.7‑1 certified manufacturer in Nigeria.</p>
+                <div class="about-stats">
+                    <div class="about-stat"><h4>500+</h4><p>Projects</p></div>
+                    <div class="about-stat"><h4>100%</h4><p>Client Trust</p></div>
+                    <div class="about-stat"><h4>24/7</h4><p>Support</p></div>
+                </div>
+                <a href="#contact-form" class="btn btn-outline"><i class="fas fa-arrow-right"></i> Talk to our team</a>
+            </div>
+            <div class="about-image" data-aos="fade-left">
+                <img src="proton.jpeg" alt="Pronto Contractors fabrication yard">
+            </div>
+        </div>
     </div>
 </section>
 
@@ -636,6 +731,15 @@
             <span class="client-item">Chevron</span>
             <span class="client-item">CAT</span>
         </div>
+    </div>
+</section>
+
+<!-- Testimonials Section (Premium) -->
+<section id="testimonials">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">What Our Clients Say</h2>
+        <p class="section-subtitle" data-aos="fade-up">Real feedback from industry leaders.</p>
+        <div class="testimonials-grid" id="testimonialsGrid"></div>
     </div>
 </section>
 
@@ -724,7 +828,7 @@
     <div class="container">
         <div class="footer-grid">
             <div class="footer-col"><h4>Pronto Contractors Ltd</h4><p>DNV 2.7-1 Certified · ISO 9001:2015<br>Engineering · Fabrication · Infrastructure</p></div>
-            <div class="footer-col"><h4>Quick Links</h4><p><a href="#home">Home</a></p><p><a href="#capabilities">Capabilities</a></p><p><a href="#civil">Civil</a></p><p><a href="#projects">Projects</a></p><p><a href="#faq">FAQ</a></p><p><a href="#contact">Contact</a></p></div>
+            <div class="footer-col"><h4>Quick Links</h4><p><a href="#home">Home</a></p><p><a href="#capabilities">Capabilities</a></p><p><a href="#about">About</a></p><p><a href="#civil">Civil</a></p><p><a href="#projects">Projects</a></p><p><a href="#testimonials">Testimonials</a></p><p><a href="#faq">FAQ</a></p><p><a href="#contact">Contact</a></p></div>
             <div class="footer-col"><h4>Contact Info</h4><p><i class="fas fa-map-marker-alt"></i> 5 National Supply Road, Trans-Amadi, Port Harcourt</p><p><i class="fas fa-phone"></i> +234 816 888 6666</p><p><i class="fab fa-whatsapp"></i> WhatsApp: +234 816 888 6666</p><p><i class="fas fa-envelope"></i> info@prontocontractorsltd.com</p></div>
             <div class="footer-col"><h4>Office Hours</h4><p>Mon–Fri: 8am – 5pm</p><p>Saturday: By appointment</p><p>24/7 emergency support</p></div>
         </div>
@@ -766,8 +870,7 @@
         { title: "Garden City Mall – Roof Trusses", location: "Port Harcourt", scope: "40m wide span steel roof trusses", desc: "Clear span roofing for major shopping centre.", img: "https://images.pexels.com/photos/3112840/pexels-photo-3112840.jpeg?auto=compress&cs=tinysrgb&w=800" },
         { title: "Feed / Soy Mill Processing Plant", location: "Rivers State", scope: "Complete industrial steel structure", desc: "Full fabrication and erection for agricultural processing.", img: "https://i.pinimg.com/736x/3c/83/43/3c8343d72401c909ef2629a4eae35b78.jpg" },
         { title: "1200 BBL Tank Farm", location: "Lagos", scope: "API 650 storage tanks", desc: "Design, fabrication, installation of floating roof tanks.", img: "https://i.pinimg.com/736x/77/8a/71/778a7127e5bfdeb1065c2833240048f5.jpg" },
-        { title: "Brittania-U Offshore Platform", location: "Niger Delta", scope: "32m x 16m production platform", desc: "Full EPCI, topside modules, helideck.", img: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=800" },
-        { title: "Civil & Industrial Infrastructure", location: "Nationwide", scope: "Foundations, roads, drainage", desc: "Industrial civil works for oil & gas facilities.", img: "https://images.pexels.com/photos/163132/construction-site-building-construction-work-163132.jpeg?auto=compress&cs=tinysrgb&w=800" }
+        { title: "Brittania-U Offshore Platform", location: "Niger Delta", scope: "32m x 16m production platform", desc: "Full EPCI, topside modules, helideck.", img: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=800" }
     ];
     document.getElementById('projectsGrid').innerHTML = projects.map(p => `
         <div class="project-block" data-aos="fade-up">
@@ -780,6 +883,24 @@
             </div>
         </div>
     `).join('');
+
+    // Testimonials data
+    const testimonials = [
+        { name: "Engr. James Oke", role: "Project Director, Strukton Nigeria", text: "Pronto delivered the steel structure for our 5,000sqm warehouse three weeks ahead of schedule. Quality was impeccable.", stars: 5 },
+        { name: "Mrs. Adeola Williams", role: "Procurement Lead, Major Oil & Gas", text: "DNV certified skids arrived with full documentation. No customs delay, no offshore rejection.", stars: 5 },
+        { name: "Mr. Chidi Okonkwo", role: "Facility Manager, Industrial Storage", text: "API 650 tank farm constructed on time and budget. Zero leaks after 2 years.", stars: 5 }
+    ];
+    const testimonialsGrid = document.getElementById('testimonialsGrid');
+    if (testimonialsGrid) {
+        testimonialsGrid.innerHTML = testimonials.map(t => `
+            <div class="testimonial-card" data-aos="fade-up">
+                <div class="testimonial-stars">${'★'.repeat(t.stars)}${'☆'.repeat(5-t.stars)}</div>
+                <p class="testimonial-text">“${t.text}”</p>
+                <p class="testimonial-author">${t.name}</p>
+                <p class="testimonial-role">${t.role}</p>
+            </div>
+        `).join('');
+    }
 
     // FAQ Accordion
     document.querySelectorAll('.faq-question').forEach(q => {
