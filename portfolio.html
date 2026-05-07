@@ -175,7 +175,7 @@
             background: var(--navy);
             color: white;
         }
-        /* Portfolio Grid */
+        /* Portfolio Grid - larger images */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -195,21 +195,21 @@
             transform: translateY(-6px);
             box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
         }
-        /* Image container for hover effect */
+        /* Larger image height */
         .card-img-wrapper {
             position: relative;
             overflow: hidden;
         }
         .portfolio-img {
             width: 100%;
-            height: 240px;
+            height: 320px;
             object-fit: cover;
             transition: transform 0.3s;
         }
         .portfolio-card:hover .portfolio-img {
             transform: scale(1.05);
         }
-        /* Overlay that appears on hover (desktop) */
+        /* Hover overlay (stay) */
         .card-overlay {
             position: absolute;
             top: 0;
@@ -249,7 +249,6 @@
             color: #475569;
             line-height: 1.4;
         }
-        /* Visible click indicator (always present) */
         .click-indicator {
             display: inline-flex;
             align-items: center;
@@ -267,7 +266,7 @@
         .portfolio-card:hover .click-indicator {
             background: var(--orange-bright);
         }
-        /* Modal Gallery */
+        /* Modal Gallery - no labels, larger images */
         .modal {
             display: none;
             position: fixed;
@@ -301,35 +300,22 @@
         }
         .modal-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 24px;
             margin: 24px 0;
         }
         .gallery-item {
-            position: relative;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
         .gallery-item img {
             width: 100%;
-            height: 220px;
+            height: 280px;
             object-fit: cover;
             display: block;
         }
-        .image-label {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(11,43,79,0.9), transparent);
-            color: white;
-            font-weight: 800;
-            font-size: 1rem;
-            padding: 12px 16px 8px;
-            text-align: center;
-            backdrop-filter: blur(4px);
-        }
+        /* Image label removed - no labels */
         .modal-detail {
             margin: 20px 0 0;
             display: flex;
@@ -416,9 +402,10 @@
             .cta-section { padding: 80px 0; background-attachment: scroll; }
             .cta-glass { padding: 32px 20px; margin: 0 16px; }
             .modal-gallery { grid-template-columns: 1fr; }
-            /* On mobile, always show overlay hint? Not needed because click indicator is always visible */
-            .card-overlay { display: none; } /* Hide hover overlay on mobile to avoid clutter */
+            .portfolio-img { height: 260px; }
+            .card-overlay { display: none; }
             .click-indicator { margin: 12px 20px 20px; }
+            .gallery-item img { height: 240px; }
         }
     </style>
 </head>
@@ -563,7 +550,7 @@
     let projects = [];
     let currentFilter = "all";
 
-    // Default projects (same as before, with 4+ images)
+    // Default projects (same as before, with images but labels will not be displayed)
     const defaultProjects = [
         {
             id: "1",
@@ -580,10 +567,10 @@
             scope: "Fabrication & erection of all structural steel, roofing system, and finishes.",
             result: "Completed on schedule, passed all inspections with zero defects.",
             images: [
-                { url: "https://i.pinimg.com/736x/b9/7a/ff/b97affd7ee3fb0cadb0cc195195d8d1e.jpg", label: "🔧 FOUNDATION & ERECTION" },
-                { url: "https://images.pexels.com/photos/3112840/pexels-photo-3112840.jpeg?auto=compress&cs=tinysrgb&w=800", label: "🏗️ STEEL FABRICATION" },
-                { url: "https://images.pexels.com/photos/256255/pexels-photo-256255.jpeg?auto=compress&cs=tinysrgb&w=800", label: "🔩 STRUCTURAL ASSEMBLY" },
-                { url: "https://images.pexels.com/photos/159213/construction-crane-industry-heavy-159213.jpeg?auto=compress&cs=tinysrgb&w=800", label: "✅ COMPLETED ROOF STRUCTURE" }
+                { url: "https://i.pinimg.com/736x/b9/7a/ff/b97affd7ee3fb0cadb0cc195195d8d1e.jpg", label: "FOUNDATION" },
+                { url: "https://images.pexels.com/photos/3112840/pexels-photo-3112840.jpeg?auto=compress&cs=tinysrgb&w=800", label: "FABRICATION" },
+                { url: "https://images.pexels.com/photos/256255/pexels-photo-256255.jpeg?auto=compress&cs=tinysrgb&w=800", label: "ASSEMBLY" },
+                { url: "https://images.pexels.com/photos/159213/construction-crane-industry-heavy-159213.jpeg?auto=compress&cs=tinysrgb&w=800", label: "COMPLETED" }
             ]
         },
         {
@@ -601,10 +588,10 @@
             scope: "Full EPCI – engineering, procurement, fabrication, installation, and commissioning.",
             result: "Commissioned on time, zero HSE incidents, exceeded production targets.",
             images: [
-                { url: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=800", label: "🌊 OFFSHORE TRANSPORT" },
-                { url: "https://images.pexels.com/photos/279228/pexels-photo-279228.jpeg?auto=compress&cs=tinysrgb&w=800", label: "🏭 JACKET INSTALLATION" },
-                { url: "https://images.pexels.com/photos/163132/construction-site-building-construction-work-163132.jpeg?auto=compress&cs=tinysrgb&w=800", label: "🔧 TOPSIDE MODULES" },
-                { url: "https://images.pexels.com/photos/696357/pexels-photo-696357.jpeg?auto=compress&cs=tinysrgb&w=800", label: "✅ PLATFORM COMPLETE" }
+                { url: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=800", label: "TRANSPORT" },
+                { url: "https://images.pexels.com/photos/279228/pexels-photo-279228.jpeg?auto=compress&cs=tinysrgb&w=800", label: "INSTALLATION" },
+                { url: "https://images.pexels.com/photos/163132/construction-site-building-construction-work-163132.jpeg?auto=compress&cs=tinysrgb&w=800", label: "TOPSIDES" },
+                { url: "https://images.pexels.com/photos/696357/pexels-photo-696357.jpeg?auto=compress&cs=tinysrgb&w=800", label: "COMPLETE" }
             ]
         },
         {
@@ -622,10 +609,10 @@
             scope: "Complete EPC – civil works, tank shell assembly, roofing, piping, and testing.",
             result: "Zero leaks after hydrostatic testing, operational within deadlines.",
             images: [
-                { url: "https://i.pinimg.com/736x/77/8a/71/778a7127e5bfdeb1065c2833240048f5.jpg", label: "📐 FOUNDATION & RINGWALL" },
-                { url: "https://images.pexels.com/photos/2301509/pexels-photo-2301509.jpeg?auto=compress&cs=tinysrgb&w=800", label: "🔧 SHELL ASSEMBLY" },
-                { url: "https://images.pexels.com/photos/280252/pexels-photo-280252.jpeg?auto=compress&cs=tinysrgb&w=800", label: "🏗️ ROOF INSTALLATION" },
-                { url: "https://images.pexels.com/photos/209241/pexels-photo-209241.jpeg?auto=compress&cs=tinysrgb&w=800", label: "✅ COMPLETED TANK FARM" }
+                { url: "https://i.pinimg.com/736x/77/8a/71/778a7127e5bfdeb1065c2833240048f5.jpg", label: "FOUNDATION" },
+                { url: "https://images.pexels.com/photos/2301509/pexels-photo-2301509.jpeg?auto=compress&cs=tinysrgb&w=800", label: "ASSEMBLY" },
+                { url: "https://images.pexels.com/photos/280252/pexels-photo-280252.jpeg?auto=compress&cs=tinysrgb&w=800", label: "ROOF" },
+                { url: "https://images.pexels.com/photos/209241/pexels-photo-209241.jpeg?auto=compress&cs=tinysrgb&w=800", label: "COMPLETED" }
             ]
         }
     ];
@@ -686,12 +673,12 @@
         if (!p) return;
         const modalBody = document.getElementById('modalBody');
         
+        // Display gallery without labels (only images)
         const galleryHtml = p.images && p.images.length ? `
             <div class="modal-gallery">
                 ${p.images.map(img => `
                     <div class="gallery-item">
-                        <img src="${img.url}" alt="${img.label}">
-                        <div class="image-label">${img.label}</div>
+                        <img src="${img.url}" alt="${img.label || 'Project image'}">
                     </div>
                 `).join('')}
             </div>
