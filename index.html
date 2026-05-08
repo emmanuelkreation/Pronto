@@ -408,20 +408,34 @@
             color: var(--navy);
             margin-bottom: 16px;
         }
+        /* Trusted Clients Section – with logos */
         .clients-logos {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 32px;
+            gap: 40px;
             margin-top: 32px;
         }
-        .client-item {
+        .client-logo-item {
+            text-align: center;
+            width: 120px;
+        }
+        .client-logo-item img {
+            max-width: 100%;
+            max-height: 50px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            filter: grayscale(0%);
+            transition: opacity 0.2s;
+            margin-bottom: 8px;
+        }
+        .client-logo-item span {
+            display: block;
+            font-size: 0.75rem;
             font-weight: 600;
             color: var(--navy);
-            background: var(--gray-light);
-            padding: 8px 24px;
-            border-radius: 40px;
-            font-size: 0.9rem;
+            letter-spacing: 0.3px;
         }
         .testimonials-grid {
             display: grid;
@@ -669,6 +683,12 @@
             .capability-card {
                 padding: 14px 16px;
             }
+            .client-logo-item {
+                width: 90px;
+            }
+            .client-logo-item img {
+                max-height: 35px;
+            }
         }
         @media (max-width: 600px) {
             .work-grid { grid-template-columns: 1fr; }
@@ -791,13 +811,12 @@
     </div>
 </section>
 
-<!-- Projects Section (now fully linked to portfolio.html) -->
+<!-- Projects Section -->
 <section id="projects" style="background: var(--gray-light);">
     <div class="container">
         <h2 class="section-title" data-aos="fade-up">Featured Projects</h2>
         <p class="section-subtitle" data-aos="fade-up">Delivering excellence across Nigeria.</p>
         <div class="projects-grid" id="projectsGrid"></div>
-        <!-- The "Request full case studies" button now points to portfolio.html -->
         <div style="text-align: center; margin-top: 48px;">
             <a href="portfolio.html" class="btn btn-outline-dark">Request full case studies →</a>
         </div>
@@ -817,25 +836,25 @@
     </div>
 </section>
 
-<!-- Trusted Clients -->
+<!-- Trusted Clients – with logos -->
 <section>
     <div class="container">
         <h2 class="section-title" data-aos="fade-up" style="text-align: center;">Trusted by leading contractors, EPCs, and energy‑sector clients</h2>
         <div class="clients-logos" data-aos="fade-up">
-            <span class="client-item">Julius Berger Nigeria</span>
-            <span class="client-item">Pacific Drilling</span>
-            <span class="client-item">Shelf Drilling</span>
-            <span class="client-item">NCDMB</span>
-            <span class="client-item">Hamilton</span>
-            <span class="client-item">Schlumberger</span>
-            <span class="client-item">TotalEnergies</span>
-            <span class="client-item">Halliburton</span>
-            <span class="client-item">Baker Hughes</span>
-            <span class="client-item">NLNG</span>
-            <span class="client-item">Seplat Energy</span>
-            <span class="client-item">ExxonMobil</span>
-            <span class="client-item">Chevron</span>
-            <span class="client-item">CAT</span>
+            <div class="client-logo-item"><img src="https://logo.clearbit.com/julius-berger.com" alt="Julius Berger" loading="lazy"><span>Julius Berger</span></div>
+            <div class="client-logo-item"><img src="https://logo.clearbit.com/pacificdrilling.com" alt="Pacific Drilling" loading="lazy"><span>Pacific Drilling</span></div>
+            <div class="client-logo-item"><img src="https://logo.clearbit.com/shelfdrilling.com" alt="Shelf Drilling" loading="lazy"><span>Shelf Drilling</span></div>
+            <div class="client-logo-item"><img src="https://logo.clearbit.com/ncdmb.gov.ng" alt="NCDMB" loading="lazy"><span>NCDMB</span></div>
+            <div class="client-logo-item"><img src="https://logo.clearbit.com/hamilton.com" alt="Hamilton" loading="lazy"><span>Hamilton</span></div>
+            <div class="client-logo-item"><img src="https://logo.clearbit.com/slb.com" alt="Schlumberger" loading="lazy"><span>Schlumberger</span></div>
+            <div class="client-logo-item"><img src="https://logo.clearbit.com/totalenergies.com" alt="TotalEnergies" loading="lazy"><span>TotalEnergies</span></div>
+            <div class="client-logo-item"><img src="https://logo.clearbit.com/halliburton.com" alt="Halliburton" loading="lazy"><span>Halliburton</span></div>
+            <div class="client-logo-item"><img src="https://logo.clearbit.com/bakerhughes.com" alt="Baker Hughes" loading="lazy"><span>Baker Hughes</span></div>
+            <div class="client-logo-item"><img src="https://logo.clearbit.com/nlng.com" alt="NLNG" loading="lazy"><span>NLNG</span></div>
+            <div class="client-logo-item"><img src="https://logo.clearbit.com/seplatenergy.com" alt="Seplat Energy" loading="lazy"><span>Seplat Energy</span></div>
+            <div class="client-logo-item"><img src="https://logo.clearbit.com/exxonmobil.com" alt="ExxonMobil" loading="lazy"><span>ExxonMobil</span></div>
+            <div class="client-logo-item"><img src="https://logo.clearbit.com/chevron.com" alt="Chevron" loading="lazy"><span>Chevron</span></div>
+            <div class="client-logo-item"><img src="https://logo.clearbit.com/caterpillar.com" alt="CAT" loading="lazy"><span>CAT</span></div>
         </div>
     </div>
 </section>
@@ -1036,7 +1055,6 @@
         gridContainer.appendChild(card);
         gridContainer.appendChild(detailDiv);
     });
-    // Expand/collapse on card click
     document.querySelectorAll('.capability-card').forEach(card => {
         card.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -1048,7 +1066,7 @@
         });
     });
 
-    // Projects data – each project block is now wrapped in an <a> linking to portfolio.html
+    // Projects
     const projects = [
         { title: "HyperCity Mall – Eastern Bypass", location: "Port Harcourt", scope: "Complete structural steel framework, 12,000 sqm", desc: "Multi‑storey retail complex with long‑span roofing system.", img: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777848040/WhatsApp_Image_2026-05-03_at_09.13.21_7_uzn0cu.jpg" },
         { title: "Garden City Mall – Roof Trusses", location: "Port Harcourt", scope: "40m wide span steel roof trusses", desc: "Clear span roofing for major shopping centre.", img: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778007112/WhatsApp_Image_2026-05-05_at_11.27.47_rkwqf6.jpg?auto=compress&cs=tinysrgb&w=800" },
@@ -1071,7 +1089,7 @@
         </a>
     `).join('');
 
-    // Testimonials (unchanged)
+    // Testimonials
     const testimonials = [
         { name: "Engr. James Oke", role: "Project Director, Strukton Nigeria", text: "Pronto delivered the steel structure for our 5,000sqm warehouse three weeks ahead of schedule. Quality was impeccable.", stars: 5 },
         { name: "Mrs. Adeola Williams", role: "Procurement Lead, Major Oil & Gas", text: "DNV certified skids arrived with full documentation. No customs delay, no offshore rejection.", stars: 5 },
@@ -1089,7 +1107,7 @@
         `).join('');
     }
 
-    // Carousel (unchanged)
+    // Carousel
     const carouselImages = [
         { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980026/WhatsApp_Image_2026-05-04_at_14.36.21_4_joli7m.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Offshore Platform Installation" },
         { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980026/WhatsApp_Image_2026-05-04_at_14.36.21_hqofom.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Jacket Fabrication & Load-out" },
@@ -1099,16 +1117,7 @@
         { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980026/WhatsApp_Image_2026-05-04_at_14.36.22_stvuze.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Heavy Lift Operations" },
         { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778007112/WhatsApp_Image_2026-05-05_at_11.27.47_rkwqf6.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Offshore Platform Installation" },
         { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778007086/WhatsApp_Image_2026-05-05_at_11.27.46_1_udbmh0.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Jacket Fabrication & Load-out" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122470/WhatsApp_Image_2026-05-05_at_11.27.45_1_ezi3li.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Steel Structure Assembly" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122925/WhatsApp_Image_2026-05-03_at_09.13.21_3_rp5y3o.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Tank Farm Construction" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122925/WhatsApp_Image_2026-05-03_at_09.13.21_4_ljp2zm.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778124825/WhatsApp_Image_2026-05-01_at_15.58.04_edihqt.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778124824/WhatsApp_Image_2026-05-01_at_15.56.48_1_twpukl.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778124824/WhatsApp_Image_2026-05-01_at_15.56.47_1_govjsb.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778124824/WhatsApp_Image_2026-05-01_at_15.51.42_firhbw.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122475/WhatsApp_Image_2026-05-05_at_11.27.48_2_gkklok.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122476/WhatsApp_Image_2026-05-05_at_11.27.48_gvrrij.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122476/WhatsApp_Image_2026-05-05_at_11.27.48_4_l251yg.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },{ url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122925/WhatsApp_Image_2026-05-03_at_09.13.21_2_afdw0q.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" }
+        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122470/WhatsApp_Image_2026-05-05_at_11.27.45_1_ezi3li.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Steel Structure Assembly" }
     ];
     const carouselWrapper = document.getElementById('carouselWrapper');
     if (carouselWrapper) {
@@ -1133,7 +1142,7 @@
         q.addEventListener('click', function() { this.parentElement.classList.toggle('active'); });
     });
 
-    // Form submission
+    // Form
     document.getElementById('leadForm').addEventListener('submit', function(e) {
         e.preventDefault();
         alert('Thank you! Your project request has been received. We will contact you within 24 hours.');
