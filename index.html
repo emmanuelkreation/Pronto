@@ -196,31 +196,79 @@
             margin-bottom: 32px;
             opacity: 0.95;
         }
-        /* Capabilities grid */
+        /* Capabilities grid - compact and clickable */
         .capabilities-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
+            gap: 20px;
         }
         .capability-card {
             background: var(--gray-light);
-            padding: 24px;
+            padding: 18px 20px;
             border-radius: 20px;
-            transition: 0.2s;
+            transition: all 0.2s;
             border-left: 4px solid var(--navy);
+            cursor: pointer;
         }
         .capability-card i {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--navy);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
         .capability-card h3 {
             font-family: 'Poppins', sans-serif;
-            font-size: 1.2rem;
-            margin-bottom: 8px;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
             color: var(--navy);
+            font-weight: 600;
         }
-        /* About Section */
+        .capability-card .service-tagline {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-bottom: 0;
+        }
+        /* Expanded detail panel (hidden initially) */
+        .service-detail {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 12px;
+            border: 1px solid var(--gray-border);
+            display: none;
+        }
+        .service-detail.active {
+            display: block;
+        }
+        .service-detail p {
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        .service-detail ul {
+            list-style: none;
+            margin: 12px 0;
+        }
+        .service-detail li {
+            margin-bottom: 6px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .service-detail li:before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--orange);
+        }
+        .service-detail .btn-sm {
+            padding: 6px 18px;
+            font-size: 0.8rem;
+            background: var(--navy);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 8px;
+        }
+        /* About Section, Civil, Timeline etc. unchanged */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -247,7 +295,6 @@
             border-radius: 28px;
             box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
         }
-        /* Civil Construction */
         .civil-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -273,7 +320,6 @@
             border-radius: 28px;
             box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
         }
-        /* Timeline */
         .timeline {
             position: relative;
             max-width: 800px;
@@ -297,11 +343,16 @@
             line-height: 1.5;
             color: #2d3a4b;
         }
-        /* Projects large blocks */
+        /* Projects large blocks - now fully clickable */
         .projects-grid {
             display: flex;
             flex-direction: column;
             gap: 48px;
+        }
+        .project-link {
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
         }
         .project-block {
             display: grid;
@@ -312,6 +363,11 @@
             border-radius: 32px;
             overflow: hidden;
             box-shadow: 0 15px 35px -12px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .project-link:hover .project-block {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
         }
         .project-image {
             height: 380px;
@@ -336,7 +392,6 @@
             margin: 12px 0;
             color: #4a5568;
         }
-        /* How we work */
         .work-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -353,7 +408,6 @@
             color: var(--navy);
             margin-bottom: 16px;
         }
-        /* Trusted clients */
         .clients-logos {
             display: flex;
             flex-wrap: wrap;
@@ -369,7 +423,6 @@
             border-radius: 40px;
             font-size: 0.9rem;
         }
-        /* Testimonials Grid */
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -409,7 +462,6 @@
             font-size: 0.8rem;
             color: #64748b;
         }
-        /* Carousel */
         .project-carousel-section {
             background: var(--gray-light);
         }
@@ -435,7 +487,6 @@
             font-weight: 600;
             color: var(--navy);
         }
-        /* Standards grid */
         .standards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -451,7 +502,6 @@
             text-align: center;
             color: var(--navy);
         }
-        /* FAQ Accordion */
         .faq-grid {
             max-width: 800px;
             margin: 0 auto;
@@ -489,7 +539,6 @@
         .faq-item.active .faq-answer {
             display: block;
         }
-        /* Contact Form */
         .contact-form-card {
             background: var(--gray-light);
             border-radius: 32px;
@@ -512,7 +561,6 @@
         .form-group textarea {
             resize: vertical;
         }
-        /* Final CTA */
         .final-cta-section {
             background: linear-gradient(135deg, rgba(11,31,58,0.92), rgba(11,31,58,0.85)), url('https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=1600');
             background-size: cover;
@@ -545,7 +593,6 @@
             transition: 0.2s;
         }
         .social-links a:hover { background: var(--orange); transform: translateY(-3px); }
-        /* Footer */
         footer {
             background: #0B1C2E;
             color: #94A3B8;
@@ -563,7 +610,6 @@
         .footer-col a:hover { color: var(--orange); }
         .copyright { text-align: center; padding-top: 30px; border-top: 1px solid #1e2f44; }
         .design-credit { text-align: center; margin-top: 20px; font-size: 0.8rem; }
-        /* Floating WhatsApp */
         .float-wa {
             position: fixed;
             bottom: 20px;
@@ -582,7 +628,6 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
         .float-wa:hover { transform: scale(1.1); }
-        /* ===== FIXED TIMELINE SPACING FOR MOBILE ===== */
         @media (max-width: 900px) {
             .desktop-nav { display: none; }
             .mobile-menu-btn { display: block; }
@@ -618,6 +663,12 @@
             .project-swiper .swiper-slide img {
                 height: 250px;
             }
+            .capabilities-grid {
+                gap: 16px;
+            }
+            .capability-card {
+                padding: 14px 16px;
+            }
         }
         @media (max-width: 600px) {
             .work-grid { grid-template-columns: 1fr; }
@@ -639,7 +690,7 @@
             <img src="pronto_cropped.jpg" alt="Pronto Contractors Logo" class="logo-icon">         
         </div>
         <div class="desktop-nav">
-           <a href="index.html"class="active">Home</a>
+           <a href="index.html" class="active">Home</a>
             <a href="about.html">About</a>
             <a href="services.html">Services</a>
             <a href="portfolio.html">Portfolio</a>
@@ -653,12 +704,12 @@
 </div>
 <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 <div class="mobile-nav" id="mobileNav">
-    <a href="index.html"class="active">Home</a>
-            <a href="about.html">About</a>
-            <a href="services.html">Services</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="reviews.html">Reviews</a>
-            <a href="contact.html">Contact</a>
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="contact.html">Contact</a>
 </div>
 
 <a href="https://wa.me/2348168886666" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
@@ -725,7 +776,7 @@
     </div>
 </section>
 
-<!-- Timeline (spacing fixed for mobile) -->
+<!-- Timeline -->
 <section>
     <div class="container">
         <h2 class="section-title" data-aos="fade-up">Our Journey – Building Excellence Since 1977</h2>
@@ -740,12 +791,16 @@
     </div>
 </section>
 
-<!-- Projects -->
+<!-- Projects Section (now fully linked to portfolio.html) -->
 <section id="projects" style="background: var(--gray-light);">
     <div class="container">
         <h2 class="section-title" data-aos="fade-up">Featured Projects</h2>
         <p class="section-subtitle" data-aos="fade-up">Delivering excellence across Nigeria.</p>
         <div class="projects-grid" id="projectsGrid"></div>
+        <!-- The "Request full case studies" button now points to portfolio.html -->
+        <div style="text-align: center; margin-top: 48px;">
+            <a href="portfolio.html" class="btn btn-outline-dark">Request full case studies →</a>
+        </div>
     </div>
 </section>
 
@@ -785,7 +840,7 @@
     </div>
 </section>
 
-<!-- Testimonials Section -->
+<!-- Testimonials -->
 <section id="testimonials">
     <div class="container">
         <h2 class="section-title" data-aos="fade-up">What Our Clients Say</h2>
@@ -826,7 +881,7 @@
     </div>
 </section>
 
-<!-- FAQ Section -->
+<!-- FAQ -->
 <section id="faq">
     <div class="container">
         <h2 class="section-title" data-aos="fade-up">Frequently Asked Questions</h2>
@@ -905,28 +960,95 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-    // Capabilities list
-    const capabilitiesList = [
-        "Structural Steel Fabrication & Erection",
-        "Industrial Buildings & Warehousing",
-        "Tank Farm Construction — API Standard",
-        "Offshore Platforms Fabrication & Installation",
-        "Piping Fabrication & Installation — ASME Standard",
-        "DNV & ABS Compatible / Certified Containers, Skids & Offshore Equipment",
-        "Civil Construction & Infrastructure Works",
-        "Sandblasting, Coating & Corrosion Protection",
-        "Rope Access Services",
-        "Scaffolding Systems",
-        "Offshore Manpower & Equipment Support"
+    // Capabilities data (unchanged)
+    const capabilitiesData = [
+        { icon: "fas fa-gripfire", title: "Structural Steel Fabrication & Erection", tagline: "Heavy industrial & commercial steel structures",
+          desc: "Complete steel solutions from shop drawings to final erection. We deliver certified, high-strength steel frameworks for factories, warehouses, and commercial complexes.",
+          capabilities: ["Certified welders (6GR, DNV)", "S275/S355 structural steel", "Long‑span roofing & mezzanine floors", "Heavy lift & crane-assisted erection"],
+          standards: ["ISO 9001:2015", "DNV 2.7-1", "API", "BS EN 1090"] },
+        { icon: "fas fa-warehouse", title: "Industrial Buildings & Warehousing", tagline: "Turnkey industrial facilities",
+          desc: "Design, fabrication and erection of complete industrial buildings – from foundation to roof, fully insulated and ready for operations.",
+          capabilities: ["Pre-engineered steel buildings", "Insulated sandwich panels (PU/EPS)", "Overhead crane beams", "Ventilation & industrial doors"],
+          standards: ["BS EN 1993", "ISO 9001", "Nigerian Building Codes"] },
+        { icon: "fas fa-oil-can", title: "Tank Farm Construction — API Standard", tagline: "Safe, leak-proof storage solutions",
+          desc: "Floating and fixed roof tanks fully compliant with API 650 and RS2654. We handle everything from foundation to internal piping.",
+          capabilities: ["API 650 / RS2654 compliant", "Floating & fixed roof designs", "Hydrostatic testing & NDT", "Corrosion protection systems"],
+          standards: ["API 650", "RS2654", "NACE", "SSPC"] },
+        { icon: "fas fa-ship", title: "Offshore Platforms Fabrication & Installation", tagline: "Rigorous marine engineering",
+          desc: "DNV-certified fabrication of topside modules, jackets, helidecks, and complete production platforms. Proven track record in the Niger Delta.",
+          capabilities: ["DNV 2.7-1 / ABS certified", "Topside module assembly", "Heavy lift & load-out", "Offshore hook‑up & commissioning"],
+          standards: ["DNV", "ABS", "API 2B", "ISO 19900"] },
+        { icon: "fas fa-pipe-valve", title: "Piping Fabrication & Installation — ASME Standard", tagline: "High-integrity process piping",
+          desc: "Pre-fabrication and installation of carbon steel, stainless steel and alloy piping systems for process plants and refineries.",
+          capabilities: ["GTAW, SMAW, FCAW welding", "NDT, X-ray & hydrotesting", "Material traceability", "ASME B31.3 compliance"],
+          standards: ["ASME B31.3", "API 570", "ISO 15614"] },
+        { icon: "fas fa-cubes", title: "DNV & ABS Compatible / Certified Containers, Skids & Offshore Equipment", tagline: "Offshore‑ready certified equipment",
+          desc: "Design and manufacture of DNV 2.7-1 containers, baskets, and modular skids for subsea and topside use.",
+          capabilities: ["DNV 2.7-1 / ISO 10855", "Load-out & lifting lugs design", "Corrosion-resistant coatings", "Full documentation pack"],
+          standards: ["DNV 2.7-1", "ISO 10855-1", "ABS", "Lloyd’s Register"] },
+        { icon: "fas fa-building", title: "Civil Construction & Infrastructure Works", tagline: "Foundations for heavy industry",
+          desc: "Full civil engineering scope: earthworks, foundations, concrete structures, roads, drainage and site development.",
+          capabilities: ["Piling & deep foundations", "Reinforced concrete structures", "Roads & drainage networks", "Site preparation & grading"],
+          standards: ["BS 8110", "Nigerian General Specification", "ISO 9001"] },
+        { icon: "fas fa-paint-roller", title: "Sandblasting, Coating & Corrosion Protection", tagline: "Long-lasting surface protection",
+          desc: "Sa 2.5 blast cleaning, industrial coating systems, and cathodic protection to extend asset life.",
+          capabilities: ["Sa 2.5 white metal cleanness", "NACE / SSPC certified applicators", "Zinc-rich primers & topcoats", "Field touch-up & repair"],
+          standards: ["NACE No. 2", "SSPC-SP 10", "ISO 12944", "API RP 5L2"] },
+        { icon: "fas fa-user-alt", title: "Rope Access Services", tagline: "Safe, efficient work at height",
+          desc: "IRATA/SPRAT certified technicians for inspection, maintenance, and installation without scaffolding.",
+          capabilities: ["NDT & asset integrity inspection", "Confined space access", "High‑altitude repair & coating", "Rope access installation"],
+          standards: ["IRATA International", "SPRAT", "BS 7985"] },
+        { icon: "fas fa-layer-group", title: "Scaffolding Systems", tagline: "Temporary works & access solutions",
+          desc: "Tube & fitting, modular systems, mobile towers – fully designed with load calculations.",
+          capabilities: ["Design & load calculation", "Erection & dismantling", "Inspection & maintenance", "Customised access platforms"],
+          standards: ["BS 1139", "NASC TG20", "EN 12810"] },
+        { icon: "fas fa-users", title: "Offshore Manpower & Equipment Support", tagline: "Skilled personnel & reliable gear",
+          desc: "Supply of certified offshore technicians, welders, riggers, and equipment rentals for marine operations.",
+          capabilities: ["DNV-certified personnel", "Generator & welding machine rentals", "Flexible contract terms", "HSE-compliant workforce"],
+          standards: ["OPITO", "BOSIET", "HSE ISPON"] }
     ];
-    document.getElementById('capabilitiesGrid').innerHTML = capabilitiesList.map(cap => `
-        <div class="capability-card" data-aos="fade-up">
-            <i class="fas fa-cogs"></i>
-            <h3>${cap}</h3>
-        </div>
-    `).join('');
+    const gridContainer = document.getElementById('capabilitiesGrid');
+    gridContainer.innerHTML = '';
+    capabilitiesData.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'capability-card';
+        card.setAttribute('data-index', idx);
+        card.innerHTML = `
+            <i class="${item.icon}"></i>
+            <h3>${item.title}</h3>
+            <div class="service-tagline">${item.tagline}</div>
+        `;
+        const detailDiv = document.createElement('div');
+        detailDiv.className = 'service-detail';
+        detailDiv.id = `service-detail-${idx}`;
+        detailDiv.innerHTML = `
+            <p>${item.desc}</p>
+            <strong>Key capabilities:</strong>
+            <ul>
+                ${item.capabilities.map(c => `<li>${c}</li>`).join('')}
+            </ul>
+            <strong>Standards & specifications:</strong>
+            <ul>
+                ${item.standards.map(s => `<li>${s}</li>`).join('')}
+            </ul>
+            <a href="#projects" class="btn-sm">View Related Projects →</a>
+        `;
+        gridContainer.appendChild(card);
+        gridContainer.appendChild(detailDiv);
+    });
+    // Expand/collapse on card click
+    document.querySelectorAll('.capability-card').forEach(card => {
+        card.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const idx = this.getAttribute('data-index');
+            const detail = document.getElementById(`service-detail-${idx}`);
+            document.querySelectorAll('.service-detail').forEach(d => { if (d !== detail) d.classList.remove('active'); });
+            detail.classList.toggle('active');
+            if (detail.classList.contains('active')) detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+    });
 
-    // Projects data
+    // Projects data – each project block is now wrapped in an <a> linking to portfolio.html
     const projects = [
         { title: "HyperCity Mall – Eastern Bypass", location: "Port Harcourt", scope: "Complete structural steel framework, 12,000 sqm", desc: "Multi‑storey retail complex with long‑span roofing system.", img: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777848040/WhatsApp_Image_2026-05-03_at_09.13.21_7_uzn0cu.jpg" },
         { title: "Garden City Mall – Roof Trusses", location: "Port Harcourt", scope: "40m wide span steel roof trusses", desc: "Clear span roofing for major shopping centre.", img: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778007112/WhatsApp_Image_2026-05-05_at_11.27.47_rkwqf6.jpg?auto=compress&cs=tinysrgb&w=800" },
@@ -934,19 +1056,22 @@
         { title: "1200 BBL Tank Farm", location: "Lagos", scope: "API 650 storage tanks", desc: "Design, fabrication, installation of floating roof tanks.", img: "https://i.pinimg.com/736x/77/8a/71/778a7127e5bfdeb1065c2833240048f5.jpg" },
         { title: "Brittania-U Offshore Platform", location: "Niger Delta", scope: "32m x 16m production platform", desc: "Full EPCI, topside modules, helideck.", img: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=800" }
     ];
-    document.getElementById('projectsGrid').innerHTML = projects.map(p => `
-        <div class="project-block" data-aos="fade-up">
-            <div class="project-image" style="background-image: url('${p.img}');"></div>
-            <div class="project-content">
-                <h3>${p.title}</h3>
-                <div class="project-location"><i class="fas fa-map-marker-alt"></i> ${p.location}</div>
-                <p><strong>Scope:</strong> ${p.scope}</p>
-                <p class="project-scope">${p.desc}</p>
+    const projectsGrid = document.getElementById('projectsGrid');
+    projectsGrid.innerHTML = projects.map(p => `
+        <a href="portfolio.html" class="project-link" style="text-decoration: none;">
+            <div class="project-block">
+                <div class="project-image" style="background-image: url('${p.img}');"></div>
+                <div class="project-content">
+                    <h3>${p.title}</h3>
+                    <div class="project-location"><i class="fas fa-map-marker-alt"></i> ${p.location}</div>
+                    <p><strong>Scope:</strong> ${p.scope}</p>
+                    <p class="project-scope">${p.desc}</p>
+                </div>
             </div>
-        </div>
+        </a>
     `).join('');
 
-    // Testimonials
+    // Testimonials (unchanged)
     const testimonials = [
         { name: "Engr. James Oke", role: "Project Director, Strukton Nigeria", text: "Pronto delivered the steel structure for our 5,000sqm warehouse three weeks ahead of schedule. Quality was impeccable.", stars: 5 },
         { name: "Mrs. Adeola Williams", role: "Procurement Lead, Major Oil & Gas", text: "DNV certified skids arrived with full documentation. No customs delay, no offshore rejection.", stars: 5 },
@@ -964,7 +1089,7 @@
         `).join('');
     }
 
-    // Carousel images
+    // Carousel (unchanged)
     const carouselImages = [
         { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980026/WhatsApp_Image_2026-05-04_at_14.36.21_4_joli7m.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Offshore Platform Installation" },
         { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980026/WhatsApp_Image_2026-05-04_at_14.36.21_hqofom.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Jacket Fabrication & Load-out" },
@@ -994,8 +1119,6 @@
             </div>
         `).join('');
     }
-
-    // Swiper init
     new Swiper('.project-swiper', {
         loop: true,
         autoplay: { delay: 3000, disableOnInteraction: false },
@@ -1010,26 +1133,23 @@
         q.addEventListener('click', function() { this.parentElement.classList.toggle('active'); });
     });
 
-    // Form
-    const leadForm = document.getElementById('leadForm');
-    if(leadForm) {
-        leadForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you! Your project request has been received. We will contact you within 24 hours.');
-            leadForm.reset();
-        });
-    }
+    // Form submission
+    document.getElementById('leadForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you! Your project request has been received. We will contact you within 24 hours.');
+        this.reset();
+    });
 
     // Mobile menu
     const mobileBtn = document.getElementById('mobileMenuBtn');
-    const mobileNav = document.getElementById('mobileNav');
-    const overlay = document.getElementById('mobileMenuOverlay');
-    const menuIcon = mobileBtn.querySelector('i');
-    function closeMenu() { mobileNav.classList.remove('show'); overlay.classList.remove('active'); document.body.classList.remove('menu-open'); menuIcon.className = 'fas fa-bars'; }
-    function openMenu() { mobileNav.classList.add('show'); overlay.classList.add('active'); document.body.classList.add('menu-open'); menuIcon.className = 'fas fa-times'; }
-    mobileBtn.addEventListener('click', (e) => { e.stopPropagation(); mobileNav.classList.contains('show') ? closeMenu() : openMenu(); });
-    overlay.addEventListener('click', closeMenu);
-    document.querySelectorAll('.mobile-nav a').forEach(link => link.addEventListener('click', closeMenu));
+    const mobNav = document.getElementById('mobileNav');
+    const mobOverlay = document.getElementById('mobileMenuOverlay');
+    const mobIcon = mobileBtn.querySelector('i');
+    function closeMob() { mobNav.classList.remove('show'); mobOverlay.classList.remove('active'); document.body.classList.remove('menu-open'); mobIcon.className = 'fas fa-bars'; }
+    function openMob() { mobNav.classList.add('show'); mobOverlay.classList.add('active'); document.body.classList.add('menu-open'); mobIcon.className = 'fas fa-times'; }
+    mobileBtn.addEventListener('click', (e) => { e.stopPropagation(); mobNav.classList.contains('show') ? closeMob() : openMob(); });
+    mobOverlay.addEventListener('click', closeMob);
+    document.querySelectorAll('.mobile-nav a').forEach(link => link.addEventListener('click', closeMob));
 
     AOS.init({ duration: 800, once: true });
 </script>
