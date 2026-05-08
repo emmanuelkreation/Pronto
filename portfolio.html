@@ -155,6 +155,7 @@
         }
         .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 16px; }
         .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; opacity: 0.9; }
+        /* Filter Buttons */
         .filter-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -175,7 +176,7 @@
             background: var(--navy);
             color: white;
         }
-        /* Portfolio Grid - larger images */
+        /* Portfolio Grid */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -195,7 +196,6 @@
             transform: translateY(-6px);
             box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
         }
-        /* Larger image height */
         .card-img-wrapper {
             position: relative;
             overflow: hidden;
@@ -209,7 +209,6 @@
         .portfolio-card:hover .portfolio-img {
             transform: scale(1.05);
         }
-        /* Hover overlay (stay) */
         .card-overlay {
             position: absolute;
             top: 0;
@@ -266,7 +265,7 @@
         .portfolio-card:hover .click-indicator {
             background: var(--orange-bright);
         }
-        /* Modal Gallery - no labels, larger images */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -315,7 +314,6 @@
             object-fit: cover;
             display: block;
         }
-        /* Image label removed - no labels */
         .modal-detail {
             margin: 20px 0 0;
             display: flex;
@@ -327,7 +325,7 @@
             border-radius: 20px;
         }
         .modal-detail strong { color: var(--navy); }
-        /* Unified CTA */
+        /* CTA */
         .cta-section {
             position: relative;
             background: linear-gradient(135deg, rgba(11,43,79,0.92), rgba(0,0,0,0.85)), url('https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=1600');
@@ -381,8 +379,8 @@
         .design-credit { text-align: center; margin-top: 20px; font-size: 0.8rem; }
         .float-wa {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 20px;
+            right: 20px;
             background: #25D366;
             width: 60px;
             height: 60px;
@@ -393,6 +391,8 @@
             color: white;
             font-size: 2rem;
             z-index: 99;
+            transition: 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
         @media (max-width: 900px) {
             .desktop-nav { display: none; }
@@ -402,11 +402,12 @@
             .cta-section { padding: 80px 0; background-attachment: scroll; }
             .cta-glass { padding: 32px 20px; margin: 0 16px; }
             .modal-gallery { grid-template-columns: 1fr; }
-            /* INCREASED IMAGE SIZES ON MOBILE */
             .portfolio-img { height: 350px; }
-            .gallery-item img { height: 320px; }
             .card-overlay { display: none; }
             .click-indicator { margin: 12px 20px 20px; }
+            .gallery-item img { height: 320px; }
+            .filter-buttons { gap: 8px; }
+            .filter-btn { padding: 6px 14px; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -551,12 +552,12 @@
     let projects = [];
     let currentFilter = "all";
 
-    // Default projects (same as before, with images but labels will not be displayed)
+    // Default projects with categories matching the new filter list
     const defaultProjects = [
         {
             id: "1",
             title: "Hypercity Mall – Eastern Bypass Branch",
-            category: "Structural Steel",
+            category: "Steel Structures",
             thumb: "https://i.pinimg.com/736x/b9/7a/ff/b97affd7ee3fb0cadb0cc195195d8d1e.jpg",
             location: "Eastern Bypass, Rivers State, Nigeria",
             roofType: "Multi-Slope Roof Steel Structure with PU Insulated Roofing System",
@@ -576,8 +577,8 @@
         },
         {
             id: "2",
-            title: "Brittania-U Platform (Ajapa Field)",
-            category: "Offshore & DNV",
+            title: "Brittania-U Offshore Platform",
+            category: "Offshore",
             thumb: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=800",
             location: "Niger Delta, Nigeria",
             roofType: "Offshore Production Platform – 2 Levels",
@@ -597,7 +598,7 @@
         },
         {
             id: "3",
-            title: "1200 BBL Tanks – Lagos Depot",
+            title: "1200 BBL Tank Farm – Lagos Depot",
             category: "Tank Farms",
             thumb: "https://i.pinimg.com/736x/77/8a/71/778a7127e5bfdeb1065c2833240048f5.jpg",
             location: "Lagos, Nigeria",
@@ -614,6 +615,82 @@
                 { url: "https://images.pexels.com/photos/2301509/pexels-photo-2301509.jpeg?auto=compress&cs=tinysrgb&w=800", label: "ASSEMBLY" },
                 { url: "https://images.pexels.com/photos/280252/pexels-photo-280252.jpeg?auto=compress&cs=tinysrgb&w=800", label: "ROOF" },
                 { url: "https://images.pexels.com/photos/209241/pexels-photo-209241.jpeg?auto=compress&cs=tinysrgb&w=800", label: "COMPLETED" }
+            ]
+        },
+        {
+            id: "4",
+            title: "Garden City Mall – Roof Trusses",
+            category: "Roofing Systems",
+            thumb: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778007112/WhatsApp_Image_2026-05-05_at_11.27.47_rkwqf6.jpg",
+            location: "Port Harcourt, Nigeria",
+            roofType: "40m wide span steel roof trusses",
+            steelQty: "~80 Tons",
+            duration: "2 months",
+            steelGrade: "S355",
+            description: "Clear span roofing for major shopping centre, long-span truss system.",
+            client: "Garden City Mall",
+            scope: "Design, fabrication, installation of steel roof trusses.",
+            result: "Completed ahead of schedule, zero deflection issues.",
+            images: [
+                { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778007112/WhatsApp_Image_2026-05-05_at_11.27.47_rkwqf6.jpg", label: "TRUSS FABRICATION" },
+                { url: "https://images.pexels.com/photos/3112840/pexels-photo-3112840.jpeg?auto=compress&cs=tinysrgb&w=800", label: "INSTALLATION" }
+            ]
+        },
+        {
+            id: "5",
+            title: "Ebocha Feed Mill – Industrial Building",
+            category: "Industrial Buildings",
+            thumb: "https://i.pinimg.com/736x/3c/83/43/3c8343d72401c909ef2629a4eae35b78.jpg",
+            location: "Rivers State, Nigeria",
+            roofType: "Heavy industrial steel structure",
+            steelQty: "~120 Tons",
+            duration: "3 months",
+            steelGrade: "S275",
+            description: "Complete steel structure for agricultural processing plant.",
+            client: "Ebocha Farm",
+            scope: "Turnkey fabrication and erection of feed mill building.",
+            result: "Operational, withstands heavy machinery loads.",
+            images: [
+                { url: "https://i.pinimg.com/736x/3c/83/43/3c8343d72401c909ef2629a4eae35b78.jpg", label: "STRUCTURE" },
+                { url: "https://images.pexels.com/photos/256255/pexels-photo-256255.jpeg?auto=compress&cs=tinysrgb&w=800", label: "ERECTION" }
+            ]
+        },
+        {
+            id: "6",
+            title: "Offshore Container Fabrication",
+            category: "Offshore Fabrication & Services",
+            thumb: "https://images.pexels.com/photos/696357/pexels-photo-696357.jpeg?auto=compress&cs=tinysrgb&w=800",
+            location: "Port Harcourt",
+            roofType: "DNV 2.7-1 certified containers",
+            steelQty: "15 Tons",
+            duration: "6 weeks",
+            steelGrade: "DNV Grade A",
+            description: "Design and fabrication of DNV-certified offshore containers, skids, and baskets.",
+            client: "Multiple offshore operators",
+            scope: "Engineering, fabrication, certification of marine containers.",
+            result: "Full DNV certification, delivered on time.",
+            images: [
+                { url: "https://images.pexels.com/photos/696357/pexels-photo-696357.jpeg?auto=compress&cs=tinysrgb&w=800", label: "FABRICATION" },
+                { url: "https://images.pexels.com/photos/280252/pexels-photo-280252.jpeg?auto=compress&cs=tinysrgb&w=800", label: "LOADOUT" }
+            ]
+        },
+        {
+            id: "7",
+            title: "Site Development & Earthworks – EPC Project",
+            category: "Civil Works",
+            thumb: "https://i.pinimg.com/1200x/ca/34/02/ca3402e1e3b352b7aac611ed98d70b41.jpg",
+            location: "Niger Delta",
+            roofType: "Civil infrastructure",
+            steelQty: "N/A",
+            duration: "8 months",
+            steelGrade: "N/A",
+            description: "Full site development, earthworks, foundations, and drainage for an industrial facility.",
+            client: "EPC Contractor",
+            scope: "Bulk earthworks, piling, concrete foundations, roads.",
+            result: "Completed within budget, zero rework.",
+            images: [
+                { url: "https://i.pinimg.com/1200x/ca/34/02/ca3402e1e3b352b7aac611ed98d70b41.jpg", label: "EARTHWORKS" },
+                { url: "https://images.pexels.com/photos/159213/construction-crane-industry-heavy-159213.jpeg?auto=compress&cs=tinysrgb&w=800", label: "CONCRETE" }
             ]
         }
     ];
@@ -635,10 +712,24 @@
     }
 
     function renderFilterButtons() {
-        const cats = ["all", ...new Set(projects.map(p => p.category))];
+        // Defined filter categories exactly as requested
+        const filterCategories = [
+            "all",
+            "Steel Structures",
+            "Industrial Buildings",
+            "Tank Farms",
+            "Offshore",
+            "Roofing Systems",
+            "Civil Works",
+            "Offshore Fabrication & Services"
+        ];
         const container = document.getElementById('filterButtons');
         if(!container) return;
-        container.innerHTML = cats.map(c => `<button class="filter-btn ${currentFilter === c ? 'active' : ''}" data-filter="${c}">${c === 'all' ? 'All Projects' : c}</button>`).join('');
+        container.innerHTML = filterCategories.map(cat => `
+            <button class="filter-btn ${currentFilter === cat ? 'active' : ''}" data-filter="${cat}">
+                ${cat === 'all' ? 'All Projects' : cat}
+            </button>
+        `).join('');
         document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
             currentFilter = btn.dataset.filter;
             renderFilterButtons();
@@ -673,8 +764,6 @@
         const p = projects.find(proj => proj.id === id);
         if (!p) return;
         const modalBody = document.getElementById('modalBody');
-        
-        // Display gallery without labels (only images)
         const galleryHtml = p.images && p.images.length ? `
             <div class="modal-gallery">
                 ${p.images.map(img => `
