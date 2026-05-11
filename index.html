@@ -723,6 +723,18 @@
             .mobile-menu-btn { display: block; }
             .hero h1 { font-size: 2.5rem; }
             .about-grid, .civil-grid, .project-block, .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+            /* Reorder about section: image first, then content (so logo appears before CTA button) */
+            .about-grid {
+                display: flex;
+                flex-direction: column;
+            }
+            .about-image {
+                order: 1;
+                margin-bottom: 32px;
+            }
+            .about-content {
+                order: 2;
+            }
             .testimonials-grid { grid-template-columns: 1fr; }
             .timeline-item {
                 flex-direction: column;
