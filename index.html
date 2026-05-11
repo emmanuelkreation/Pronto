@@ -169,7 +169,7 @@
         }
         .mobile-nav a:hover { color: var(--orange); }
         .hero {
-            background: linear-gradient(135deg, rgba(11,31,58,0.92), rgba(11,31,58,0.75)), url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778524041/WhatsApp_Image_2026-05-11_at_06.50.45_rj3xxc.jpg');
+            background: linear-gradient(135deg, rgba(11,31,58,0.65), rgba(11,31,58,0.45)), url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778538011/WhatsApp_Image_2026-05-11_at_14.51.55_ytfgc9.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -261,7 +261,7 @@
             display: inline-block;
             margin-top: 8px;
         }
-        /* NEW: Full-width banner image with overlay text */
+        /* Banner image overlay */
         .banner-image {
             position: relative;
             width: 100%;
@@ -354,7 +354,7 @@
         .timeline {
             position: relative;
             max-width: 800px;
-            margin: 0 auto;
+            margin: 40px auto 0;
         }
         .timeline-item {
             display: flex;
@@ -652,16 +652,54 @@
         }
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 48px;
             margin-bottom: 48px;
             text-align: left;
         }
-        .footer-col h4 { color: white; margin-bottom: 20px; }
-        .footer-col a { color: #94A3B8; text-decoration: none; line-height: 1.8; }
+        .footer-col h4 { 
+            color: white; 
+            margin-bottom: 24px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        .footer-col h4:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--orange);
+            border-radius: 3px;
+        }
+        .footer-col p, .footer-col a {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: #94A3B8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+        }
         .footer-col a:hover { color: var(--orange); }
-        .copyright { text-align: center; padding-top: 30px; border-top: 1px solid #1e2f44; }
-        .design-credit { text-align: center; margin-top: 20px; font-size: 0.8rem; }
+        .footer-col i {
+            width: 28px;
+            color: var(--orange);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #1e2f44;
+            font-size: 0.85rem;
+        }
+        .design-credit { 
+            text-align: center; 
+            margin-top: 20px; 
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
         .float-wa {
             position: fixed;
             bottom: 20px;
@@ -684,7 +722,7 @@
             .desktop-nav { display: none; }
             .mobile-menu-btn { display: block; }
             .hero h1 { font-size: 2.5rem; }
-            .about-grid, .civil-grid, .project-block { grid-template-columns: 1fr; }
+            .about-grid, .civil-grid, .project-block, .footer-grid { grid-template-columns: 1fr; gap: 32px; }
             .testimonials-grid { grid-template-columns: 1fr; }
             .timeline-item {
                 flex-direction: column;
@@ -729,6 +767,9 @@
             }
             .client-logo-item img {
                 max-height: 40px;
+            }
+            .footer-grid {
+                gap: 32px;
             }
         }
         @media (max-width: 600px) {
@@ -802,17 +843,15 @@
     </div>
 </section>
 
-<!-- ========== ABOUT SECTION with banner image (keeps original title) ========== -->
+<!-- About Section with banner -->
 <section id="about">
     <div class="container">
-        <!-- ADDED: Banner image with overlay text (above the original title) -->
         <div class="banner-image" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778536139/WhatsApp_Image_2026-05-11_at_14.47.04_1_ip0kan.jpg');">
             <div class="banner-text">
                 <h3>Decades of Engineering Excellence</h3>
                 <p>Trusted partner for heavy industrial & offshore projects</p>
             </div>
         </div>
-
         <h2 class="section-title">Engineering the backbone of Nigerian industry</h2>
         <div class="about-grid">
             <div class="about-content" data-aos="fade-right">
@@ -832,20 +871,36 @@
     </div>
 </section>
 
-<!-- ========== NEW SECTION: Banner image after About, before client logos ========== -->
+<!-- Journey Section with banner -->
+<section id="journey">
+    <div class="container">
+        <div class="banner-image" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778007112/WhatsApp_Image_2026-05-05_at_11.27.47_rkwqf6.jpg');">
+            <div class="banner-text">
+                <h3>Our Legacy of Excellence</h3>
+                <p>Building Nigeria's industrial backbone since 1977</p>
+            </div>
+        </div>
+        <h2 class="section-title" data-aos="fade-up">Our Journey – Building Excellence Since 1977</h2>
+        <div class="timeline" data-aos="fade-up">
+            <div class="timeline-item"><div class="timeline-year">1977</div><div class="timeline-desc">Foundation of engineering and construction legacy</div></div>
+            <div class="timeline-item"><div class="timeline-year">2003</div><div class="timeline-desc">Expansion into industrial steel fabrication</div></div>
+            <div class="timeline-item"><div class="timeline-year">2013</div><div class="timeline-desc">Offshore capability milestone achieved (uft oil services)</div></div>
+            <div class="timeline-item"><div class="timeline-year">2018</div><div class="timeline-desc">Growth into large-scale oil & gas and industrial projects (uft oil services)</div></div>
+            <div class="timeline-item"><div class="timeline-year">2023</div><div class="timeline-desc">Strengthening of quality systems and execution standards (uft oil services)</div></div>
+            <div class="timeline-item"><div class="timeline-year">2024</div><div class="timeline-desc">Pronto Contractors Ltd – modern infrastructure delivery across Nigeria</div></div>
+        </div>
+    </div>
+</section>
 
-
-<!-- ========== CIVIL SECTION with banner image (keeps original title) ========== -->
+<!-- Civil Section with banner -->
 <section id="civil">
     <div class="container">
-        <!-- ADDED: Banner image with overlay text (above the original title) -->
         <div class="banner-image" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778535973/WhatsApp_Image_2026-05-11_at_14.45.03_tx68sv.jpg');">
             <div class="banner-text">
                 <h3>Robust Civil Infrastructure</h3>
                 <p>Foundations, roads, and concrete solutions for heavy industry</p>
             </div>
         </div>
-
         <h2 class="section-title">Civil Construction & Infrastructure</h2>
         <div class="civil-grid">
             <div class="civil-content" data-aos="fade-right">
@@ -859,23 +914,8 @@
                 </ul>
             </div>
             <div class="civil-image" data-aos="fade-left">
-                
+                <!-- empty as per original, kept -->
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- Timeline -->
-<section>
-    <div class="container">
-        <h2 class="section-title" data-aos="fade-up">Our Journey – Building Excellence Since 1977</h2>
-        <div class="timeline" data-aos="fade-up">
-            <div class="timeline-item"><div class="timeline-year">1977</div><div class="timeline-desc">Foundation of engineering and construction legacy</div></div>
-            <div class="timeline-item"><div class="timeline-year">2003</div><div class="timeline-desc">Expansion into industrial steel fabrication</div></div>
-            <div class="timeline-item"><div class="timeline-year">2013</div><div class="timeline-desc">Offshore capability milestone achieved (uft oil services)</div></div>
-            <div class="timeline-item"><div class="timeline-year">2018</div><div class="timeline-desc">Growth into large-scale oil & gas and industrial projects (uft oil services)</div></div>
-            <div class="timeline-item"><div class="timeline-year">2023</div><div class="timeline-desc">Strengthening of quality systems and execution standards (uft oil services)</div></div>
-            <div class="timeline-item"><div class="timeline-year">2024</div><div class="timeline-desc">Pronto Contractors Ltd – modern infrastructure delivery across Nigeria</div></div>
         </div>
     </div>
 </section>
@@ -910,62 +950,20 @@
     <div class="container">
         <h2 class="section-title" data-aos="fade-up" style="text-align: center;">Trusted by leading contractors, EPCs, and energy‑sector clients</h2>
         <div class="clients-logos" data-aos="fade-up">
-            <div class="client-logo-item">
-                <img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/Julius_Berger_ieus1n.jpg" alt="Julius Berger" loading="lazy">
-                <span>Julius Berger</span>
-            </div>
-            <div class="client-logo-item">
-                <img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/Pacific_Drilling_fcaxlq.png" alt="Pacific Drilling" loading="lazy">
-                <span>Pacific Drilling</span>
-            </div>
-            <div class="client-logo-item">
-                <img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/Shelf_Drilling_w8sfsd.png" alt="Shelf Drilling" loading="lazy">
-                <span>Shelf Drilling</span>
-            </div>
-            <div class="client-logo-item">
-                <img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/NCDMB_uubjxo.png" alt="NCDMB" loading="lazy">
-                <span>NCDMB</span>
-            </div>
-            <div class="client-logo-item">
-                <img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/Hamilton_yf24yc.jpg" alt="Hamilton" loading="lazy">
-                <span>Hamilton</span>
-            </div>
-            <div class="client-logo-item">
-                <img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/Schlumberger_i2gmxk.png" alt="Schlumberger" loading="lazy">
-                <span>Schlumberger</span>
-            </div>
-            <div class="client-logo-item">
-                <img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/TotalEnergies_amnx5m.jpg" alt="TotalEnergies" loading="lazy">
-                <span>TotalEnergies</span>
-            </div>
-            <div class="client-logo-item">
-                <img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/Halliburton_rwq0yg.png" alt="Halliburton" loading="lazy">
-                <span>Halliburton</span>
-            </div>
-            <div class="client-logo-item">
-                <img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/Baker_Hughes_zfzndw.png" alt="Baker Hughes" loading="lazy">
-                <span>Baker Hughes</span>
-            </div>
-            <div class="client-logo-item">
-                <img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/Seplat_Energy_soetjo.jpg" alt="Seplat Energy" loading="lazy">
-                <span>Seplat Energy</span>
-            </div>
-            <div class="client-logo-item">
-                <img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/ExxonMobil_mkimpq.png" alt="ExxonMobil" loading="lazy">
-                <span>ExxonMobil</span>
-            </div>
-            <div class="client-logo-item">
-                <img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/Chevron_f8cdyd.png" alt="Chevron" loading="lazy">
-                <span>Chevron</span>
-            </div>
-            <div class="client-logo-item">
-                <img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/CAT_mmsgnc.png" alt="CAT" loading="lazy">
-                <span>CAT</span>
-            </div>
-            <div class="client-logo-item">
-                <img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/NLNG_rqk8oe.jpg" alt="NLNG" loading="lazy">
-                <span>NLNG</span>
-            </div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/Julius_Berger_ieus1n.jpg" alt="Julius Berger"><span>Julius Berger</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/Pacific_Drilling_fcaxlq.png" alt="Pacific Drilling"><span>Pacific Drilling</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/Shelf_Drilling_w8sfsd.png" alt="Shelf Drilling"><span>Shelf Drilling</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/NCDMB_uubjxo.png" alt="NCDMB"><span>NCDMB</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/Hamilton_yf24yc.jpg" alt="Hamilton"><span>Hamilton</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/Schlumberger_i2gmxk.png" alt="Schlumberger"><span>Schlumberger</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/TotalEnergies_amnx5m.jpg" alt="TotalEnergies"><span>TotalEnergies</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/Halliburton_rwq0yg.png" alt="Halliburton"><span>Halliburton</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/Baker_Hughes_zfzndw.png" alt="Baker Hughes"><span>Baker Hughes</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/Seplat_Energy_soetjo.jpg" alt="Seplat Energy"><span>Seplat Energy</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/ExxonMobil_mkimpq.png" alt="ExxonMobil"><span>ExxonMobil</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/Chevron_f8cdyd.png" alt="Chevron"><span>Chevron</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/CAT_mmsgnc.png" alt="CAT"><span>CAT</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/NLNG_rqk8oe.jpg" alt="NLNG"><span>NLNG</span></div>
         </div>
     </div>
 </section>
@@ -1073,16 +1071,39 @@
     </div>
 </section>
 
-<!-- Footer -->
+<!-- Footer redesigned: aligned columns, cleaner layout -->
 <footer>
     <div class="container">
         <div class="footer-grid">
-            <div class="footer-col"><h4>Pronto Contractors Ltd</h4><p>DNV 2.7-1 Certified · ISO 9001:2015<br>Engineering · Fabrication · Infrastructure</p></div>
-            <div class="footer-col"><h4>Quick Links</h4><p><a href="#home">Home</a></p><p><a href="#capabilities">Capabilities</a></p><p><a href="#about">About</a></p><p><a href="#civil">Civil</a></p><p><a href="#projects">Projects</a></p><p><a href="#testimonials">Testimonials</a></p><p><a href="#project-carousel">Gallery</a></p><p><a href="#faq">FAQ</a></p><p><a href="#contact">Contact</a></p></div>
-            <div class="footer-col"><h4>Contact Info</h4><p><i class="fas fa-map-marker-alt"></i> Plot144 Transamadi Industrial Layout, Port Harcourt, Nigeria</p><p><i class="fas fa-phone"></i> +234 816 888 6666</p><p><i class="fab fa-whatsapp"></i> WhatsApp: +234 816 888 6666</p><p><i class="fas fa-envelope"></i> info@prontocontractor.com</p></div>
-            <div class="footer-col"><h4>Office Hours</h4><p>Mon–Fri: 8am – 5pm</p><p>Saturday: By appointment</p><p>24/7 emergency support</p></div>
+            <div class="footer-col">
+                <h4>Pronto Contractors Ltd</h4>
+                <p>DNV 2.7-1 Certified · ISO 9001:2015</p>
+                <p>Engineering · Fabrication · Infrastructure</p>
+                <p style="margin-top: 16px;">Trusted industrial partner since 1977</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="#home">Home</a>
+                <a href="#capabilities">Capabilities</a>
+                <a href="#about">About</a>
+                <a href="#civil">Civil</a>
+                <a href="#projects">Projects</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Plot144 Transamadi Industrial Layout, Port Harcourt, Nigeria</p>
+                <p><i class="fas fa-phone"></i> +234 816 888 6666</p>
+                <p><i class="fab fa-whatsapp"></i> +234 816 888 6666</p>
+                <p><i class="fas fa-envelope"></i> info@prontocontractor.com</p>
+                <p><i class="far fa-clock"></i> Mon–Fri: 8am – 5pm | 24/7 emergency support</p>
+            </div>
         </div>
-        <div class="copyright"><p>© 2026 Pronto Contractors Ltd — Constructing A Better Future.</p></div>
+        <div class="copyright">
+            <p>© 2026 Pronto Contractors Ltd — Constructing A Better Future.</p>
+        </div>
         <div class="design-credit">Designed by <strong>Kreation Digitals</strong> | Web & Brand Identity</div>
     </div>
 </footer>
@@ -1090,7 +1111,7 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-    // Capabilities data without icons (title and tagline only)
+    // Capabilities data (same as before)
     const capabilitiesData = [
         { title: "Structural Steel Fabrication & Erection", tagline: "Heavy industrial & commercial steel structures",
           desc: "Complete steel solutions from shop drawings to final erection. We deliver certified, high-strength steel frameworks for factories, warehouses, and commercial complexes.",
@@ -1144,25 +1165,11 @@
         const card = document.createElement('div');
         card.className = 'capability-card';
         card.setAttribute('data-index', idx);
-        card.innerHTML = `
-            <h3>${item.title}</h3>
-            <div class="service-tagline">${item.tagline}</div>
-        `;
+        card.innerHTML = `<h3>${item.title}</h3><div class="service-tagline">${item.tagline}</div>`;
         const detailDiv = document.createElement('div');
         detailDiv.className = 'service-detail';
         detailDiv.id = `service-detail-${idx}`;
-        detailDiv.innerHTML = `
-            <p>${item.desc}</p>
-            <strong>Key capabilities:</strong>
-            <ul>
-                ${item.capabilities.map(c => `<li>${c}</li>`).join('')}
-            </ul>
-            <strong>Standards & specifications:</strong>
-            <ul>
-                ${item.standards.map(s => `<li>${s}</li>`).join('')}
-            </ul>
-            <a href="#projects" class="btn-sm">View Related Projects →</a>
-        `;
+        detailDiv.innerHTML = `<p>${item.desc}</p><strong>Key capabilities:</strong><ul>${item.capabilities.map(c=>`<li>${c}</li>`).join('')}</ul><strong>Standards & specifications:</strong><ul>${item.standards.map(s=>`<li>${s}</li>`).join('')}</ul><a href="#projects" class="btn-sm">View Related Projects →</a>`;
         gridContainer.appendChild(card);
         gridContainer.appendChild(detailDiv);
     });
@@ -1178,7 +1185,6 @@
         });
     });
 
-    // Projects data (unchanged)
     const projects = [
         { title: "HyperCity Mall – Eastern Bypass", location: "Port Harcourt", scope: "Complete structural steel framework, 12,000 sqm", desc: "Multi‑storey retail complex with long‑span roofing system.", img: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777848040/WhatsApp_Image_2026-05-03_at_09.13.21_7_uzn0cu.jpg" },
         { title: "Garden City Mall – Roof Trusses", location: "Port Harcourt", scope: "40m wide span steel roof trusses", desc: "Clear span roofing for major shopping centre.", img: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778007112/WhatsApp_Image_2026-05-05_at_11.27.47_rkwqf6.jpg?auto=compress&cs=tinysrgb&w=800" },
@@ -1187,21 +1193,8 @@
         { title: "Brittania-U Offshore Platform", location: "Niger Delta", scope: "32m x 16m production platform", desc: "Full EPCI, topside modules, helideck.", img: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=800" }
     ];
     const projectsGrid = document.getElementById('projectsGrid');
-    projectsGrid.innerHTML = projects.map(p => `
-        <a href="portfolio.html" class="project-link">
-            <div class="project-block">
-                <div class="project-image" style="background-image: url('${p.img}');"></div>
-                <div class="project-content">
-                    <h3>${p.title}</h3>
-                    <div class="project-location"><i class="fas fa-map-marker-alt"></i> ${p.location}</div>
-                    <p><strong>Scope:</strong> ${p.scope}</p>
-                    <p class="project-scope">${p.desc}</p>
-                </div>
-            </div>
-        </a>
-    `).join('');
+    projectsGrid.innerHTML = projects.map(p => `<a href="portfolio.html" class="project-link"><div class="project-block"><div class="project-image" style="background-image: url('${p.img}');"></div><div class="project-content"><h3>${p.title}</h3><div class="project-location"><i class="fas fa-map-marker-alt"></i> ${p.location}</div><p><strong>Scope:</strong> ${p.scope}</p><p class="project-scope">${p.desc}</p></div></div></a>`).join('');
 
-    // Testimonials
     const testimonials = [
         { name: "Engr. James Oke", role: "Project Director, Strukton Nigeria", text: "Pronto delivered the steel structure for our 5,000sqm warehouse three weeks ahead of schedule. Quality was impeccable.", stars: 5 },
         { name: "Mrs. Adeola Williams", role: "Procurement Lead, Major Oil & Gas", text: "DNV certified skids arrived with full documentation. No customs delay, no offshore rejection.", stars: 5 },
@@ -1209,79 +1202,31 @@
     ];
     const testimonialsGrid = document.getElementById('testimonialsGrid');
     if (testimonialsGrid) {
-        testimonialsGrid.innerHTML = testimonials.map(t => `
-            <div class="testimonial-card" data-aos="fade-up">
-                <div class="testimonial-stars">${'★'.repeat(t.stars)}${'☆'.repeat(5-t.stars)}</div>
-                <p class="testimonial-text">“${t.text}”</p>
-                <p class="testimonial-author">${t.name}</p>
-                <p class="testimonial-role">${t.role}</p>
-            </div>
-        `).join('');
+        testimonialsGrid.innerHTML = testimonials.map(t => `<div class="testimonial-card" data-aos="fade-up"><div class="testimonial-stars">${'★'.repeat(t.stars)}${'☆'.repeat(5-t.stars)}</div><p class="testimonial-text">“${t.text}”</p><p class="testimonial-author">${t.name}</p><p class="testimonial-role">${t.role}</p></div>`).join('');
     }
 
-    // Carousel images
     const carouselImages = [
         { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980026/WhatsApp_Image_2026-05-04_at_14.36.21_4_joli7m.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Offshore Platform Installation" },
         { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980026/WhatsApp_Image_2026-05-04_at_14.36.21_hqofom.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Jacket Fabrication & Load-out" },
         { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980025/WhatsApp_Image_2026-05-04_at_14.36.21_2_lqr0nc.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Steel Structure Assembly" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980025/WhatsApp_Image_2026-05-04_at_14.36.22_3_wc6wpg.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Tank Farm Construction" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980026/WhatsApp_Image_2026-05-04_at_14.36.21_hqofom.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Industrial Civil Works" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980026/WhatsApp_Image_2026-05-04_at_14.36.22_stvuze.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Heavy Lift Operations" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778007112/WhatsApp_Image_2026-05-05_at_11.27.47_rkwqf6.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Offshore Platform Installation" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778007086/WhatsApp_Image_2026-05-05_at_11.27.46_1_udbmh0.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Jacket Fabrication & Load-out" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122470/WhatsApp_Image_2026-05-05_at_11.27.45_1_ezi3li.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Steel Structure Assembly" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122925/WhatsApp_Image_2026-05-03_at_09.13.21_3_rp5y3o.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Tank Farm Construction" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122925/WhatsApp_Image_2026-05-03_at_09.13.21_4_ljp2zm.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778124825/WhatsApp_Image_2026-05-01_at_15.58.04_edihqt.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778124824/WhatsApp_Image_2026-05-01_at_15.56.48_1_twpukl.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778124824/WhatsApp_Image_2026-05-01_at_15.56.47_1_govjsb.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778124824/WhatsApp_Image_2026-05-01_at_15.51.42_firhbw.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122475/WhatsApp_Image_2026-05-05_at_11.27.48_2_gkklok.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122476/WhatsApp_Image_2026-05-05_at_11.27.48_gvrrij.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122476/WhatsApp_Image_2026-05-05_at_11.27.48_4_l251yg.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122925/WhatsApp_Image_2026-05-03_at_09.13.21_2_afdw0q.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" }
+        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980025/WhatsApp_Image_2026-05-04_at_14.36.22_3_wc6wpg.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Tank Farm Construction" }
     ];
     const carouselWrapper = document.getElementById('carouselWrapper');
     if (carouselWrapper) {
-        carouselWrapper.innerHTML = carouselImages.map(img => `
-            <div class="swiper-slide">
-                <img src="${img.url}" alt="${img.caption}">
-                <div class="slide-caption">${img.caption}</div>
-            </div>
-        `).join('');
+        carouselWrapper.innerHTML = carouselImages.map(img => `<div class="swiper-slide"><img src="${img.url}" alt="${img.caption}"><div class="slide-caption">${img.caption}</div></div>`).join('');
     }
     new Swiper('.project-swiper', {
-        loop: true,
-        autoplay: { delay: 3000, disableOnInteraction: false },
-        speed: 800,
+        loop: true, autoplay: { delay: 3000, disableOnInteraction: false }, speed: 800,
         pagination: { el: '.swiper-pagination', clickable: true },
         navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
         breakpoints: { 640: { slidesPerView: 1, spaceBetween: 20 }, 768: { slidesPerView: 2, spaceBetween: 30 }, 1024: { slidesPerView: 3, spaceBetween: 30 } }
     });
 
-    // FAQ toggle
-    document.querySelectorAll('.faq-question').forEach(q => {
-        q.addEventListener('click', function() { this.parentElement.classList.toggle('active'); });
-    });
-
-    // Form submission
-    document.getElementById('leadForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('Thank you! Your project request has been received. We will contact you within 24 hours.');
-        this.reset();
-    });
-
-    // Mobile menu
-    const mobileBtn = document.getElementById('mobileMenuBtn');
-    const mobNav = document.getElementById('mobileNav');
-    const mobOverlay = document.getElementById('mobileMenuOverlay');
-    const mobIcon = mobileBtn.querySelector('i');
-    function closeMob() { mobNav.classList.remove('show'); mobOverlay.classList.remove('active'); document.body.classList.remove('menu-open'); mobIcon.className = 'fas fa-bars'; }
-    function openMob() { mobNav.classList.add('show'); mobOverlay.classList.add('active'); document.body.classList.add('menu-open'); mobIcon.className = 'fas fa-times'; }
-    mobileBtn.addEventListener('click', (e) => { e.stopPropagation(); mobNav.classList.contains('show') ? closeMob() : openMob(); });
-    mobOverlay.addEventListener('click', closeMob);
-    document.querySelectorAll('.mobile-nav a').forEach(link => link.addEventListener('click', closeMob));
-
+    document.querySelectorAll('.faq-question').forEach(q => q.addEventListener('click', function() { this.parentElement.classList.toggle('active'); }));
+    document.getElementById('leadForm').addEventListener('submit', function(e) { e.preventDefault(); alert('Thank you! Your project request has been received. We will contact you within 24 hours.'); this.reset(); });
+    const mobileBtn = document.getElementById('mobileMenuBtn'), mobNav = document.getElementById('mobileNav'), mobOverlay = document.getElementById('mobileMenuOverlay');
+    mobileBtn.addEventListener('click', () => { mobNav.classList.toggle('show'); mobOverlay.classList.toggle('active'); });
+    mobOverlay.addEventListener('click', () => { mobNav.classList.remove('show'); mobOverlay.classList.remove('active'); });
     AOS.init({ duration: 800, once: true });
 </script>
 </body>
