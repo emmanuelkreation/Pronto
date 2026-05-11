@@ -261,7 +261,7 @@
             display: inline-block;
             margin-top: 8px;
         }
-        /* Banner image overlay */
+        /* Banner image overlay (reusable) */
         .banner-image {
             position: relative;
             width: 100%;
@@ -295,10 +295,61 @@
             font-size: 1rem;
             opacity: 0.9;
         }
+        /* New full-page banner for capabilities (70-85vh, slight overlay) */
+        .capabilities-hero {
+            position: relative;
+            width: 100%;
+            height: 75vh;
+            min-height: 550px;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 48px;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+        }
+        .capabilities-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.15); /* 15% dark overlay */
+            z-index: 1;
+        }
+        .capabilities-hero .hero-content {
+            position: absolute;
+            bottom: 15%;
+            left: 8%;
+            right: 8%;
+            z-index: 2;
+            color: white;
+            max-width: 80%;
+        }
+        .capabilities-hero .hero-content h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .capabilities-hero .hero-content p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
         @media (max-width: 900px) {
-            .banner-image { height: 40vh; min-height: 260px; }
-            .banner-image .banner-text { max-width: 90%; padding: 16px 20px; }
-            .banner-image .banner-text h3 { font-size: 1.4rem; }
+            .capabilities-hero { height: 60vh; min-height: 400px; }
+            .capabilities-hero .hero-content h2 { font-size: 1.8rem; }
+            .capabilities-hero .hero-content p { font-size: 1rem; }
+            .capabilities-hero .hero-content { max-width: 90%; bottom: 10%; left: 5%; }
+        }
+        @media (max-width: 600px) {
+            .capabilities-hero { height: 50vh; min-height: 320px; }
+            .capabilities-hero .hero-content h2 { font-size: 1.4rem; }
         }
         .about-grid {
             display: grid;
@@ -723,7 +774,7 @@
             .mobile-menu-btn { display: block; }
             .hero h1 { font-size: 2.5rem; }
             .about-grid, .civil-grid, .project-block, .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-            /* Reorder about section: image first, then content (so logo appears before CTA button) */
+            /* Reorder about section: image first, then content */
             .about-grid {
                 display: flex;
                 flex-direction: column;
@@ -846,9 +897,16 @@
     </div>
 </section>
 
-<!-- Capabilities -->
+<!-- ========== CAPABILITIES SECTION with full-width hero banner ========== -->
 <section id="capabilities">
     <div class="container">
+        <!-- Full-width hero banner (image + text) -->
+        <div class="capabilities-hero" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778539542/WhatsApp_Image_2026-05-11_at_15.33.28_d8cao3.jpg');">
+            <div class="hero-content">
+                <h2>Engineering Complex Onshore & Offshore Industrial Structures Across Nigeria</h2>
+                <p>Offshore • Onshore • Structural Steel • Marine Infrastructure</p>
+            </div>
+        </div>
         <h2 class="section-title" data-aos="fade-up">Capabilities</h2>
         <p class="section-subtitle" data-aos="fade-up">Comprehensive engineering and industrial solutions.</p>
         <div class="capabilities-grid" id="capabilitiesGrid"></div>
