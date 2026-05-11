@@ -169,7 +169,7 @@
         }
         .mobile-nav a:hover { color: var(--orange); }
         .hero {
-            background: linear-gradient(135deg, rgba(11,31,58,0.92), rgba(11,31,58,0.75)), url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778524041/WhatsApp_Image_2026-05-11_at_06.50.45_rj3xxc.jpg');
+            background: linear-gradient(135deg, rgba(11,31,58,0.92), rgba(11,31,58,0.75)), url('https://res.cloudinary.com/duzgc5usb/image/upload/v1777834593/WhatsApp_Image_2026-05-01_at_15.51.22_kli8hf.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -260,18 +260,6 @@
             text-decoration: none;
             display: inline-block;
             margin-top: 8px;
-        }
-        .section-top-image {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        .section-top-image img {
-            max-width: 100%;
-            border-radius: 28px;
-            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
-            max-height: 450px;
-            object-fit: cover;
-            width: 100%;
         }
         .about-grid {
             display: grid;
@@ -653,6 +641,50 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
         .float-wa:hover { transform: scale(1.1); }
+
+        /* NEW STYLES FOR IMAGE OVERLAYS (hero-style) */
+        .hero-overlay {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            min-height: 400px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 32px;
+            margin-bottom: 48px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+        }
+        .hero-overlay .overlay-text {
+            position: absolute;
+            bottom: 10%;
+            left: 5%;
+            right: 5%;
+            background: linear-gradient(90deg, rgba(0,0,0,0.7), transparent);
+            padding: 32px;
+            border-radius: 24px;
+            color: white;
+            max-width: 70%;
+        }
+        .hero-overlay .overlay-text h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .hero-overlay .overlay-text p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        @media (max-width: 900px) {
+            .hero-overlay { height: 40vh; min-height: 300px; }
+            .hero-overlay .overlay-text { max-width: 90%; padding: 20px; }
+            .hero-overlay .overlay-text h2 { font-size: 1.4rem; }
+        }
+        @media (min-width: 901px) {
+            .about-grid, .civil-grid, .project-block { grid-template-columns: 1fr 1fr; }
+            .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
+        }
         @media (max-width: 900px) {
             .desktop-nav { display: none; }
             .mobile-menu-btn { display: block; }
@@ -766,30 +798,25 @@
     </div>
 </section>
 
-<!-- ========== CAPABILITIES SECTION – image first ========== -->
+<!-- Capabilities -->
 <section id="capabilities">
     <div class="container">
-        <!-- Image at the very top -->
-        <div class="section-top-image" data-aos="fade-up">
-            <img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1777834593/WhatsApp_Image_2026-05-01_at_15.50.53_nojntc.jpg" alt="Steel fabrication and heavy engineering">
-        </div>
-        
         <h2 class="section-title" data-aos="fade-up">Capabilities</h2>
         <p class="section-subtitle" data-aos="fade-up">Comprehensive engineering and industrial solutions.</p>
-        
         <div class="capabilities-grid" id="capabilitiesGrid"></div>
     </div>
 </section>
 
-<!-- ========== ABOUT SECTION – image first ========== -->
+<!-- ========== ABOUT SECTION with hero overlay image BEFORE title ========== -->
 <section id="about">
     <div class="container">
-        <!-- Image at the very top -->
-        <div class="section-top-image" data-aos="fade-up">
-            <img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778124822/WhatsApp_Image_2026-05-01_at_15.50.53_geq7ez.jpg" alt="Industrial construction and steel framework">
+        <!-- Large image with text overlay (you can replace background-image and text later) -->
+        <div class="hero-overlay" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778007112/WhatsApp_Image_2026-05-05_at_11.27.47_rkwqf6.jpg');">
+            <div class="overlay-text">
+                <h2>Engineering the backbone of Nigerian industry</h2>
+                <p>Decades of excellence in heavy fabrication & infrastructure</p>
+            </div>
         </div>
-        
-        <h2 class="section-title" data-aos="fade-up">Engineering the backbone of Nigerian industry</h2>
         
         <div class="about-grid">
             <div class="about-content" data-aos="fade-right">
@@ -809,15 +836,28 @@
     </div>
 </section>
 
-<!-- ========== CIVIL CONSTRUCTION SECTION – image first ========== -->
+<!-- ========== NEW IMAGE SECTION: Immediately after About, before clients logos ========== -->
+<section>
+    <div class="container">
+        <div class="hero-overlay" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1777834593/WhatsApp_Image_2026-05-01_at_15.50.53_nojntc.jpg');">
+            <div class="overlay-text">
+                <h2>Precision Engineered for the Energy Sector</h2>
+                <p>Oil & Gas • Offshore • Industrial Infrastructure</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Civil Construction Section with hero overlay image BEFORE title -->
 <section id="civil">
     <div class="container">
-        <!-- Image at the very top -->
-        <div class="section-top-image" data-aos="fade-up">
-            <img src="https://i.pinimg.com/1200x/ca/34/02/ca3402e1e3b352b7aac611ed98d70b41.jpg" alt="Civil construction and infrastructure project">
+        <!-- Large image with text overlay (replaceable) -->
+        <div class="hero-overlay" data-aos="fade-up" style="background-image: url('https://i.pinimg.com/1200x/ca/34/02/ca3402e1e3b352b7aac611ed98d70b41.jpg');">
+            <div class="overlay-text">
+                <h2>Civil Construction & Infrastructure</h2>
+                <p>Foundations, roads, and heavy concrete works</p>
+            </div>
         </div>
-        
-        <h2 class="section-title" data-aos="fade-up">Civil Construction & Infrastructure</h2>
         
         <div class="civil-grid">
             <div class="civil-content" data-aos="fade-right">
@@ -831,7 +871,7 @@
                 </ul>
             </div>
             <div class="civil-image" data-aos="fade-left">
-                <img src="https://i.pinimg.com/1200x/ca/34/02/ca3402e1e3b352b7aac611ed98d70b41.jpg" alt="Civil construction project large view">
+                <img src="https://i.pinimg.com/1200x/ca/34/02/ca3402e1e3b352b7aac611ed98d70b41.jpg" alt="Civil construction project">
             </div>
         </div>
     </div>
