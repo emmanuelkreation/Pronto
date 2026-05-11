@@ -261,6 +261,45 @@
             display: inline-block;
             margin-top: 8px;
         }
+        /* NEW: Full-width banner image with overlay text */
+        .banner-image {
+            position: relative;
+            width: 100%;
+            height: 50vh;
+            min-height: 320px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 28px;
+            margin-bottom: 48px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+        }
+        .banner-image .banner-text {
+            position: absolute;
+            bottom: 10%;
+            left: 5%;
+            right: 5%;
+            background: linear-gradient(90deg, rgba(0,0,0,0.7), transparent);
+            padding: 28px 32px;
+            border-radius: 20px;
+            color: white;
+            max-width: 70%;
+        }
+        .banner-image .banner-text h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        .banner-image .banner-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        @media (max-width: 900px) {
+            .banner-image { height: 40vh; min-height: 260px; }
+            .banner-image .banner-text { max-width: 90%; padding: 16px 20px; }
+            .banner-image .banner-text h3 { font-size: 1.4rem; }
+        }
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -641,50 +680,6 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
         .float-wa:hover { transform: scale(1.1); }
-
-        /* NEW STYLES FOR IMAGE OVERLAYS (hero-style) */
-        .hero-overlay {
-            position: relative;
-            width: 100%;
-            height: 60vh;
-            min-height: 400px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 32px;
-            margin-bottom: 48px;
-            overflow: hidden;
-            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
-        }
-        .hero-overlay .overlay-text {
-            position: absolute;
-            bottom: 10%;
-            left: 5%;
-            right: 5%;
-            background: linear-gradient(90deg, rgba(0,0,0,0.7), transparent);
-            padding: 32px;
-            border-radius: 24px;
-            color: white;
-            max-width: 70%;
-        }
-        .hero-overlay .overlay-text h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 12px;
-        }
-        .hero-overlay .overlay-text p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        @media (max-width: 900px) {
-            .hero-overlay { height: 40vh; min-height: 300px; }
-            .hero-overlay .overlay-text { max-width: 90%; padding: 20px; }
-            .hero-overlay .overlay-text h2 { font-size: 1.4rem; }
-        }
-        @media (min-width: 901px) {
-            .about-grid, .civil-grid, .project-block { grid-template-columns: 1fr 1fr; }
-            .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
-        }
         @media (max-width: 900px) {
             .desktop-nav { display: none; }
             .mobile-menu-btn { display: block; }
@@ -807,17 +802,18 @@
     </div>
 </section>
 
-<!-- ========== ABOUT SECTION with hero overlay image BEFORE title ========== -->
+<!-- ========== ABOUT SECTION with banner image (keeps original title) ========== -->
 <section id="about">
     <div class="container">
-        <!-- Large image with text overlay (you can replace background-image and text later) -->
-        <div class="hero-overlay" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778007112/WhatsApp_Image_2026-05-05_at_11.27.47_rkwqf6.jpg');">
-            <div class="overlay-text">
-                <h2>Engineering the backbone of Nigerian industry</h2>
-                <p>Decades of excellence in heavy fabrication & infrastructure</p>
+        <!-- ADDED: Banner image with overlay text (above the original title) -->
+        <div class="banner-image" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778007112/WhatsApp_Image_2026-05-05_at_11.27.47_rkwqf6.jpg');">
+            <div class="banner-text">
+                <h3>Decades of Engineering Excellence</h3>
+                <p>Trusted partner for heavy industrial & offshore projects</p>
             </div>
         </div>
-        
+
+        <h2 class="section-title">Engineering the backbone of Nigerian industry</h2>
         <div class="about-grid">
             <div class="about-content" data-aos="fade-right">
                 <p><strong>Pronto Contractors Ltd</strong> is a DNV‑certified steel fabrication company delivering high‑performance industrial structures across Nigeria since 1977.</p>
@@ -836,29 +832,30 @@
     </div>
 </section>
 
-<!-- ========== NEW IMAGE SECTION: Immediately after About, before clients logos ========== -->
+<!-- ========== NEW SECTION: Banner image after About, before client logos ========== -->
 <section>
     <div class="container">
-        <div class="hero-overlay" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1777834593/WhatsApp_Image_2026-05-01_at_15.50.53_nojntc.jpg');">
-            <div class="overlay-text">
-                <h2>Precision Engineered for the Energy Sector</h2>
-                <p>Oil & Gas • Offshore • Industrial Infrastructure</p>
+        <div class="banner-image" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1777834593/WhatsApp_Image_2026-05-01_at_15.50.53_nojntc.jpg');">
+            <div class="banner-text">
+                <h3>Precision Fabrication for Energy & Industry</h3>
+                <p>DNV‑certified skids, offshore platforms, and modular solutions</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Civil Construction Section with hero overlay image BEFORE title -->
+<!-- ========== CIVIL SECTION with banner image (keeps original title) ========== -->
 <section id="civil">
     <div class="container">
-        <!-- Large image with text overlay (replaceable) -->
-        <div class="hero-overlay" data-aos="fade-up" style="background-image: url('https://i.pinimg.com/1200x/ca/34/02/ca3402e1e3b352b7aac611ed98d70b41.jpg');">
-            <div class="overlay-text">
-                <h2>Civil Construction & Infrastructure</h2>
-                <p>Foundations, roads, and heavy concrete works</p>
+        <!-- ADDED: Banner image with overlay text (above the original title) -->
+        <div class="banner-image" data-aos="fade-up" style="background-image: url('https://i.pinimg.com/1200x/ca/34/02/ca3402e1e3b352b7aac611ed98d70b41.jpg');">
+            <div class="banner-text">
+                <h3>Robust Civil Infrastructure</h3>
+                <p>Foundations, roads, and concrete solutions for heavy industry</p>
             </div>
         </div>
-        
+
+        <h2 class="section-title">Civil Construction & Infrastructure</h2>
         <div class="civil-grid">
             <div class="civil-content" data-aos="fade-right">
                 <p>Pronto Contractors delivers turnkey civil engineering solutions for industrial and energy projects.</p>
