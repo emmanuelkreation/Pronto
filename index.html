@@ -177,9 +177,9 @@
             color: white;
             min-height: 85vh;
             display: flex;
-            align-items: flex-end;          /* moved down */
+            align-items: flex-end;
             text-align: left;
-            padding-bottom: 12vh;            /* extra space at bottom */
+            padding-bottom: 12vh;
         }
         .hero h1 {
             font-family: 'Poppins', sans-serif;
@@ -194,7 +194,6 @@
             margin-bottom: 32px;
             opacity: 0.95;
         }
-        /* Mobile hero adjustments (keep alignment) */
         @media (max-width: 768px) {
             .hero {
                 background: linear-gradient(135deg, rgba(11,31,58,0.5), rgba(11,31,58,0.4)), url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778539542/WhatsApp_Image_2026-05-11_at_15.33.28_d8cao3.jpg');
@@ -335,14 +334,16 @@
             font-size: 1rem;
             opacity: 0.9;
         }
-        /* Full-page banner for capabilities: text moved up */
+        /* Full-page banner for capabilities: full image visible (contain) */
         .capabilities-hero {
             position: relative;
             width: 100%;
             height: 75vh;
             min-height: 550px;
-            background-size: cover;
+            background-size: contain;      /* shows full image, no cropping */
+            background-repeat: no-repeat;
             background-position: center;
+            background-color: #0B1F3A;     /* navy background fills empty space */
             margin-bottom: 48px;
             border-radius: 28px;
             overflow: hidden;
@@ -360,7 +361,7 @@
         }
         .capabilities-hero .hero-content {
             position: absolute;
-            top: 6%;            /* moved up (was bottom:6%) */
+            top: 6%;
             left: 8%;
             right: 8%;
             z-index: 2;
@@ -381,11 +382,13 @@
             font-weight: 500;
             letter-spacing: 0.5px;
         }
-        /* Tablet & mobile adjustments for text position */
         @media (max-width: 900px) {
-            .capabilities-hero { height: 60vh; min-height: 400px; }
+            .capabilities-hero {
+                height: 60vh;
+                min-height: 400px;
+            }
             .capabilities-hero .hero-content {
-                top: 4%;         /* slightly lower on tablet but still top */
+                top: 4%;
                 left: 5%;
                 right: 5%;
                 max-width: 90%;
@@ -411,7 +414,10 @@
             }
         }
         @media (max-width: 600px) {
-            .capabilities-hero { height: 50vh; min-height: 320px; }
+            .capabilities-hero {
+                height: 50vh;
+                min-height: 320px;
+            }
             .capabilities-hero .hero-content {
                 top: 3%;
             }
@@ -973,7 +979,7 @@
     </div>
 </section>
 
-<!-- ========== CAPABILITIES SECTION (text moved up) ========== -->
+<!-- ========== CAPABILITIES SECTION (full image visible on all screens) ========== -->
 <section id="capabilities">
     <div class="container">
         <div class="capabilities-hero" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778543419/WhatsApp_Image_2026-05-11_at_16.07.01_xzb4af.jpg');">
