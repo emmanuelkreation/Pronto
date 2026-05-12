@@ -315,7 +315,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.15); /* 15% dark overlay */
+            background: rgba(0,0,0,0.15);
             z-index: 1;
         }
         .capabilities-hero .hero-content {
@@ -774,7 +774,6 @@
             .mobile-menu-btn { display: block; }
             .hero h1 { font-size: 2.5rem; }
             .about-grid, .civil-grid, .project-block, .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-            /* Reorder about section: image first, then content */
             .about-grid {
                 display: flex;
                 flex-direction: column;
@@ -785,6 +784,23 @@
             }
             .about-content {
                 order: 2;
+            }
+            .banner-image {
+                height: 40vh;
+                min-height: 280px;
+                margin-bottom: 32px;
+                background-position: 50% 25%;
+            }
+            .banner-image .banner-text {
+                bottom: 8%;
+                padding: 20px 24px;
+                max-width: 85%;
+            }
+            .banner-image .banner-text h3 {
+                font-size: 1.5rem;
+            }
+            section#about {
+                padding-top: 40px;
             }
             .testimonials-grid { grid-template-columns: 1fr; }
             .timeline-item {
@@ -853,6 +869,18 @@
             .timeline-year {
                 font-size: 1.2rem;
             }
+            .banner-image {
+                height: 35vh;
+                min-height: 240px;
+                background-position: 50% 20%;
+            }
+            .banner-image .banner-text {
+                bottom: 6%;
+                padding: 16px 20px;
+            }
+            .banner-image .banner-text h3 {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
@@ -900,7 +928,6 @@
 <!-- ========== CAPABILITIES SECTION with full-width hero banner ========== -->
 <section id="capabilities">
     <div class="container">
-        <!-- Full-width hero banner (image + text) -->
         <div class="capabilities-hero" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778543419/WhatsApp_Image_2026-05-11_at_16.07.01_xzb4af.jpg');">
             <div class="hero-content">
                 <h2>Engineering Complex Onshore & Offshore Industrial Structures Across Nigeria</h2>
@@ -913,7 +940,7 @@
     </div>
 </section>
 
-<!-- About Section with banner -->
+<!-- About Section with banner (mobile optimized) -->
 <section id="about">
     <div class="container">
         <div class="banner-image" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778539542/WhatsApp_Image_2026-05-11_at_15.43.55_oddsmn.jpg');">
@@ -1181,7 +1208,7 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-    // Capabilities data (same as before)
+    // Capabilities data (unchanged)
     const capabilitiesData = [
         { title: "Structural Steel Fabrication & Erection", tagline: "Heavy industrial & commercial steel structures",
           desc: "Complete steel solutions from shop drawings to final erection. We deliver certified, high-strength steel frameworks for factories, warehouses, and commercial complexes.",
@@ -1275,12 +1302,29 @@
         testimonialsGrid.innerHTML = testimonials.map(t => `<div class="testimonial-card" data-aos="fade-up"><div class="testimonial-stars">${'★'.repeat(t.stars)}${'☆'.repeat(5-t.stars)}</div><p class="testimonial-text">“${t.text}”</p><p class="testimonial-author">${t.name}</p><p class="testimonial-role">${t.role}</p></div>`).join('');
     }
 
+    // ========== RESTORED FULL CAROUSEL IMAGES ==========
     const carouselImages = [
         { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980026/WhatsApp_Image_2026-05-04_at_14.36.21_4_joli7m.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Offshore Platform Installation" },
         { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980026/WhatsApp_Image_2026-05-04_at_14.36.21_hqofom.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Jacket Fabrication & Load-out" },
         { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980025/WhatsApp_Image_2026-05-04_at_14.36.21_2_lqr0nc.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Steel Structure Assembly" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980025/WhatsApp_Image_2026-05-04_at_14.36.22_3_wc6wpg.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Tank Farm Construction" }
+        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980025/WhatsApp_Image_2026-05-04_at_14.36.22_3_wc6wpg.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Tank Farm Construction" },
+        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980026/WhatsApp_Image_2026-05-04_at_14.36.21_hqofom.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Industrial Civil Works" },
+        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980026/WhatsApp_Image_2026-05-04_at_14.36.22_stvuze.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Heavy Lift Operations" },
+        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778007112/WhatsApp_Image_2026-05-05_at_11.27.47_rkwqf6.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Offshore Platform Installation" },
+        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778007086/WhatsApp_Image_2026-05-05_at_11.27.46_1_udbmh0.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Jacket Fabrication & Load-out" },
+        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122470/WhatsApp_Image_2026-05-05_at_11.27.45_1_ezi3li.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Steel Structure Assembly" },
+        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122925/WhatsApp_Image_2026-05-03_at_09.13.21_3_rp5y3o.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Tank Farm Construction" },
+        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122925/WhatsApp_Image_2026-05-03_at_09.13.21_4_ljp2zm.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778124825/WhatsApp_Image_2026-05-01_at_15.58.04_edihqt.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778124824/WhatsApp_Image_2026-05-01_at_15.56.48_1_twpukl.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778124824/WhatsApp_Image_2026-05-01_at_15.56.47_1_govjsb.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778124824/WhatsApp_Image_2026-05-01_at_15.51.42_firhbw.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122475/WhatsApp_Image_2026-05-05_at_11.27.48_2_gkklok.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122476/WhatsApp_Image_2026-05-05_at_11.27.48_gvrrij.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122476/WhatsApp_Image_2026-05-05_at_11.27.48_4_l251yg.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122925/WhatsApp_Image_2026-05-03_at_09.13.21_2_afdw0q.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" }
     ];
+
     const carouselWrapper = document.getElementById('carouselWrapper');
     if (carouselWrapper) {
         carouselWrapper.innerHTML = carouselImages.map(img => `<div class="swiper-slide"><img src="${img.url}" alt="${img.caption}"><div class="slide-caption">${img.caption}</div></div>`).join('');
