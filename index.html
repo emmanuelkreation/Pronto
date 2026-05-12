@@ -168,8 +168,9 @@
             color: #1e293b;
         }
         .mobile-nav a:hover { color: var(--orange); }
+        /* === HERO SECTION (DESKTOP & MOBILE OPTIMIZED) === */
         .hero {
-            background: linear-gradient(135deg, rgba(11,31,58,0.65), rgba(11,31,58,0.45)), url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778539542/WhatsApp_Image_2026-05-11_at_15.33.28_d8cao3.jpg');
+            background: linear-gradient(135deg, rgba(11,31,58,0.5), rgba(11,31,58,0.35)), url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778539542/WhatsApp_Image_2026-05-11_at_15.33.28_d8cao3.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -191,6 +192,44 @@
             max-width: 600px;
             margin-bottom: 32px;
             opacity: 0.95;
+        }
+        /* Mobile hero improvements */
+        @media (max-width: 768px) {
+            .hero {
+                background: linear-gradient(135deg, rgba(11,31,58,0.5), rgba(11,31,58,0.4)), url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778539542/WhatsApp_Image_2026-05-11_at_15.33.28_d8cao3.jpg');
+                background-size: cover;
+                background-position: 65% center;    /* shift focus to show rig */
+                background-repeat: no-repeat;
+                background-attachment: scroll;
+                min-height: 90vh;
+                align-items: flex-end;              /* push text lower */
+                padding-bottom: 12vh;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+                margin-bottom: 16px;
+            }
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 28px;
+            }
+            .hero .btn {
+                padding: 12px 28px;
+                font-size: 0.95rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .hero {
+                min-height: 85vh;
+                background-position: 70% center;
+                padding-bottom: 10vh;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 0.9rem;
+            }
         }
         .capabilities-grid {
             display: grid;
@@ -276,7 +315,7 @@
         }
         .banner-image .banner-text {
             position: absolute;
-            bottom: 10%;
+            bottom: 5%;
             left: 5%;
             right: 5%;
             background: linear-gradient(90deg, rgba(0,0,0,0.7), transparent);
@@ -295,7 +334,7 @@
             font-size: 1rem;
             opacity: 0.9;
         }
-        /* New full-page banner for capabilities (70-85vh, slight overlay) */
+        /* Full-page banner for capabilities */
         .capabilities-hero {
             position: relative;
             width: 100%;
@@ -346,10 +385,37 @@
             .capabilities-hero .hero-content h2 { font-size: 1.8rem; }
             .capabilities-hero .hero-content p { font-size: 1rem; }
             .capabilities-hero .hero-content { max-width: 90%; bottom: 10%; left: 5%; }
+            .banner-image {
+                height: 40vh;
+                min-height: 280px;
+                margin-bottom: 32px;
+                background-position: 50% 25%;
+            }
+            .banner-image .banner-text {
+                bottom: 3%;
+                padding: 20px 24px;
+                max-width: 85%;
+            }
+            .banner-image .banner-text h3 {
+                font-size: 1.5rem;
+            }
+            section#about {
+                padding-top: 40px;
+            }
         }
         @media (max-width: 600px) {
-            .capabilities-hero { height: 50vh; min-height: 320px; }
-            .capabilities-hero .hero-content h2 { font-size: 1.4rem; }
+            .banner-image {
+                height: 35vh;
+                min-height: 240px;
+                background-position: 50% 20%;
+            }
+            .banner-image .banner-text {
+                bottom: 2%;
+                padding: 16px 20px;
+            }
+            .banner-image .banner-text h3 {
+                font-size: 1.3rem;
+            }
         }
         .about-grid {
             display: grid;
@@ -772,7 +838,6 @@
         @media (max-width: 900px) {
             .desktop-nav { display: none; }
             .mobile-menu-btn { display: block; }
-            .hero h1 { font-size: 2.5rem; }
             .about-grid, .civil-grid, .project-block, .footer-grid { grid-template-columns: 1fr; gap: 32px; }
             .about-grid {
                 display: flex;
@@ -784,23 +849,6 @@
             }
             .about-content {
                 order: 2;
-            }
-            .banner-image {
-                height: 40vh;
-                min-height: 280px;
-                margin-bottom: 32px;
-                background-position: 50% 25%;
-            }
-            .banner-image .banner-text {
-                bottom: 8%;
-                padding: 20px 24px;
-                max-width: 85%;
-            }
-            .banner-image .banner-text h3 {
-                font-size: 1.5rem;
-            }
-            section#about {
-                padding-top: 40px;
             }
             .testimonials-grid { grid-template-columns: 1fr; }
             .timeline-item {
@@ -869,18 +917,6 @@
             .timeline-year {
                 font-size: 1.2rem;
             }
-            .banner-image {
-                height: 35vh;
-                min-height: 240px;
-                background-position: 50% 20%;
-            }
-            .banner-image .banner-text {
-                bottom: 6%;
-                padding: 16px 20px;
-            }
-            .banner-image .banner-text h3 {
-                font-size: 1.3rem;
-            }
         }
     </style>
 </head>
@@ -916,7 +952,7 @@
 
 <a href="https://wa.me/2348168886666" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-<!-- Hero Section -->
+<!-- Hero Section (mobile image visible) -->
 <section class="hero" id="home">
     <div class="container">
         <h1 data-aos="fade-up">Engineering • Fabrication • Infrastructure</h1>
@@ -925,7 +961,7 @@
     </div>
 </section>
 
-<!-- ========== CAPABILITIES SECTION with full-width hero banner ========== -->
+<!-- ========== CAPABILITIES SECTION ========== -->
 <section id="capabilities">
     <div class="container">
         <div class="capabilities-hero" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778543419/WhatsApp_Image_2026-05-11_at_16.07.01_xzb4af.jpg');">
@@ -940,7 +976,7 @@
     </div>
 </section>
 
-<!-- About Section with banner (mobile optimized) -->
+<!-- About Section with banner -->
 <section id="about">
     <div class="container">
         <div class="banner-image" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778539542/WhatsApp_Image_2026-05-11_at_15.43.55_oddsmn.jpg');">
@@ -1029,7 +1065,6 @@
     </div>
 </section>
 
-<!-- How We Work -->
 <section>
     <div class="container">
         <h2 class="section-title" data-aos="fade-up">How We Work</h2>
@@ -1042,30 +1077,29 @@
     </div>
 </section>
 
-<!-- Trusted Clients -->
 <section>
     <div class="container">
         <h2 class="section-title" data-aos="fade-up" style="text-align: center;">Trusted by leading contractors, EPCs, and energy‑sector clients</h2>
         <div class="clients-logos" data-aos="fade-up">
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/Julius_Berger_ieus1n.jpg" alt="Julius Berger"><span></span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/Pacific_Drilling_fcaxlq.png" alt="Pacific Drilling"><span></span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/Shelf_Drilling_w8sfsd.png" alt="Shelf Drilling"><span> </span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/NCDMB_uubjxo.png" alt="NCDMB"><span></span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778542102/WhatsApp_Image_2026-05-11_at_16.19.37_dbwfag.jpg" alt="Hamilton"><span></span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/Schlumberger_i2gmxk.png" alt="Schlumberger"><span></span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/TotalEnergies_amnx5m.jpg" alt="TotalEnergies"><span></span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/Halliburton_rwq0yg.png" alt="Halliburton"><span></span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/Baker_Hughes_zfzndw.png" alt="Baker Hughes"><span> </span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/Seplat_Energy_soetjo.jpg" alt="Seplat Energy"><span> </span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/ExxonMobil_mkimpq.png" alt="ExxonMobil"><span></span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/Chevron_f8cdyd.png" alt="Chevron"><span></span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/CAT_mmsgnc.png" alt="CAT"><span></span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/NLNG_rqk8oe.jpg" alt="NLNG"><span></span></div>
+            <!-- client logos exactly as in original -->
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/Julius_Berger_ieus1n.jpg" alt="Julius Berger"><span>Julius Berger</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/Pacific_Drilling_fcaxlq.png" alt="Pacific Drilling"><span>Pacific Drilling</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/Shelf_Drilling_w8sfsd.png" alt="Shelf Drilling"><span>Shelf Drilling</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/NCDMB_uubjxo.png" alt="NCDMB"><span>NCDMB</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778542102/WhatsApp_Image_2026-05-11_at_16.19.37_dbwfag.jpg" alt="Hamilton"><span>Hamilton</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/Schlumberger_i2gmxk.png" alt="Schlumberger"><span>Schlumberger</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/TotalEnergies_amnx5m.jpg" alt="TotalEnergies"><span>TotalEnergies</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/Halliburton_rwq0yg.png" alt="Halliburton"><span>Halliburton</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/Baker_Hughes_zfzndw.png" alt="Baker Hughes"><span>Baker Hughes</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/Seplat_Energy_soetjo.jpg" alt="Seplat Energy"><span>Seplat Energy</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/ExxonMobil_mkimpq.png" alt="ExxonMobil"><span>ExxonMobil</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/Chevron_f8cdyd.png" alt="Chevron"><span>Chevron</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/CAT_mmsgnc.png" alt="CAT"><span>CAT</span></div>
+            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/NLNG_rqk8oe.jpg" alt="NLNG"><span>NLNG</span></div>
         </div>
     </div>
 </section>
 
-<!-- Testimonials -->
 <section id="testimonials">
     <div class="container">
         <h2 class="section-title" data-aos="fade-up">What Our Clients Say</h2>
@@ -1074,7 +1108,6 @@
     </div>
 </section>
 
-<!-- Carousel -->
 <section class="project-carousel-section" id="project-carousel">
     <div class="container">
         <h2 class="section-title" data-aos="fade-up">Offshore & Industrial Projects Gallery</h2>
@@ -1088,7 +1121,6 @@
     </div>
 </section>
 
-<!-- Standards & Compliance -->
 <section style="background: var(--gray-light);">
     <div class="container">
         <h2 class="section-title" data-aos="fade-up">Standards & Compliance</h2>
@@ -1106,7 +1138,6 @@
     </div>
 </section>
 
-<!-- FAQ -->
 <section id="faq">
     <div class="container">
         <h2 class="section-title" data-aos="fade-up">Frequently Asked Questions</h2>
@@ -1120,7 +1151,6 @@
     </div>
 </section>
 
-<!-- Contact Form -->
 <section id="contact-form">
     <div class="container">
         <h2 class="section-title" data-aos="fade-up">Get a Project Estimate</h2>
@@ -1149,7 +1179,6 @@
     </div>
 </section>
 
-<!-- Final CTA -->
 <section class="final-cta-section" id="contact">
     <div class="container">
         <div class="final-cta-content" data-aos="zoom-in-up">
@@ -1168,7 +1197,6 @@
     </div>
 </section>
 
-<!-- Footer redesigned: aligned columns, cleaner layout -->
 <footer>
     <div class="container">
         <div class="footer-grid">
@@ -1302,7 +1330,7 @@
         testimonialsGrid.innerHTML = testimonials.map(t => `<div class="testimonial-card" data-aos="fade-up"><div class="testimonial-stars">${'★'.repeat(t.stars)}${'☆'.repeat(5-t.stars)}</div><p class="testimonial-text">“${t.text}”</p><p class="testimonial-author">${t.name}</p><p class="testimonial-role">${t.role}</p></div>`).join('');
     }
 
-    // ========== RESTORED FULL CAROUSEL IMAGES ==========
+    // Full carousel restored
     const carouselImages = [
         { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980026/WhatsApp_Image_2026-05-04_at_14.36.21_4_joli7m.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Offshore Platform Installation" },
         { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777980026/WhatsApp_Image_2026-05-04_at_14.36.21_hqofom.jpg?auto=compress&cs=tinysrgb&w=800", caption: "Jacket Fabrication & Load-out" },
@@ -1324,7 +1352,6 @@
         { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122476/WhatsApp_Image_2026-05-05_at_11.27.48_4_l251yg.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
         { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778122925/WhatsApp_Image_2026-05-03_at_09.13.21_2_afdw0q.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" }
     ];
-
     const carouselWrapper = document.getElementById('carouselWrapper');
     if (carouselWrapper) {
         carouselWrapper.innerHTML = carouselImages.map(img => `<div class="swiper-slide"><img src="${img.url}" alt="${img.caption}"><div class="slide-caption">${img.caption}</div></div>`).join('');
