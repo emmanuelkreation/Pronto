@@ -178,7 +178,7 @@
             color: #1e293b;
         }
         .mobile-nav a:hover, .mobile-nav a.active { color: var(--orange); }
-        /* Hero with background image - REDUCED OVERLAY */
+        /* Hero with background image - REDUCED OVERLAY & TEXT MOVED DOWN */
         .hero {
             position: relative;
             background: linear-gradient(135deg, rgba(11,43,79,0.55), rgba(0,0,0,0.5)), url('https://res.cloudinary.com/duzgc5usb/image/upload/v1777834593/WhatsApp_Image_2026-05-01_at_15.51.22_kli8hf.jpg?auto=compress&cs=tinysrgb&w=1600');
@@ -186,8 +186,15 @@
             background-attachment: fixed;
             background-position: center;
             color: white;
+            min-height: 85vh;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
             text-align: center;
-            padding: 120px 0;
+            padding-bottom: 12vh;
+        }
+        .hero .container {
+            width: 100%;
         }
         .hero h1 {
             font-size: 3.2rem;
@@ -330,6 +337,10 @@
             .hero, .cta-section { background-attachment: scroll; }
             .cta-glass { padding: 32px 20px; margin: 0 16px; }
             .cta-glass h2 { font-size: 1.8rem; }
+            .hero {
+                min-height: 85vh;
+                padding-bottom: 10vh;
+            }
         }
     </style>
 </head>
@@ -364,7 +375,7 @@
 
 <a href="https://wa.me/2348168886666" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-<!-- Hero Section with reduced overlay -->
+<!-- Hero Section with reduced overlay and text moved to bottom -->
 <section class="hero">
     <div class="container">
         <h1 data-aos="fade-up">Engineering & Industrial Services</h1>
