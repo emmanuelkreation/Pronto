@@ -84,7 +84,8 @@
             color: white;
             transform: translateY(-2px);
         }
-        /* Header - exactly same as homepage */
+
+        /* ===== NAVBAR WITH DROPDOWN (UPDATED) ===== */
         .navbar {
             background: rgba(255,255,255,0.96);
             backdrop-filter: blur(12px);
@@ -117,6 +118,8 @@
             color: var(--navy);
         }
         .logo-text span { color: var(--orange); }
+
+        /* Desktop nav */
         .desktop-nav {
             display: flex;
             gap: 32px;
@@ -129,6 +132,50 @@
             transition: 0.2s;
         }
         .desktop-nav a:hover, .desktop-nav a.active { color: var(--orange); }
+
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown > a {
+            cursor: pointer;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            border-radius: 16px;
+            z-index: 1000;
+            padding: 8px 0;
+            border: 1px solid #edf2f7;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content a {
+            display: block;
+            padding: 12px 20px;
+            color: #1e293b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+        .dropdown-content a:hover {
+            background: #f8fafc;
+            color: var(--orange);
+        }
+        .dropdown-content a.active {
+            color: var(--orange);
+            background: #fef2f2;
+        }
+
+        /* Mobile nav */
         .mobile-menu-btn {
             display: none;
             font-size: 1.8rem;
@@ -184,7 +231,42 @@
             transition: 0.2s;
         }
         .mobile-nav a:hover, .mobile-nav a.active { color: var(--orange); }
-        /* Hero with background image - REDUCED OVERLAY & NEW TEXT */
+        .mobile-nav .dropdown-label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1e293b;
+            margin-top: 12px;
+            margin-bottom: 4px;
+        }
+        .mobile-nav .sub-link {
+            font-weight: 400;
+            font-size: 0.95rem;
+            padding-left: 20px;
+            color: #475569;
+            display: block;
+        }
+        .mobile-nav .sub-link.active {
+            color: var(--orange);
+        }
+
+        @media (max-width: 900px) {
+            .desktop-nav { display: none; }
+            .mobile-menu-btn { display: block; }
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                padding-left: 16px;
+                border: none;
+                background: transparent;
+            }
+            .dropdown-content a {
+                padding: 8px 0;
+                font-size: 0.9rem;
+            }
+        }
+        /* ===== END NAVBAR ===== */
+
+        /* Hero with background image - REDUCED OVERLAY & NEW TEXT (unchanged) */
         .about-hero {
             position: relative;
             background: linear-gradient(rgba(11,43,79,0.4), rgba(7,31,58,0.5)), url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778625490/WhatsApp_Image_2026-05-12_at_15.34.56_wmkikz.jpg?auto=compress&cs=tinysrgb&w=1600');
@@ -207,7 +289,8 @@
             font-size: 1.2rem;
             opacity: 0.95;
         }
-        /* Stats bar */
+
+        /* Stats bar, story, approach, CEO, certs, locations, CTA, footer – all unchanged */
         .stats-bar {
             background: white;
             box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
@@ -232,7 +315,6 @@
             color: var(--gray);
             font-weight: 800;
         }
-        /* Our Story - logo on side on desktop, top on mobile */
         .story-grid {
             display: grid;
             grid-template-columns: 1fr 1.5fr;
@@ -257,7 +339,6 @@
         .story-text p {
             margin-bottom: 24px;
         }
-        /* Approach steps with bg image */
         .approach-section {
             background: linear-gradient(rgba(248,250,254,0.95), rgba(248,250,254,0.95)), url('https://images.pexels.com/photos/279228/pexels-photo-279228.jpeg?auto=compress&cs=tinysrgb&w=1600');
             background-size: cover;
@@ -285,7 +366,6 @@
             color: var(--orange);
             margin-bottom: 20px;
         }
-        /* CEO / Founder section */
         .ceo-section {
             background: var(--gray-bg);
         }
@@ -329,7 +409,6 @@
             font-style: italic;
             line-height: 1.6;
         }
-        /* Certifications */
         .certs-list {
             display: flex;
             flex-wrap: wrap;
@@ -345,7 +424,6 @@
             font-weight: 600;
             font-size: 0.9rem;
         }
-        /* Locations */
         .locations-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -358,7 +436,6 @@
             padding: 32px;
             box-shadow: 0 12px 30px rgba(0,0,0,0.05);
         }
-        /* ===== REPLACED CTA SECTION (unified with homepage) ===== */
         .cta-section {
             position: relative;
             background: linear-gradient(135deg, rgba(11,43,79,0.92), rgba(0,0,0,0.85)), url('https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=1600');
@@ -389,8 +466,6 @@
             background: white;
             color: var(--navy);
         }
-        /* ===== END CTA UPDATE ===== */
-        /* Footer */
         footer {
             background: #0B1C2E;
             color: #94A3B8;
@@ -453,6 +528,18 @@
             .cta-section { padding: 80px 0; background-attachment: scroll; }
             .cta-glass { padding: 32px 20px; margin: 0 16px; }
             .cta-glass h2 { font-size: 1.8rem; }
+            /* Ensure dropdown works on mobile */
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                padding-left: 16px;
+                border: none;
+                background: transparent;
+            }
+            .dropdown-content a {
+                padding: 8px 0;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -467,8 +554,20 @@
         <div class="desktop-nav">
             <a href="index.html">Home</a>
             <a href="about.html" class="active">About</a>
-            <a href="services.html">Services</a>
-            <a href="portfolio.html">Portfolio</a>
+            <div class="dropdown">
+                <a href="services.html">Services <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="services-steel.html">Steel Infrastructure</a>
+                    <a href="services-civil.html">Civil Engineering</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="portfolio.html">Portfolio <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="portfolio-steel.html">Steel Projects</a>
+                    <a href="portfolio-civil.html">Civil Projects</a>
+                </div>
+            </div>
             <a href="reviews.html">Reviews</a>
             <a href="contact.html">Contact</a>
         </div>
@@ -478,9 +577,13 @@
 <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 <div class="mobile-nav" id="mobileNav">
     <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="services.html">Services</a>
-    <a href="portfolio.html">Portfolio</a>
+    <a href="about.html" class="active">About</a>
+    <div class="dropdown-label">Services</div>
+    <a href="services-steel.html" class="sub-link">Steel Infrastructure</a>
+    <a href="services-civil.html" class="sub-link">Civil Engineering</a>
+    <div class="dropdown-label">Portfolio</div>
+    <a href="portfolio-steel.html" class="sub-link">Steel Projects</a>
+    <a href="portfolio-civil.html" class="sub-link">Civil Projects</a>
     <a href="reviews.html">Reviews</a>
     <a href="contact.html">Contact</a>
 </div>
