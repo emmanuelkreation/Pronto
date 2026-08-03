@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Admin Dashboard | Pronto Contractors – Manage Portfolio & Reviews</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F8FAFE;
+            color: #1A2C3E;
+            overflow-x: hidden;
+        }
+        :root {
+            --navy: #0B2B4F;
+            --orange: #E85D04;
+            --gray-bg: #F8FAFE;
+        }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin: 20px 0;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .btn-primary { background: var(--orange); color: white; }
+        .btn-primary:hover { background: #c45102; transform: translateY(-2px); }
+        .btn-outline { border: 2px solid var(--navy); color: var(--navy); background: white; }
+        .btn-outline:hover { background: var(--navy); color: white; }
+        .btn-danger { background: #dc2626; color: white; }
+        .btn-danger:hover { background: #b91c1c; }
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        .login-box {
+            max-width: 400px;
+            margin: 80px auto;
+            text-align: center;
+        }
+        .login-box input {
+            width: 100%;
+            padding: 14px;
+            margin: 16px 0;
+            border: 1px solid #cbd5e1;
+            border-radius: 40px;
+            font-size: 1rem;
+        }
+        .admin-header {
+            background: white;
+            padding: 16px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 32px;
+        }
+        .admin-header h2 { color: var(--navy); }
+        .review-item, .portfolio-item {
+            background: white;
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid #e2e8f0;
+        }
+        .review-content, .portfolio-content { flex: 1; }
+        .review-actions, .portfolio-actions { display: flex; gap: 12px; margin-top: 12px; }
+        .stars { color: var(--orange); }
+        .badge { background: #e2e8f0; padding: 2px 8px; border-radius: 20px; font-size: 0.7rem; }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .form-grid input, .form-grid select, .form-grid textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 16px;
+            font-family: inherit;
+        }
+        .full-width { grid-column: span 2; }
+        textarea { resize: vertical; }
+        .image-group {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid #e2e8f0;
+        }
+        .image-group .flex-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .image-group input[type="file"] {
+            flex: 2;
+            padding: 8px;
+        }
+        .image-group input[type="text"] {
+            flex: 2;
+            padding: 8px;
+        }
+        .image-group .preview-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        .remove-img-btn {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.7rem;
+        }
+        .tabs {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .tab-btn.active {
+            color: var(--orange);
+            border-bottom: 2px solid var(--orange);
+            margin-bottom: -10px;
+        }
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; }
+        footer {
+            background: #0B1C2E;
+            color: #94A3B8;
+            text-align: center;
+            padding: 32px 0;
+            margin-top: 48px;
+        }
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(0,0,0,0.1);
+            border-top-color: var(--orange);
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @media (max-width: 700px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+            .image-group .flex-row { flex-direction: column; align-items: stretch; }
+            .image-group .preview-img { width: 100%; height: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="admin-header">
+    <div class="container">
+        <h2>🔧 Admin Dashboard</h2>
+        <p>Manage portfolio projects and client reviews – <strong>upload images directly from your computer</strong></p>
+    </div>
+</div>
+
+<div class="container" id="adminApp">
+    <!-- LOGIN FORM -->
+    <div id="loginSection" class="login-box card">
+        <h3 style="color: var(--navy);">Admin Login</h3>
+        <input type="password" id="adminPass" placeholder="Enter password">
+        <button id="loginBtn" class="btn btn-primary">Login</button>
+        <p style="margin-top: 12px; font-size: 0.8rem;">Demo password: pronto2026</p>
+    </div>
+
+    <!-- ADMIN CONTENT -->
+    <div id="adminContent" style="display: none;">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="portfolio">📁 Portfolio Management</button>
+            <button class="tab-btn" data-tab="reviews">⭐ Review Moderation</button>
+        </div>
+
+        <!-- PORTFOLIO TAB -->
+        <div id="portfolioTab" class="tab-pane active">
+            <div class="card">
+                <h3>➕ Add New Project</h3>
+                <form id="projectForm" class="form-grid">
+                    <input type="hidden" id="projectId">
+                    <input type="text" id="projTitle" placeholder="Project Title *" required>
+                    <select id="projCategory">
+                        <option value="Structural Steel">Structural Steel</option>
+                        <option value="Industrial Buildings">Industrial Buildings</option>
+                        <option value="Tank Farms">Tank Farms</option>
+                        <option value="Offshore & DNV">Offshore & DNV</option>
+                        <option value="Piping">Piping</option>
+                        <option value="Coatings">Coatings</option>
+                        <option value="Maintenance">Maintenance</option>
+                    </select>
+                    <input type="text" id="projThumb" placeholder="Thumbnail Image URL (optional – leave empty to use first gallery image)">
+                    <input type="text" id="projLocation" placeholder="Location (e.g., Eastern Bypass, Rivers State)">
+                    <input type="text" id="projRoofType" placeholder="Roof / Structure type">
+                    <input type="text" id="projSteelQty" placeholder="Steel Quantity (e.g., ~150 Tons)">
+                    <input type="text" id="projDuration" placeholder="Execution Duration (e.g., 2 Months)">
+                    <input type="text" id="projSteelGrade" placeholder="Steel Grade (e.g., S275 / S355)">
+                    <textarea id="projDescription" rows="2" placeholder="Full project description"></textarea>
+                    <input type="text" id="projClient" placeholder="Client name">
+                    <textarea id="projScope" rows="2" placeholder="Scope of work"></textarea>
+                    <textarea id="projResult" rows="2" placeholder="Result / outcome"></textarea>
+                    
+                    <div class="full-width">
+                        <h4>📸 Project Images Gallery (upload from your computer)</h4>
+                        <div id="imagesContainer"></div>
+                        <button type="button" id="addImageBtn" class="btn-outline" style="margin-top: 8px;">+ Add Another Image</button>
+                        <p class="small-text" style="font-size: 0.75rem; color: #666; margin-top: 8px;">Supported: JPG, PNG, GIF, WEBP (max ~5MB per image)</p>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary full-width" id="submitBtn">💾 Save Project</button>
+                    <button type="button" id="cancelEditBtn" class="btn-outline full-width">Cancel Edit</button>
+                    <div id="uploadStatus" style="grid-column: span 2; font-size: 0.85rem; color: var(--orange); text-align: center;"></div>
+                </form>
+            </div>
+
+            <div class="card">
+                <h3>📂 Existing Projects</h3>
+                <div id="portfolioList"></div>
+            </div>
+        </div>
+
+        <!-- REVIEWS TAB -->
+        <div id="reviewsTab" class="tab-pane">
+            <div class="card">
+                <h3>⏳ Pending Reviews</h3>
+                <div id="pendingReviewsList"></div>
+            </div>
+            <div class="card">
+                <h3>✅ Approved Reviews</h3>
+                <div id="approvedReviewsList"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <p>© 2026 Pronto Contractors Ltd — Admin Dashboard</p>
+        <p style="margin-top: 8px; font-size: 0.8rem;">Designed by Kreation Digitals</p>
+    </div>
+</footer>
+
+<!-- Firebase SDKs (v9 compat) -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+<!-- No separate storage SDK needed – we use ImageKit directly -->
+
+<script>
+    // Firebase Config (your existing config)
+    const firebaseConfig = {
+        apiKey: "AIzaSyDw4Aq8qippb9ySuks2_aLlTLyU0rYFsEs",
+        authDomain: "pronto-cc198.firebaseapp.com",
+        databaseURL: "https://pronto-cc198-default-rtdb.firebaseio.com",
+        projectId: "pronto-cc198",
+        storageBucket: "pronto-cc198.firebasestorage.app",
+        messagingSenderId: "587558230969",
+        appId: "1:587558230969:web:11a2ff80b0c1040198f468f"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    // ========== IMAGEKIT CONFIGURATION (YOUR CREDENTIALS INSERTED) ==========
+    const IMAGEKIT_PRIVATE_KEY = 'private_RLsucdkMH63bDXqifiWBlUUDRbs=';
+    const IMAGEKIT_PUBLIC_KEY = 'public_x1rcEzRQ8hvmPXRezLS36mk9UE8=';
+    const IMAGEKIT_URL_ENDPOINT = 'https://upload.imagekit.io/api/v1/files/upload';
+    // The ImageKit ID (2pqi3dzrd) is automatically part of the returned URL, we don't need to set it separately.
+
+    let projects = [];
+    let editingId = null;
+    let imageItems = []; // each item: { file, label, existingUrl, isNew, previewUrl }
+
+    // Helper: escape HTML
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+    }
+
+    // Render image gallery inputs (for both new and existing images)
+    function renderImageFields() {
+        const container = document.getElementById('imagesContainer');
+        if (!container) return;
+        container.innerHTML = '';
+        imageItems.forEach((item, idx) => {
+            const div = document.createElement('div');
+            div.className = 'image-group';
+            const previewHtml = item.previewUrl ? `<img src="${item.previewUrl}" class="preview-img" alt="preview">` : (item.existingUrl ? `<img src="${item.existingUrl}" class="preview-img" alt="existing">` : '<div class="preview-img" style="background:#f0f0f0; display:flex; align-items:center; justify-content:center;">📷</div>');
+            div.innerHTML = `
+                <div class="flex-row">
+                    <input type="file" accept="image/jpeg,image/png,image/gif,image/webp" class="img-file" data-idx="${idx}">
+                    <input type="text" placeholder="Image label (e.g., Foundation / Fabrication)" value="${escapeHtml(item.label)}" class="img-label" data-idx="${idx}">
+                    ${previewHtml}
+                    <button type="button" class="remove-img-btn" data-idx="${idx}">Remove</button>
+                </div>
+            `;
+            container.appendChild(div);
+        });
+        // attach events
+        document.querySelectorAll('.img-file').forEach(input => {
+            input.addEventListener('change', (e) => {
+                const idx = parseInt(input.dataset.idx);
+                if (input.files && input.files[0]) {
+                    const file = input.files[0];
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert('Image too large. Max 5MB.');
+                        input.value = '';
+                        return;
+                    }
+                    imageItems[idx].file = file;
+                    imageItems[idx].isNew = true;
+                    imageItems[idx].existingUrl = '';
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        imageItems[idx].previewUrl = e.target.result;
+                        renderImageFields(); // re-render to show preview
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    imageItems[idx].file = null;
+                    imageItems[idx].isNew = false;
+                    imageItems[idx].previewUrl = '';
+                    renderImageFields();
+                }
+            });
+        });
+        document.querySelectorAll('.img-label').forEach(input => {
+            input.addEventListener('input', (e) => {
+                const idx = parseInt(input.dataset.idx);
+                imageItems[idx].label = input.value;
+            });
+        });
+        document.querySelectorAll('.remove-img-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const idx = parseInt(btn.dataset.idx);
+                imageItems.splice(idx, 1);
+                renderImageFields();
+            });
+        });
+    }
+
+    // Upload new images to ImageKit
+    async function uploadNewImages(images) {
+        const uploaded = [];
+        for (let i = 0; i < images.length; i++) {
+            const img = images[i];
+            if (img.file && img.isNew) {
+                const formData = new FormData();
+                formData.append('file', img.file);
+                formData.append('fileName', img.file.name);
+                formData.append('folder', '/pronto-portfolio');  // optional – organises images in your ImageKit media library
+                try {
+                    const response = await fetch(IMAGEKIT_URL_ENDPOINT, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Basic ${btoa(`${IMAGEKIT_PRIVATE_KEY}:`)}`,
+                        },
+                        body: formData
+                    });
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        throw new Error(`Upload failed: ${response.status} ${errorText}`);
+                    }
+                    const data = await response.json();
+                    // data.url contains the permanent public URL
+                    uploaded.push({ url: data.url, label: img.label || '' });
+                } catch (err) {
+                    console.error('ImageKit upload error:', err);
+                    alert(`Failed to upload image: ${img.file.name}\n${err.message}`);
+                    throw err;
+                }
+            } else if (img.existingUrl) {
+                // keep existing image (already stored)
+                uploaded.push({ url: img.existingUrl, label: img.label || '' });
+            }
+        }
+        return uploaded;
+    }
+
+    // Load portfolio from DB
+    function loadPortfolio() {
+        db.ref('portfolio').on('value', (snap) => {
+            if (snap.val()) projects = Object.keys(snap.val()).map(key => ({ id: key, ...snap.val()[key] }));
+            else projects = [];
+            renderPortfolioList();
+        });
+    }
+
+    function renderPortfolioList() {
+        const container = document.getElementById('portfolioList');
+        if (!container) return;
+        if (projects.length === 0) { container.innerHTML = '<p>No projects yet. Add one above.</p>'; return; }
+        container.innerHTML = projects.map(p => `
+            <div class="portfolio-item">
+                <div><strong>${escapeHtml(p.title)}</strong> <span class="badge">${p.category}</span>
+                <p style="font-size:0.8rem; margin-top:4px;">📍 ${p.location || ''} | ⏱️ ${p.duration || ''}</p></div>
+                <div class="portfolio-actions">
+                    <button class="btn-outline edit-proj" data-id="${p.id}" style="padding:6px 12px;">✏️ Edit</button>
+                    <button class="btn-danger delete-proj" data-id="${p.id}" style="padding:6px 12px;">🗑️ Delete</button>
+                </div>
+            </div>
+        `).join('');
+        document.querySelectorAll('.edit-proj').forEach(btn => btn.addEventListener('click', () => editProject(btn.dataset.id)));
+        document.querySelectorAll('.delete-proj').forEach(btn => btn.addEventListener('click', () => {
+            if (confirm('Delete project permanently?')) db.ref(`portfolio/${btn.dataset.id}`).remove();
+        }));
+    }
+
+    function editProject(id) {
+        const p = projects.find(proj => proj.id === id);
+        if (!p) return;
+        editingId = id;
+        document.getElementById('projectId').value = p.id;
+        document.getElementById('projTitle').value = p.title;
+        document.getElementById('projCategory').value = p.category;
+        document.getElementById('projThumb').value = p.thumb || '';
+        document.getElementById('projLocation').value = p.location || '';
+        document.getElementById('projRoofType').value = p.roofType || '';
+        document.getElementById('projSteelQty').value = p.steelQty || '';
+        document.getElementById('projDuration').value = p.duration || '';
+        document.getElementById('projSteelGrade').value = p.steelGrade || '';
+        document.getElementById('projDescription').value = p.description || '';
+        document.getElementById('projClient').value = p.client || '';
+        document.getElementById('projScope').value = p.scope || '';
+        document.getElementById('projResult').value = p.result || '';
+        // rebuild imageItems from existing images
+        imageItems = [];
+        if (p.images && p.images.length) {
+            p.images.forEach(img => {
+                imageItems.push({
+                    file: null,
+                    existingUrl: img.url,
+                    label: img.label || '',
+                    isNew: false,
+                    previewUrl: img.url
+                });
+            });
+        }
+        renderImageFields();
+        document.getElementById('projectForm').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function resetForm() {
+        editingId = null;
+        document.getElementById('projectForm').reset();
+        imageItems = [];
+        renderImageFields();
+        document.getElementById('uploadStatus').innerHTML = '';
+    }
+
+    // Form submission handler (saves to Firebase with uploaded image URLs)
+    document.getElementById('projectForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const id = editingId || Date.now().toString();
+        const title = document.getElementById('projTitle').value.trim();
+        if (!title) { alert('Project title is required'); return; }
+        
+        const submitBtn = document.getElementById('submitBtn');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Uploading images... <span class="loading-spinner"></span>';
+        document.getElementById('uploadStatus').innerHTML = 'Uploading images, please wait...';
+
+        try {
+            // Upload new images to ImageKit
+            const uploadedImages = await uploadNewImages(imageItems);
+            // Build project object
+            const project = {
+                id: id,
+                title: title,
+                category: document.getElementById('projCategory').value,
+                thumb: document.getElementById('projThumb').value || (uploadedImages[0]?.url || ''),
+                location: document.getElementById('projLocation').value,
+                roofType: document.getElementById('projRoofType').value,
+                steelQty: document.getElementById('projSteelQty').value,
+                duration: document.getElementById('projDuration').value,
+                steelGrade: document.getElementById('projSteelGrade').value,
+                description: document.getElementById('projDescription').value,
+                client: document.getElementById('projClient').value,
+                scope: document.getElementById('projScope').value,
+                result: document.getElementById('projResult').value,
+                images: uploadedImages
+            };
+            await db.ref(`portfolio/${id}`).set(project);
+            alert(editingId ? 'Project updated successfully' : 'Project added successfully');
+            resetForm();
+        } catch (err) {
+            alert('Error saving project: ' + err.message);
+            document.getElementById('uploadStatus').innerHTML = 'Error: ' + err.message;
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+            document.getElementById('uploadStatus').innerHTML = '';
+        }
+    });
+
+    document.getElementById('cancelEditBtn').addEventListener('click', resetForm);
+    document.getElementById('addImageBtn').addEventListener('click', () => {
+        imageItems.push({ file: null, existingUrl: '', label: '', isNew: true, previewUrl: '' });
+        renderImageFields();
+    });
+
+    // --- Reviews Functions (unchanged) ---
+    function renderPendingReviews() {
+        db.ref('reviews').orderByChild('status').equalTo('pending').once('value', (snap) => {
+            const container = document.getElementById('pendingReviewsList');
+            if (!container) return;
+            const reviews = [];
+            snap.forEach(child => reviews.push({ id: child.key, ...child.val() }));
+            if (reviews.length === 0) { container.innerHTML = '<p>No pending reviews.</p>'; return; }
+            container.innerHTML = reviews.map(r => `
+                <div class="review-item">
+                    <div><div class="stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
+                    <p><strong>${escapeHtml(r.name)}</strong> ${r.company ? `(${escapeHtml(r.company)})` : ''}</p>
+                    <p>“${escapeHtml(r.comment)}”</p>
+                    <small>${new Date(r.timestamp).toLocaleString()}</small></div>
+                    <div class="review-actions">
+                        <button class="btn-primary approve-review" data-id="${r.id}" style="padding:6px 12px;">✅ Approve</button>
+                        <button class="btn-danger delete-review" data-id="${r.id}" style="padding:6px 12px;">🗑️ Delete</button>
+                    </div>
+                </div>
+            `).join('');
+            attachReviewButtons();
+        });
+    }
+
+    function renderApprovedReviews() {
+        db.ref('reviews').orderByChild('status').equalTo('approved').once('value', (snap) => {
+            const container = document.getElementById('approvedReviewsList');
+            if (!container) return;
+            const reviews = [];
+            snap.forEach(child => reviews.push({ id: child.key, ...child.val() }));
+            if (reviews.length === 0) { container.innerHTML = '<p>No approved reviews.</p>'; return; }
+            container.innerHTML = reviews.map(r => `
+                <div class="review-item">
+                    <div><div class="stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
+                    <p><strong>${escapeHtml(r.name)}</strong> ${r.company ? `(${escapeHtml(r.company)})` : ''}</p>
+                    <p>“${escapeHtml(r.comment)}”</p>
+                    <small>${new Date(r.timestamp).toLocaleString()}</small></div>
+                    <div class="review-actions">
+                        <button class="btn-danger delete-approved" data-id="${r.id}" style="padding:6px 12px;">🗑️ Delete</button>
+                    </div>
+                </div>
+            `).join('');
+            document.querySelectorAll('.delete-approved').forEach(btn => btn.addEventListener('click', () => {
+                if (confirm('Delete this approved review?')) db.ref(`reviews/${btn.dataset.id}`).remove().then(() => { renderPendingReviews(); renderApprovedReviews(); });
+            }));
+        });
+    }
+
+    function attachReviewButtons() {
+        document.querySelectorAll('.approve-review').forEach(btn => btn.addEventListener('click', () => {
+            db.ref(`reviews/${btn.dataset.id}`).update({ status: 'approved' }).then(() => { renderPendingReviews(); renderApprovedReviews(); });
+        }));
+        document.querySelectorAll('.delete-review').forEach(btn => btn.addEventListener('click', () => {
+            if (confirm('Delete this pending review?')) db.ref(`reviews/${btn.dataset.id}`).remove().then(() => { renderPendingReviews(); renderApprovedReviews(); });
+        }));
+    }
+
+    // --- Login and tab switching ---
+    document.getElementById('loginBtn').addEventListener('click', () => {
+        if (document.getElementById('adminPass').value === 'pronto2026') {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('adminContent').style.display = 'block';
+            loadPortfolio();
+            renderPendingReviews();
+            renderApprovedReviews();
+        } else alert('Wrong password');
+    });
+
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tab = btn.dataset.tab;
+            tabBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            tabPanes.forEach(pane => pane.classList.remove('active'));
+            if (tab === 'portfolio') document.getElementById('portfolioTab').classList.add('active');
+            else document.getElementById('reviewsTab').classList.add('active');
+            if (tab === 'reviews') { renderPendingReviews(); renderApprovedReviews(); }
+        });
+    });
+
+    // Initial empty image fields
+    renderImageFields();
+</script>
+</body>
+</html>
