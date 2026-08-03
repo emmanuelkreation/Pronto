@@ -352,12 +352,24 @@
             <img src="pronto_cropped.jpg" alt="Pronto Contractors Logo" class="logo-icon">         
             <div class="logo-text"><span> </span></div>
         </div>
-        <div class="desktop-nav">
+       <div class="desktop-nav">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
-            <a href="services.html" class="active">Services</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="review.html">Reviews</a>
+            <div class="dropdown">
+                <a href="services.html">Services <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="services-steel.html">Steel Infrastructure</a>
+                    <a href="services-civil.html" class="active">Civil Engineering</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="portfolio.html">Portfolio <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="portfolio-steel.html">Steel Projects</a>
+                    <a href="portfolio-civil.html">Civil Projects</a>
+                </div>
+            </div>
+            <a href="reviews.html">Reviews</a>
             <a href="contact.html">Contact</a>
         </div>
         <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
@@ -367,11 +379,16 @@
 <div class="mobile-nav" id="mobileNav">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
-    <a href="services.html" class="active">Services</a>
-    <a href="portfolio.html">Portfolio</a>
-    <a href="review.html">Reviews</a>
+    <div class="dropdown-label">Services</div>
+    <a href="services-steel.html" class="sub-link">Steel Infrastructure</a>
+    <a href="services-civil.html" class="sub-link active">Civil Engineering</a>
+    <div class="dropdown-label">Portfolio</div>
+    <a href="portfolio-steel.html" class="sub-link">Steel Projects</a>
+    <a href="portfolio-civil.html" class="sub-link">Civil Projects</a>
+    <a href="reviews.html">Reviews</a>
     <a href="contact.html">Contact</a>
 </div>
+
 
 <a href="https://wa.me/2349055555905" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
