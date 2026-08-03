@@ -124,6 +124,50 @@
             transition: 0.2s;
         }
         .desktop-nav a:hover, .desktop-nav a.active { color: var(--orange); }
+        
+        /* ===== DROPDOWN STYLES (added) ===== */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown > a {
+            cursor: pointer;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            border-radius: 16px;
+            z-index: 1000;
+            padding: 8px 0;
+            border: 1px solid #edf2f7;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content a {
+            display: block;
+            padding: 12px 20px;
+            color: #1e293b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+        .dropdown-content a:hover {
+            background: #f8fafc;
+            color: var(--orange);
+        }
+        .dropdown-content a.active {
+            color: var(--orange);
+            background: #fef2f2;
+        }
+        /* ===== END DROPDOWN STYLES ===== */
+
         .mobile-menu-btn {
             display: none;
             font-size: 1.8rem;
@@ -178,6 +222,25 @@
             color: #1e293b;
         }
         .mobile-nav a:hover, .mobile-nav a.active { color: var(--orange); }
+        /* Mobile nav sub‑link styles (added) */
+        .mobile-nav .dropdown-label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1e293b;
+            margin-top: 12px;
+            margin-bottom: 4px;
+        }
+        .mobile-nav .sub-link {
+            font-weight: 400;
+            font-size: 0.95rem;
+            padding-left: 20px;
+            color: #475569;
+            display: block;
+        }
+        .mobile-nav .sub-link.active {
+            color: var(--orange);
+        }
+
         /* Hero with background image - REDUCED OVERLAY & TEXT MOVED DOWN */
         .hero {
             position: relative;
@@ -340,6 +403,18 @@
             .hero {
                 min-height: 85vh;
                 padding-bottom: 10vh;
+            }
+            /* Mobile dropdown fix */
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                padding-left: 16px;
+                border: none;
+                background: transparent;
+            }
+            .dropdown-content a {
+                padding: 8px 0;
+                font-size: 0.9rem;
             }
         }
     </style>
