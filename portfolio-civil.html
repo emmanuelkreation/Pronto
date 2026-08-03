@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Civil Projects | Pronto Contractors – Infrastructure Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FFFFFF;
+            color: #1A2C3E;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        body.menu-open {
+            overflow: hidden;
+        }
+        :root {
+            --navy: #0B2B4F;
+            --orange: #E85D04;
+            --orange-bright: #F48C06;
+            --gray-bg: #F8FAFE;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        section {
+            padding: 80px 0;
+        }
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--navy);
+            margin-bottom: 16px;
+        }
+        .section-sub {
+            font-size: 1.2rem;
+            color: #475569;
+            max-width: 700px;
+            margin-bottom: 48px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 34px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        .btn-primary {
+            background: var(--orange);
+            color: white;
+            box-shadow: 0 5px 15px rgba(232,93,4,0.3);
+        }
+        .btn-primary:hover {
+            background: var(--orange-bright);
+            transform: translateY(-3px);
+        }
+        .btn-outline-dark {
+            border: 2px solid var(--navy);
+            color: var(--navy);
+            background: transparent;
+        }
+        .btn-outline-dark:hover {
+            background: var(--navy);
+            color: white;
+        }
+        /* Header */
+        .navbar {
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 32px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-icon {
+            height: 42px;
+            width: auto;
+            border-radius: 12px;
+        }
+        .logo-text {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--navy);
+        }
+        .logo-text span { color: var(--orange); }
+        .desktop-nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        .desktop-nav a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #1e293b;
+            transition: 0.2s;
+        }
+        .desktop-nav a:hover, .desktop-nav a.active { color: var(--orange); }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown > a {
+            cursor: pointer;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            border-radius: 16px;
+            z-index: 1000;
+            padding: 8px 0;
+            border: 1px solid #edf2f7;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content a {
+            display: block;
+            padding: 12px 20px;
+            color: #1e293b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+        .dropdown-content a:hover {
+            background: #f8fafc;
+            color: var(--orange);
+        }
+        .dropdown-content a.active {
+            color: var(--orange);
+            background: #fef2f2;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--navy);
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 998;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .mobile-menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
+            background: white;
+            flex-direction: column;
+            justify-content: center;
+            gap: 24px;
+            padding: 80px 32px;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.15);
+            transition: right 0.3s ease-in-out;
+            z-index: 999;
+            display: flex;
+            align-items: flex-start;
+        }
+        .mobile-nav.show {
+            right: 0;
+        }
+        .mobile-nav a {
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1e293b;
+        }
+        .mobile-nav a:hover, .mobile-nav a.active { color: var(--orange); }
+        .mobile-nav .dropdown-label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1e293b;
+            margin-top: 12px;
+            margin-bottom: 4px;
+        }
+        .mobile-nav .sub-link {
+            font-weight: 400;
+            font-size: 0.95rem;
+            padding-left: 20px;
+            color: #475569;
+        }
+        .mobile-nav .sub-link.active {
+            color: var(--orange);
+        }
+
+        /* Hero with background image - REDUCED OVERLAY */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, rgba(11,43,79,0.55), rgba(0,0,0,0.5)), url('https://images.pexels.com/photos/209315/pexels-photo-209315.jpeg?auto=compress&cs=tinysrgb&w=1600');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 120px 0;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Project grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 40px;
+        }
+        .project-card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+            border: 1px solid #EDF2F7;
+        }
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+        }
+        .project-img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin: 20px 24px 8px;
+            color: var(--navy);
+        }
+        .project-card .location {
+            font-weight: 600;
+            color: var(--orange);
+            margin: 0 24px 8px;
+            font-size: 0.9rem;
+        }
+        .project-card .scope {
+            margin: 0 24px 20px;
+            color: #475569;
+            line-height: 1.5;
+        }
+        .project-card .btn-sm {
+            display: inline-block;
+            margin: 0 24px 24px;
+            padding: 8px 20px;
+            border-radius: 30px;
+            background: var(--navy);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+        .project-card .btn-sm:hover {
+            background: var(--orange);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            position: relative;
+            background: linear-gradient(135deg, rgba(11,43,79,0.92), rgba(0,0,0,0.85)), url('https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=1600');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 120px 0;
+        }
+        .cta-glass {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 48px;
+            padding: 48px 32px;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .cta-section .btn-primary {
+            background: var(--orange);
+        }
+        .cta-section .btn-outline-dark {
+            border-color: white;
+            color: white;
+        }
+        .cta-section .btn-outline-dark:hover {
+            background: white;
+            color: var(--navy);
+        }
+
+        /* Footer */
+        footer {
+            background: #0B1C2E;
+            color: #94A3B8;
+            padding: 60px 0 30px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 48px;
+            margin-bottom: 48px;
+            text-align: left;
+        }
+        .footer-col h4 { color: white; margin-bottom: 20px; }
+        .footer-col a { color: #94A3B8; text-decoration: none; line-height: 1.8; }
+        .footer-col a:hover { color: var(--orange); }
+        .social-icons {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .social-icons a {
+            background: rgba(255,255,255,0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #1e2f44;
+        }
+        .design-credit {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.8rem;
+        }
+        .float-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            z-index: 99;
+        }
+
+        /* Loading & empty states */
+        .loading {
+            text-align: center;
+            padding: 60px 0;
+            font-size: 1.2rem;
+            color: #64748b;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 60px 0;
+            color: #64748b;
+        }
+        .empty-state i {
+            font-size: 3rem;
+            color: var(--orange);
+            margin-bottom: 16px;
+        }
+        .empty-state h3 {
+            font-size: 1.5rem;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 900px) {
+            .desktop-nav { display: none; }
+            .mobile-menu-btn { display: block; }
+            .hero h1 { font-size: 2.2rem; }
+            .section-title { font-size: 2rem; }
+            .project-grid { gap: 24px; }
+            .project-card h3 { font-size: 1.3rem; }
+            .hero, .cta-section { background-attachment: scroll; }
+            .cta-glass { padding: 32px 20px; margin: 0 16px; }
+            .cta-glass h2 { font-size: 1.8rem; }
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                padding-left: 16px;
+                border: none;
+            }
+            .dropdown-content a {
+                padding: 8px 0;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="nav-container">
+        <div class="logo-wrapper">
+            <img src="pronto_cropped.jpg" alt="Pronto Contractors Logo" class="logo-icon">         
+            <div class="logo-text"><span> </span></div>
+        </div>
+        <div class="desktop-nav">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <div class="dropdown">
+                <a href="services.html">Services <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="services-steel.html">Steel Infrastructure</a>
+                    <a href="services-civil.html">Civil Engineering</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="portfolio.html">Portfolio <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="portfolio-steel.html">Steel Projects</a>
+                    <a href="portfolio-civil.html" class="active">Civil Projects</a>
+                </div>
+            </div>
+            <a href="reviews.html">Reviews</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+    </div>
+</div>
+<div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+<div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <div class="dropdown-label">Services</div>
+    <a href="services-steel.html" class="sub-link">Steel Infrastructure</a>
+    <a href="services-civil.html" class="sub-link">Civil Engineering</a>
+    <div class="dropdown-label">Portfolio</div>
+    <a href="portfolio-steel.html" class="sub-link">Steel Projects</a>
+    <a href="portfolio-civil.html" class="sub-link active">Civil Projects</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="contact.html">Contact</a>
+</div>
+
+<a href="https://wa.me/2348168886666" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <h1 data-aos="fade-up">Civil Engineering Projects</h1>
+        <p data-aos="fade-up" data-aos-delay="100">From roads and bridges to earthworks and retaining structures – our civil portfolio speaks for itself.</p>
+    </div>
+</section>
+
+<!-- Projects Grid -->
+<section>
+    <div class="container">
+        <div data-aos="fade-up">
+            <h2 class="section-title">Our Civil Portfolio</h2>
+            <p class="section-sub">A selection of completed civil engineering and infrastructure projects across Nigeria.</p>
+        </div>
+        <div id="projectsContainer">
+            <div class="loading"><i class="fas fa-spinner fa-pulse"></i> Loading projects...</div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-glass" data-aos="zoom-in-up">
+            <h2 style="font-size: 2.5rem; margin-bottom: 16px;">Have a civil project in mind?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 32px;">Let's discuss your next infrastructure project – from design to delivery.</p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://wa.me/2348168886666" class="btn btn-primary" style="background: var(--orange);"><i class="fab fa-whatsapp"></i> WhatsApp +234 816 888 6666</a>
+                <a href="contact.html" class="btn btn-outline-dark" style="border-color: white; color: white;">Contact Our Team</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Pronto Contractors Ltd</h4>
+                <p>DNV 2.7-1 · ISO 9001:2015<br>Engineering · Fabrication · Construction</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/pronto.contractors/"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=100083270536071"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <p><a href="index.html">Home</a></p>
+                <p><a href="about.html">About</a></p>
+                <p><a href="services.html">Services</a></p>
+                <p><a href="portfolio.html">Portfolio</a></p>
+                <p><a href="reviews.html">Reviews</a></p>
+                <p><a href="contact.html">Contact</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Plot 144 Transamadi Industrial Layout, Port Harcourt, Nigeria</p>
+                <p><i class="fas fa-phone"></i> +234 816 888 6666</p>
+                <p><i class="fab fa-whatsapp"></i> WhatsApp: +234 816 888 6666</p>
+                <p><i class="fas fa-envelope"></i> info@prontocontractor.com</p>
+            </div>
+            <div class="footer-col">
+                <h4>Office Hours</h4>
+                <p>Mon–Fri: 8am – 5pm</p>
+                <p>Saturday: By appointment</p>
+                <p>24/7 emergency support</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2026 Pronto Contractors Ltd — Constructing A Better Future.</p>
+        </div>
+        <div class="design-credit">
+            Designed by <strong>Kreation Digitals</strong> | Web & Brand Identity
+        </div>
+    </div>
+</footer>
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+<script>
+    // Firebase Config
+    const firebaseConfig = {
+        apiKey: "AIzaSyDw4Aq8qippb9ySuks2_aLlTLyU0rYFsEs",
+        authDomain: "pronto-cc198.firebaseapp.com",
+        databaseURL: "https://pronto-cc198-default-rtdb.firebaseio.com",
+        projectId: "pronto-cc198",
+        storageBucket: "pronto-cc198.firebasestorage.app",
+        messagingSenderId: "587558230969",
+        appId: "1:587558230969:web:11a2ff80b0c1040198f468f"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    // Helper: escape HTML
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+    }
+
+    // Load only civil projects
+    function loadCivilProjects() {
+        const container = document.getElementById('projectsContainer');
+        db.ref('portfolio').orderByChild('category').equalTo('Civil').once('value', (snap) => {
+            if (!snap.val()) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-hard-hat"></i>
+                        <h3>No civil projects yet</h3>
+                        <p>We're currently building our civil portfolio. Check back soon!</p>
+                    </div>
+                `;
+                return;
+            }
+            const projects = [];
+            snap.forEach(child => projects.push({ id: child.key, ...child.val() }));
+            // Render cards
+            container.innerHTML = projects.map(p => `
+                <div class="project-card" data-aos="fade-up">
+                    <img class="project-img" src="${escapeHtml(p.thumb || (p.images && p.images[0] ? p.images[0].url : 'https://placehold.co/600x400/0B2B4F/white?text=No+Image'))}" alt="${escapeHtml(p.title)}">
+                    <h3>${escapeHtml(p.title)}</h3>
+                    <div class="location"><i class="fas fa-map-marker-alt"></i> ${escapeHtml(p.location || 'Nigeria')}</div>
+                    <p class="scope">${escapeHtml(p.description || p.scope || '')}</p>
+                    <a href="project-detail.html?id=${p.id}" class="btn-sm">View Details →</a>
+                </div>
+            `).join('');
+        }).catch(err => {
+            console.error(err);
+            container.innerHTML = `<div class="empty-state"><i class="fas fa-exclamation-triangle"></i><h3>Error loading projects</h3><p>Please try again later.</p></div>`;
+        });
+    }
+
+    // AOS init
+    AOS.init({ duration: 800, once: true });
+
+    // Mobile menu logic
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const overlay = document.getElementById('mobileMenuOverlay');
+    const menuIcon = mobileBtn.querySelector('i');
+
+    function closeMenu() {
+        mobileNav.classList.remove('show');
+        overlay.classList.remove('active');
+        document.body.classList.remove('menu-open');
+        menuIcon.className = 'fas fa-bars';
+    }
+    function openMenu() {
+        mobileNav.classList.add('show');
+        overlay.classList.add('active');
+        document.body.classList.add('menu-open');
+        menuIcon.className = 'fas fa-times';
+    }
+    mobileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (mobileNav.classList.contains('show')) closeMenu();
+        else openMenu();
+    });
+    overlay.addEventListener('click', closeMenu);
+    document.querySelectorAll('.mobile-nav a').forEach(link => link.addEventListener('click', closeMenu));
+
+    // Load projects on page load
+    loadCivilProjects();
+</script>
+</body>
+</html>
