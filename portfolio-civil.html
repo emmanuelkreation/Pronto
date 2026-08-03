@@ -8,11 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* ===== EXACT SAME STYLES AS YOUR ORIGINAL PORTFOLIO PAGE ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
             background: #FFFFFF;
@@ -20,23 +17,15 @@
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
-        body.menu-open {
-            overflow: hidden;
-        }
+        body.menu-open { overflow: hidden; }
         :root {
             --navy: #0B2B4F;
             --orange: #E85D04;
             --orange-bright: #F48C06;
             --gray-bg: #F8FAFE;
         }
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-        section {
-            padding: 80px 0;
-        }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        section { padding: 80px 0; }
         .section-title {
             font-size: 2.8rem;
             font-weight: 800;
@@ -101,17 +90,11 @@
             align-items: center;
             gap: 12px;
         }
-        .logo-icon {
-            height: 42px;
-            width: auto;
-            border-radius: 12px;
-        }
-        .logo-text {
-            font-size: 1.7rem;
-            font-weight: 800;
-            color: var(--navy);
-        }
+        .logo-icon { height: 42px; width: auto; border-radius: 12px; }
+        .logo-text { font-size: 1.7rem; font-weight: 800; color: var(--navy); }
         .logo-text span { color: var(--orange); }
+
+        /* ===== DROPDOWN NAV ===== */
         .desktop-nav {
             display: flex;
             gap: 32px;
@@ -125,7 +108,6 @@
         }
         .desktop-nav a:hover, .desktop-nav a.active { color: var(--orange); }
 
-        /* Dropdown styles */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -189,10 +171,7 @@
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-        .mobile-menu-overlay.active {
-            display: block;
-            opacity: 1;
-        }
+        .mobile-menu-overlay.active { display: block; opacity: 1; }
         .mobile-nav {
             position: fixed;
             top: 0;
@@ -211,9 +190,7 @@
             display: flex;
             align-items: flex-start;
         }
-        .mobile-nav.show {
-            right: 0;
-        }
+        .mobile-nav.show { right: 0; }
         .mobile-nav a {
             text-decoration: none;
             font-weight: 600;
@@ -237,86 +214,191 @@
         .mobile-nav .sub-link.active {
             color: var(--orange);
         }
+        /* ===== END DROPDOWN ===== */
 
-        /* Hero with background image - REDUCED OVERLAY */
         .hero {
             position: relative;
-            background: linear-gradient(135deg, rgba(11,43,79,0.55), rgba(0,0,0,0.5)), url('https://images.pexels.com/photos/209315/pexels-photo-209315.jpeg?auto=compress&cs=tinysrgb&w=1600');
+            background: linear-gradient(135deg, rgba(11,43,79,0.92), rgba(0,0,0,0.85)), url('https://images.pexels.com/photos/209315/pexels-photo-209315.jpeg?auto=compress&cs=tinysrgb&w=1600');
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
             color: white;
             text-align: center;
-            padding: 120px 0;
+            padding: 100px 0;
         }
-        .hero h1 {
-            font-size: 3.2rem;
-            font-weight: 800;
-            margin-bottom: 16px;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-            opacity: 0.9;
-        }
+        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 16px; }
+        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; opacity: 0.9; }
 
-        /* Project grid */
-        .project-grid {
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+            justify-content: center;
+        }
+        .filter-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--navy);
+            color: white;
+        }
+        .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 40px;
+            gap: 32px;
         }
-        .project-card {
+        .portfolio-card {
             background: white;
             border-radius: 28px;
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 12px 30px rgba(0,0,0,0.05);
             border: 1px solid #EDF2F7;
+            cursor: pointer;
+            position: relative;
         }
-        .project-card:hover {
+        .portfolio-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
         }
-        .project-img {
-            width: 100%;
-            height: 240px;
-            object-fit: cover;
+        .card-img-wrapper {
+            position: relative;
+            overflow: hidden;
         }
-        .project-card h3 {
-            font-size: 1.5rem;
-            margin: 20px 24px 8px;
+        .portfolio-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .portfolio-card:hover .portfolio-img {
+            transform: scale(1.05);
+        }
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11,43,79,0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            color: white;
+            font-weight: 700;
+            gap: 8px;
+        }
+        .portfolio-card:hover .card-overlay {
+            opacity: 1;
+        }
+        .portfolio-card h3 {
+            font-size: 1.3rem;
+            margin: 16px 20px 8px;
             color: var(--navy);
         }
-        .project-card .location {
-            font-weight: 600;
-            color: var(--orange);
-            margin: 0 24px 8px;
-            font-size: 0.9rem;
-        }
-        .project-card .scope {
-            margin: 0 24px 20px;
-            color: #475569;
-            line-height: 1.5;
-        }
-        .project-card .btn-sm {
+        .category-badge {
             display: inline-block;
-            margin: 0 24px 24px;
-            padding: 8px 20px;
-            border-radius: 30px;
-            background: var(--navy);
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: 0.2s;
-        }
-        .project-card .btn-sm:hover {
             background: var(--orange);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin: 0 20px 8px;
+        }
+        .portfolio-card p {
+            margin: 0 20px 16px;
+            color: #475569;
+            line-height: 1.4;
+        }
+        .click-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--orange);
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 40px;
+            margin: 0 20px 20px;
+            transition: background 0.2s;
+            width: fit-content;
+        }
+        .portfolio-card:hover .click-indicator {
+            background: var(--orange-bright);
         }
 
-        /* CTA Section */
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+        }
+        .modal-content {
+            background: white;
+            max-width: 1000px;
+            width: 90%;
+            border-radius: 28px;
+            padding: 32px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-close {
+            position: absolute;
+            right: 24px;
+            top: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 24px 0;
+        }
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+        .modal-detail {
+            margin: 20px 0 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 0.9rem;
+            background: var(--gray-bg);
+            padding: 16px;
+            border-radius: 20px;
+        }
+        .modal-detail strong { color: var(--navy); }
+
         .cta-section {
             position: relative;
             background: linear-gradient(135deg, rgba(11,43,79,0.92), rgba(0,0,0,0.85)), url('https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=1600');
@@ -336,19 +418,7 @@
             margin: 0 auto;
             border: 1px solid rgba(255,255,255,0.2);
         }
-        .cta-section .btn-primary {
-            background: var(--orange);
-        }
-        .cta-section .btn-outline-dark {
-            border-color: white;
-            color: white;
-        }
-        .cta-section .btn-outline-dark:hover {
-            background: white;
-            color: var(--navy);
-        }
 
-        /* Footer */
         footer {
             background: #0B1C2E;
             color: #94A3B8;
@@ -379,20 +449,12 @@
             justify-content: center;
             color: white;
         }
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #1e2f44;
-        }
-        .design-credit {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.8rem;
-        }
+        .copyright { text-align: center; padding-top: 30px; border-top: 1px solid #1e2f44; }
+        .design-credit { text-align: center; margin-top: 20px; font-size: 0.8rem; }
         .float-wa {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 20px;
+            right: 20px;
             background: #25D366;
             width: 60px;
             height: 60px;
@@ -403,41 +465,24 @@
             color: white;
             font-size: 2rem;
             z-index: 99;
-        }
-
-        /* Loading & empty states */
-        .loading {
-            text-align: center;
-            padding: 60px 0;
-            font-size: 1.2rem;
-            color: #64748b;
-        }
-        .empty-state {
-            text-align: center;
-            padding: 60px 0;
-            color: #64748b;
-        }
-        .empty-state i {
-            font-size: 3rem;
-            color: var(--orange);
-            margin-bottom: 16px;
-        }
-        .empty-state h3 {
-            font-size: 1.5rem;
-            color: var(--navy);
-            margin-bottom: 8px;
+            transition: 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         @media (max-width: 900px) {
             .desktop-nav { display: none; }
             .mobile-menu-btn { display: block; }
-            .hero h1 { font-size: 2.2rem; }
+            .hero h1 { font-size: 2rem; }
             .section-title { font-size: 2rem; }
-            .project-grid { gap: 24px; }
-            .project-card h3 { font-size: 1.3rem; }
-            .hero, .cta-section { background-attachment: scroll; }
+            .cta-section { padding: 80px 0; background-attachment: scroll; }
             .cta-glass { padding: 32px 20px; margin: 0 16px; }
-            .cta-glass h2 { font-size: 1.8rem; }
+            .modal-gallery { grid-template-columns: 1fr; }
+            .portfolio-img { height: 350px; }
+            .card-overlay { display: none; }
+            .click-indicator { margin: 12px 20px 20px; }
+            .gallery-item img { height: 320px; }
+            .filter-buttons { gap: 8px; }
+            .filter-btn { padding: 6px 14px; font-size: 0.8rem; }
             .dropdown-content {
                 position: static;
                 box-shadow: none;
@@ -496,38 +541,36 @@
     <a href="contact.html">Contact</a>
 </div>
 
-<a href="https://wa.me/2348168886666" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<a href="https://wa.me/2349055555905" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
 <!-- Hero Section -->
 <section class="hero">
     <div class="container">
         <h1 data-aos="fade-up">Civil Engineering Projects</h1>
-        <p data-aos="fade-up" data-aos-delay="100">From roads and bridges to earthworks and retaining structures – our civil portfolio speaks for itself.</p>
+        <p data-aos="fade-up" data-aos-delay="100">Roads, bridges, earthworks, and infrastructure – building the foundation for Nigeria's future.</p>
     </div>
 </section>
 
-<!-- Projects Grid -->
+<!-- Portfolio Filter & Grid -->
 <section>
     <div class="container">
-        <div data-aos="fade-up">
-            <h2 class="section-title">Our Civil Portfolio</h2>
-            <p class="section-sub">A selection of completed civil engineering and infrastructure projects across Nigeria.</p>
-        </div>
-        <div id="projectsContainer">
-            <div class="loading"><i class="fas fa-spinner fa-pulse"></i> Loading projects...</div>
+        <div class="filter-buttons" id="filterButtons"></div>
+        <div class="portfolio-grid" id="portfolioGrid"></div>
+        <div style="text-align: center; margin-top: 48px;">
+            <a href="#contact-cta" class="btn btn-outline-dark">Request full case studies →</a>
         </div>
     </div>
 </section>
 
 <!-- CTA Section -->
-<section class="cta-section">
+<section class="cta-section" id="contact-cta">
     <div class="container">
         <div class="cta-glass" data-aos="zoom-in-up">
             <h2 style="font-size: 2.5rem; margin-bottom: 16px;">Have a civil project in mind?</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 32px;">Let's discuss your next infrastructure project – from design to delivery.</p>
+            <p style="font-size: 1.2rem; margin-bottom: 32px;">From site preparation to final handover – let's talk about your infrastructure project.</p>
             <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-                <a href="https://wa.me/2348168886666" class="btn btn-primary" style="background: var(--orange);"><i class="fab fa-whatsapp"></i> WhatsApp +234 816 888 6666</a>
-                <a href="contact.html" class="btn btn-outline-dark" style="border-color: white; color: white;">Contact Our Team</a>
+                <a href="https://wa.me/2349055555905" class="btn btn-primary" style="background: var(--orange);"><i class="fab fa-whatsapp"></i> WhatsApp +234 905 555 5905</a>
+                <a href="tel:+2348168886666" class="btn btn-outline-dark" style="border-color: white; color: white;">Call Now</a>
             </div>
         </div>
     </div>
@@ -539,7 +582,7 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>Pronto Contractors Ltd</h4>
-                <p>DNV 2.7-1 · ISO 9001:2015<br>Engineering · Fabrication · Construction</p>
+                <p>DNV 2.7-1 · ISO 9001:2015<br>Engineering, Procurement, Construction</p>
                 <div class="social-icons">
                     <a href="https://www.instagram.com/pronto.contractors/"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -549,17 +592,16 @@
             <div class="footer-col">
                 <h4>Quick Links</h4>
                 <p><a href="index.html">Home</a></p>
-                <p><a href="about.html">About</a></p>
                 <p><a href="services.html">Services</a></p>
                 <p><a href="portfolio.html">Portfolio</a></p>
-                <p><a href="reviews.html">Reviews</a></p>
+                <p><a href="about.html">About</a></p>
                 <p><a href="contact.html">Contact</a></p>
             </div>
             <div class="footer-col">
                 <h4>Contact Info</h4>
                 <p><i class="fas fa-map-marker-alt"></i> Plot 144 Transamadi Industrial Layout, Port Harcourt, Nigeria</p>
                 <p><i class="fas fa-phone"></i> +234 816 888 6666</p>
-                <p><i class="fab fa-whatsapp"></i> WhatsApp: +234 816 888 6666</p>
+                <p><i class="fab fa-whatsapp"></i> +234 905 555 5905</p>
                 <p><i class="fas fa-envelope"></i> info@prontocontractor.com</p>
             </div>
             <div class="footer-col">
@@ -573,17 +615,30 @@
             <p>© 2026 Pronto Contractors Ltd — Constructing A Better Future.</p>
         </div>
         <div class="design-credit">
-            Designed by <strong>Kreation Digitals</strong> | Web & Brand Identity
+            Designed by 
+            <strong>
+                <a href="https://kreationdigitals.com" target="_blank" rel="noopener noreferrer">
+                    Kreation Digitals
+                </a>
+            </strong> 
+            | Web & Brand Identity
         </div>
     </div>
 </footer>
 
-<!-- Firebase SDKs -->
+<!-- MODAL -->
+<div id="projectModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <div id="modalBody"></div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
-
 <script>
-    // Firebase Config
+    // Firebase config
     const firebaseConfig = {
         apiKey: "AIzaSyDw4Aq8qippb9ySuks2_aLlTLyU0rYFsEs",
         authDomain: "pronto-cc198.firebaseapp.com",
@@ -593,78 +648,174 @@
         messagingSenderId: "587558230969",
         appId: "1:587558230969:web:11a2ff80b0c1040198f468f"
     };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
+    
+    let db, realtimeMode = false;
+    try {
+        firebase.initializeApp(firebaseConfig);
+        db = firebase.database();
+        realtimeMode = true;
+    } catch(e) { console.warn(e); }
 
-    // Helper: escape HTML
-    function escapeHtml(str) {
-        if (!str) return '';
-        return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+    let projects = [];
+    let currentFilter = "all";
+
+    // Civil categories (exclude steel categories)
+    const civilCategories = [
+        "Civil Works",
+        "Civil Engineering",
+        "Infrastructure",
+        "Roads & Bridges",
+        "Drainage & Earthworks"
+    ];
+
+    // Default civil projects (only the civil one from the original)
+    const defaultProjects = [
+        {
+            id: "7",
+            title: "Site Development & Earthworks – EPC Project",
+            category: "Civil Works",
+            thumb: "https://i.pinimg.com/1200x/ca/34/02/ca3402e1e3b352b7aac611ed98d70b41.jpg",
+            location: "Niger Delta, Nigeria",
+            roofType: "Civil infrastructure",
+            steelQty: "N/A",
+            duration: "8 months",
+            steelGrade: "N/A",
+            description: "Full site development, earthworks, foundations, and drainage for an industrial facility.",
+            client: "EPC Contractor",
+            scope: "Bulk earthworks, piling, concrete foundations, roads.",
+            result: "Completed within budget, zero rework.",
+            images: [
+                { url: "https://i.pinimg.com/1200x/ca/34/02/ca3402e1e3b352b7aac611ed98d70b41.jpg", label: "EARTHWORKS" },
+                { url: "https://images.pexels.com/photos/159213/construction-crane-industry-heavy-159213.jpeg?auto=compress&cs=tinysrgb&w=800", label: "CONCRETE" }
+            ]
+        }
+    ];
+
+    function saveLocal() { localStorage.setItem('pronto_portfolio_civil', JSON.stringify(projects)); }
+    function loadLocal() {
+        const stored = localStorage.getItem('pronto_portfolio_civil');
+        projects = stored ? JSON.parse(stored) : defaultProjects;
+        saveLocal();
     }
 
-    // Load only civil projects
-    function loadCivilProjects() {
-        const container = document.getElementById('projectsContainer');
-        db.ref('portfolio').orderByChild('category').equalTo('Civil').once('value', (snap) => {
-            if (!snap.val()) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-hard-hat"></i>
-                        <h3>No civil projects yet</h3>
-                        <p>We're currently building our civil portfolio. Check back soon!</p>
-                    </div>
-                `;
-                return;
+    function loadFirebase() {
+        if (!realtimeMode) return;
+        db.ref('portfolio').on('value', snap => {
+            if (snap.val()) {
+                const allProjects = Object.keys(snap.val()).map(k => ({ id: k, ...snap.val()[k] }));
+                // Filter to only civil categories
+                projects = allProjects.filter(p => {
+                    if (!p.category) return false;
+                    // Check if category includes any civil keyword (case-insensitive)
+                    const cat = p.category.toLowerCase();
+                    return cat.includes('civil') || cat.includes('infrastructure') || cat.includes('road') || 
+                           cat.includes('bridge') || cat.includes('earthwork') || cat.includes('drainage') ||
+                           cat === 'Civil Works';
+                });
+            } else {
+                projects = defaultProjects;
             }
-            const projects = [];
-            snap.forEach(child => projects.push({ id: child.key, ...child.val() }));
-            // Render cards
-            container.innerHTML = projects.map(p => `
-                <div class="project-card" data-aos="fade-up">
-                    <img class="project-img" src="${escapeHtml(p.thumb || (p.images && p.images[0] ? p.images[0].url : 'https://placehold.co/600x400/0B2B4F/white?text=No+Image'))}" alt="${escapeHtml(p.title)}">
-                    <h3>${escapeHtml(p.title)}</h3>
-                    <div class="location"><i class="fas fa-map-marker-alt"></i> ${escapeHtml(p.location || 'Nigeria')}</div>
-                    <p class="scope">${escapeHtml(p.description || p.scope || '')}</p>
-                    <a href="project-detail.html?id=${p.id}" class="btn-sm">View Details →</a>
-                </div>
-            `).join('');
-        }).catch(err => {
-            console.error(err);
-            container.innerHTML = `<div class="empty-state"><i class="fas fa-exclamation-triangle"></i><h3>Error loading projects</h3><p>Please try again later.</p></div>`;
+            renderFilterButtons();
+            renderPortfolio();
         });
     }
 
-    // AOS init
-    AOS.init({ duration: 800, once: true });
+    function renderFilterButtons() {
+        // Extract unique categories from projects for filter buttons
+        const categories = projects.map(p => p.category).filter((v, i, a) => a.indexOf(v) === i);
+        const allCategories = ["all", ...categories];
+        const container = document.getElementById('filterButtons');
+        if(!container) return;
+        container.innerHTML = allCategories.map(cat => `
+            <button class="filter-btn ${currentFilter === cat ? 'active' : ''}" data-filter="${cat}">
+                ${cat === 'all' ? 'All Civil Projects' : cat}
+            </button>
+        `).join('');
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
+            currentFilter = btn.dataset.filter;
+            renderFilterButtons();
+            renderPortfolio();
+        }));
+    }
 
-    // Mobile menu logic
+    function renderPortfolio() {
+        const grid = document.getElementById('portfolioGrid');
+        if(!grid) return;
+        let filtered = currentFilter === 'all' ? projects : projects.filter(p => p.category === currentFilter);
+        if (filtered.length === 0) {
+            grid.innerHTML = `<p style="text-align:center; grid-column:1/-1; padding:60px 0; color:#475569;">No projects found in this category.</p>`;
+            return;
+        }
+        grid.innerHTML = filtered.map(p => `
+            <div class="portfolio-card" data-id="${p.id}">
+                <div class="card-img-wrapper">
+                    <img class="portfolio-img" src="${p.thumb}" alt="${p.title}">
+                    <div class="card-overlay">
+                        <i class="fas fa-search-plus"></i> View Gallery
+                    </div>
+                </div>
+                <span class="category-badge">${p.category}</span>
+                <h3>${p.title}</h3>
+                <p>${(p.description || '').substring(0, 100)}${(p.description || '').length > 100 ? '…' : ''}</p>
+                <div class="click-indicator">
+                    <i class="fas fa-arrow-right"></i> Click to view full project
+                </div>
+            </div>
+        `).join('');
+        document.querySelectorAll('.portfolio-card').forEach(card => card.addEventListener('click', () => openModal(card.dataset.id)));
+    }
+
+    function openModal(id) {
+        const p = projects.find(proj => proj.id === id);
+        if (!p) return;
+        const modalBody = document.getElementById('modalBody');
+        const galleryHtml = p.images && p.images.length ? `
+            <div class="modal-gallery">
+                ${p.images.map(img => `
+                    <div class="gallery-item">
+                        <img src="${img.url}" alt="${img.label || 'Project image'}">
+                    </div>
+                `).join('')}
+            </div>
+        ` : `<img src="${p.thumb}" alt="${p.title}" style="width:100%; border-radius:20px; margin:20px 0;">`;
+        
+        modalBody.innerHTML = `
+            <h2 style="color:var(--navy);">${p.title}</h2>
+            ${galleryHtml}
+            <div class="modal-detail">
+                <div><strong>📍 Location:</strong> ${p.location || 'N/A'}</div>
+                <div><strong>🏗️ Structure:</strong> ${p.roofType || p.description || 'N/A'}</div>
+                <div><strong>⚙️ Steel Quantity:</strong> ${p.steelQty || 'N/A'}</div>
+                <div><strong>⏱️ Duration:</strong> ${p.duration || 'N/A'}</div>
+                <div><strong>🔩 Steel Grade:</strong> ${p.steelGrade || 'N/A'}</div>
+            </div>
+            <p><strong>👥 Client:</strong> ${p.client || 'Confidential'}</p>
+            <p><strong>📋 Scope:</strong> ${p.scope || p.description}</p>
+            <p><strong>🏆 Result:</strong> ${p.result || 'Completed successfully'}</p>
+            <p><strong>📝 Full Description:</strong> ${p.description}</p>
+        `;
+        document.getElementById('projectModal').style.display = 'flex';
+    }
+
+    // Modal close
+    document.querySelector('.modal-close')?.addEventListener('click', () => document.getElementById('projectModal').style.display = 'none');
+    window.onclick = e => { if(e.target === document.getElementById('projectModal')) document.getElementById('projectModal').style.display = 'none'; };
+
+    // Mobile menu
     const mobileBtn = document.getElementById('mobileMenuBtn');
     const mobileNav = document.getElementById('mobileNav');
     const overlay = document.getElementById('mobileMenuOverlay');
-    const menuIcon = mobileBtn.querySelector('i');
-
-    function closeMenu() {
-        mobileNav.classList.remove('show');
-        overlay.classList.remove('active');
-        document.body.classList.remove('menu-open');
-        menuIcon.className = 'fas fa-bars';
-    }
-    function openMenu() {
-        mobileNav.classList.add('show');
-        overlay.classList.add('active');
-        document.body.classList.add('menu-open');
-        menuIcon.className = 'fas fa-times';
-    }
-    mobileBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (mobileNav.classList.contains('show')) closeMenu();
-        else openMenu();
-    });
-    overlay.addEventListener('click', closeMenu);
+    const menuIcon = mobileBtn?.querySelector('i');
+    function closeMenu() { mobileNav.classList.remove('show'); overlay.classList.remove('active'); document.body.classList.remove('menu-open'); if(menuIcon) menuIcon.className = 'fas fa-bars'; }
+    function openMenu() { mobileNav.classList.add('show'); overlay.classList.add('active'); document.body.classList.add('menu-open'); if(menuIcon) menuIcon.className = 'fas fa-times'; }
+    mobileBtn?.addEventListener('click', (e) => { e.stopPropagation(); mobileNav.classList.contains('show') ? closeMenu() : openMenu(); });
+    overlay?.addEventListener('click', closeMenu);
     document.querySelectorAll('.mobile-nav a').forEach(link => link.addEventListener('click', closeMenu));
 
-    // Load projects on page load
-    loadCivilProjects();
+    // Initialize
+    if(realtimeMode) loadFirebase();
+    else { loadLocal(); renderFilterButtons(); renderPortfolio(); }
+    AOS.init({ duration: 800, once: true });
 </script>
 </body>
 </html>
