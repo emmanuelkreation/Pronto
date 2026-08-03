@@ -81,6 +81,8 @@
             background: var(--navy);
             color: white;
         }
+        
+        /* ===== NAVBAR WITH DROPDOWN (UPDATED) ===== */
         .navbar {
             background: rgba(255,255,255,0.96);
             backdrop-filter: blur(12px);
@@ -107,6 +109,7 @@
             width: auto;
             border-radius: 12px;
         }
+        /* Desktop nav */
         .desktop-nav {
             display: flex;
             gap: 32px;
@@ -119,6 +122,48 @@
             transition: 0.2s;
         }
         .desktop-nav a:hover, .desktop-nav a.active { color: var(--orange); }
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown > a {
+            cursor: pointer;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            border-radius: 16px;
+            z-index: 1000;
+            padding: 8px 0;
+            border: 1px solid #edf2f7;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content a {
+            display: block;
+            padding: 12px 20px;
+            color: #1e293b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+        .dropdown-content a:hover {
+            background: #f8fafc;
+            color: var(--orange);
+        }
+        .dropdown-content a.active {
+            color: var(--orange);
+            background: #fef2f2;
+        }
+        /* Mobile nav */
         .mobile-menu-btn {
             display: none;
             font-size: 1.8rem;
@@ -168,7 +213,42 @@
             color: #1e293b;
         }
         .mobile-nav a:hover { color: var(--orange); }
-        /* === HERO SECTION: text moved down (desktop + mobile) === */
+        .mobile-nav .dropdown-label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1e293b;
+            margin-top: 12px;
+            margin-bottom: 4px;
+        }
+        .mobile-nav .sub-link {
+            font-weight: 400;
+            font-size: 0.95rem;
+            padding-left: 20px;
+            color: #475569;
+            display: block;
+        }
+        .mobile-nav .sub-link.active {
+            color: var(--orange);
+        }
+        @media (max-width: 900px) {
+            .desktop-nav { display: none; }
+            .mobile-menu-btn { display: block; }
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                padding-left: 16px;
+                border: none;
+                background: transparent;
+            }
+            .dropdown-content a {
+                padding: 8px 0;
+                font-size: 0.9rem;
+            }
+            /* Keep all other existing mobile styles */
+        }
+        /* ===== END NAVBAR ===== */
+
+        /* === HERO SECTION (unchanged) === */
         .hero {
             background: linear-gradient(135deg, rgba(11,31,58,0.5), rgba(11,31,58,0.35)), url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778539542/WhatsApp_Image_2026-05-11_at_15.33.28_d8cao3.jpg');
             background-size: cover;
@@ -205,32 +285,21 @@
                 align-items: flex-end;
                 padding-bottom: 0;
             }
-            .hero h1 {
-                font-size: 2.8rem;
-                margin-bottom: 16px;
-            }
-            .hero p {
-                font-size: 1rem;
-                margin-bottom: 28px;
-            }
-            .hero .btn {
-                padding: 12px 28px;
-                font-size: 0.95rem;
-            }
+            .hero h1 { font-size: 2.8rem; margin-bottom: 16px; }
+            .hero p { font-size: 1rem; margin-bottom: 28px; }
+            .hero .btn { padding: 12px 28px; font-size: 0.95rem; }
         }
         @media (max-width: 600px) {
-            .hero {
-                min-height: 85vh;
-                background-position: 70% center;
-                padding-bottom: 0;
-            }
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            .hero p {
-                font-size: 0.9rem;
-            }
+            .hero { min-height: 85vh; background-position: 70% center; padding-bottom: 0; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 0.9rem; }
         }
+
+        /* === CAPABILITIES GRID, BANNERS, ABOUT, CIVIL, TIMELINE, PROJECTS, WORK, CLIENTS, TESTIMONIALS, FAQ, CONTACT, CTA, FOOTER === */
+        /* ALL OTHER STYLES REMAIN EXACTLY AS YOU HAD THEM */
+        /* (To save space, I'm not repeating them here – but they are included in the final code below) */
+
+        /* ... (Your existing styles for the rest of the site) ... */
         .capabilities-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -300,7 +369,6 @@
             display: inline-block;
             margin-top: 8px;
         }
-        /* Banner image overlay (reusable) */
         .banner-image {
             position: relative;
             width: 100%;
@@ -334,16 +402,15 @@
             font-size: 1rem;
             opacity: 0.9;
         }
-        /* Full-page banner for capabilities: full image visible (contain) */
         .capabilities-hero {
             position: relative;
             width: 100%;
             height: 75vh;
             min-height: 550px;
-            background-size: contain;      /* shows full image, no cropping */
+            background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            background-color: #0B1F3A;     /* navy background fills empty space */
+            background-color: #0B1F3A;
             margin-bottom: 48px;
             border-radius: 28px;
             overflow: hidden;
@@ -383,57 +450,22 @@
             letter-spacing: 0.5px;
         }
         @media (max-width: 900px) {
-            .capabilities-hero {
-                height: 60vh;
-                min-height: 400px;
-            }
-            .capabilities-hero .hero-content {
-                top: 4%;
-                left: 5%;
-                right: 5%;
-                max-width: 90%;
-            }
+            .capabilities-hero { height: 60vh; min-height: 400px; }
+            .capabilities-hero .hero-content { top: 4%; left: 5%; right: 5%; max-width: 90%; }
             .capabilities-hero .hero-content h2 { font-size: 1.8rem; }
             .capabilities-hero .hero-content p { font-size: 1rem; }
-            .banner-image {
-                height: 40vh;
-                min-height: 280px;
-                margin-bottom: 32px;
-                background-position: 50% 25%;
-            }
-            .banner-image .banner-text {
-                bottom: 3%;
-                padding: 20px 24px;
-                max-width: 85%;
-            }
-            .banner-image .banner-text h3 {
-                font-size: 1.5rem;
-            }
-            section#about {
-                padding-top: 40px;
-            }
+            .banner-image { height: 40vh; min-height: 280px; margin-bottom: 32px; background-position: 50% 25%; }
+            .banner-image .banner-text { bottom: 3%; padding: 20px 24px; max-width: 85%; }
+            .banner-image .banner-text h3 { font-size: 1.5rem; }
+            section#about { padding-top: 40px; }
         }
         @media (max-width: 600px) {
-            .capabilities-hero {
-                height: 50vh;
-                min-height: 320px;
-            }
-            .capabilities-hero .hero-content {
-                top: 3%;
-            }
+            .capabilities-hero { height: 50vh; min-height: 320px; }
+            .capabilities-hero .hero-content { top: 3%; }
             .capabilities-hero .hero-content h2 { font-size: 1.4rem; }
-            .banner-image {
-                height: 35vh;
-                min-height: 240px;
-                background-position: 50% 20%;
-            }
-            .banner-image .banner-text {
-                bottom: 2%;
-                padding: 16px 20px;
-            }
-            .banner-image .banner-text h3 {
-                font-size: 1.3rem;
-            }
+            .banner-image { height: 35vh; min-height: 240px; background-position: 50% 20%; }
+            .banner-image .banner-text { bottom: 2%; padding: 16px 20px; }
+            .banner-image .banner-text h3 { font-size: 1.3rem; }
         }
         .about-grid {
             display: grid;
@@ -857,553 +889,525 @@
             .desktop-nav { display: none; }
             .mobile-menu-btn { display: block; }
             .about-grid, .civil-grid, .project-block, .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-            .about-grid {
-                display: flex;
-                flex-direction: column;
-            }
-            .about-image {
-                order: 1;
-                margin-bottom: 32px;
-            }
-            .about-content {
-                order: 2;
-            }
+            .about-grid { display: flex; flex-direction: column; }
+            .about-image { order: 1; margin-bottom: 32px; }
+            .about-content { order: 2; }
             .testimonials-grid { grid-template-columns: 1fr; }
-            .timeline-item {
-                flex-direction: column;
-                gap: 8px;
-                margin-bottom: 28px;
-            }
-            .timeline-year {
-                font-size: 1.3rem;
-                min-width: auto;
-                margin-bottom: 4px;
-            }
-            .timeline-desc {
-                font-size: 0.9rem;
-                line-height: 1.4;
-            }
-            .timeline {
-                margin-top: 20px;
-            }
+            .timeline-item { flex-direction: column; gap: 8px; margin-bottom: 28px; }
+            .timeline-year { font-size: 1.3rem; min-width: auto; margin-bottom: 4px; }
+            .timeline-desc { font-size: 0.9rem; line-height: 1.4; }
+            .timeline { margin-top: 20px; }
             .contact-form-card { padding: 32px 24px; }
-            .float-wa {
-                bottom: 15px;
-                right: 15px;
-                width: 50px;
-                height: 50px;
-                font-size: 1.7rem;
-            }
-            .project-swiper .swiper-slide img {
-                height: 250px;
-            }
-            .capabilities-grid {
-                gap: 12px;
-            }
-            .capability-card {
-                padding: 14px 16px;
-            }
-            .clients-logos {
-                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-                gap: 20px;
-            }
-            .client-logo-item {
-                max-width: 100px;
-            }
-            .client-logo-item img {
-                max-height: 40px;
-            }
-            .footer-grid {
-                gap: 32px;
-            }
+            .float-wa { bottom: 15px; right: 15px; width: 50px; height: 50px; font-size: 1.7rem; }
+            .project-swiper .swiper-slide img { height: 250px; }
+            .capabilities-grid { gap: 12px; }
+            .capability-card { padding: 14px 16px; }
+            .clients-logos { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 20px; }
+            .client-logo-item { max-width: 100px; }
+            .client-logo-item img { max-height: 40px; }
+            .footer-grid { gap: 32px; }
         }
         @media (max-width: 600px) {
-            .work-grid {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-            .work-card {
-                padding: 20px;
-            }
-            .about-stats {
-                flex-direction: column;
-                gap: 16px;
-            }
-            .timeline-item {
-                margin-bottom: 24px;
-            }
-            .timeline-year {
-                font-size: 1.2rem;
-            }
+            .work-grid { grid-template-columns: 1fr; gap: 16px; }
+            .work-card { padding: 20px; }
+            .about-stats { flex-direction: column; gap: 16px; }
+            .timeline-item { margin-bottom: 24px; }
+            .timeline-year { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="navbar">
-    <div class="nav-container">
-        <div class="logo-wrapper">
-            <img src="pronto_cropped.jpg" alt="Pronto Contractors Logo" class="logo-icon">         
-        </div>
-        <div class="desktop-nav">
-           <a href="index.html" class="active">Home</a>
-            <a href="about.html">About</a>
-            <a href="services.html">Services</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="reviews.html">Reviews</a>
-            <a href="contact.html">Contact</a>
-        </div>
-        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
-            <i class="fas fa-bars"></i>
-        </button>
-    </div>
-</div>
-<div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
-<div class="mobile-nav" id="mobileNav">
-    <a href="index.html" class="active">Home</a>
-    <a href="about.html">About</a>
-    <a href="services.html">Services</a>
-    <a href="portfolio.html">Portfolio</a>
-    <a href="reviews.html">Reviews</a>
-    <a href="contact.html">Contact</a>
-</div>
-
-<a href="https://wa.me/2349055555905" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
-
-<!-- Hero Section (text moved down) -->
-<section class="hero" id="home">
-    <div class="container">
-        <h1 data-aos="fade-up">Engineering, Procurement, Construction</h1>
-        <p data-aos="fade-up" data-aos-delay="100">Delivering structural steel, offshore, civil, and industrial construction solutions across Nigeria.</p>
-        <a href="#contact-form" class="btn btn-primary" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-calculator"></i> Request a Quote (24h Response)</a>
-    </div>
-</section>
-
-<section class="project-carousel-section" id="project-carousel">
-    <div class="container">
-        <h2 class="section-title" data-aos="fade-up">Featured Project Pictures</h2>
-        <p class="section-subtitle" data-aos="fade-up">A glimpse of our heavy engineering and offshore fabrication work.</p>
-        <div class="swiper project-swiper" data-aos="fade-up">
-            <div class="swiper-wrapper" id="carouselWrapper"></div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-        </div>
-    </div>
-</section>
-
-    
-<!-- ========== CAPABILITIES SECTION (full image visible on all screens) ========== -->
-<section id="capabilities">
-    <div class="container">
-        <div class="capabilities-hero" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778543419/WhatsApp_Image_2026-05-11_at_16.07.01_xzb4af.jpg');">
-            <div class="hero-content">
-                <h2>Engineering Complex Onshore & Offshore Industrial Structures Across Nigeria</h2>
-                <p>Offshore • Onshore • Structural Steel • Marine Infrastructure</p>
+    <!-- ===== NAVBAR WITH DROPDOWN ===== -->
+    <div class="navbar">
+        <div class="nav-container">
+            <div class="logo-wrapper">
+                <img src="pronto_cropped.jpg" alt="Pronto Contractors Logo" class="logo-icon">         
             </div>
-        </div>
-        <h2 class="section-title" data-aos="fade-up">Capabilities</h2>
-        <p class="section-subtitle" data-aos="fade-up">Comprehensive engineering and industrial solutions.</p>
-        <div class="capabilities-grid" id="capabilitiesGrid"></div>
-    </div>
-</section>
-
-<!-- About Section with banner -->
-<section id="about">
-    <div class="container">
-        <div class="banner-image" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778539542/WhatsApp_Image_2026-05-11_at_15.43.55_oddsmn.jpg');">
-            <div class="banner-text">
-                <h3>Decades of Engineering Excellence</h3>
-                <p>Trusted partner for heavy industrial & offshore projects</p>
-            </div>
-        </div>
-        <h2 class="section-title">Engineering the backbone of Nigerian industry</h2>
-        <div class="about-grid">
-            <div class="about-content" data-aos="fade-right">
-                <p><strong>Pronto Contractors Ltd</strong> delivers large-scale structural steel, tank farms, gas plant construction, offshore fabrication, industrial roofing systems, and EPC support projects across Nigeria since 1977.</p>
-                <p>From shopping malls and industrial plants to offshore platforms, gas facilities, and heavy steel infrastructure, we execute complex projects with precision, speed, and uncompromising quality.</p>
-                <p>Our experience spans commercial, industrial, energy, and oil & gas sectors — delivering projects for major contractors and operators across Nigeria, including Julius Berger Nigeria and offshore oil & gas facilities.</p>
-                <p>Backed by decades of fabrication and construction expertise, Pronto combines engineering, production, and on-site execution to deliver industrial infrastructure built for performance, safety, and long-term reliability.</p>
-                <div class="about-stats">
-                    <div class="about-stat"><h4>500+</h4><p>Projects</p></div>
-                    <div class="about-stat"><h4>100%</h4><p>Client Trust</p></div>
-                    <div class="about-stat"><h4>24/7</h4><p>Support</p></div>
+            <div class="desktop-nav">
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html">About</a>
+                <div class="dropdown">
+                    <a href="services.html">Services <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="services-steel.html">Steel Infrastructure</a>
+                        <a href="services-civil.html">Civil Engineering</a>
+                    </div>
                 </div>
-                <a href="#contact-form" class="btn btn-outline"><i class="fas fa-arrow-right"></i> Talk to our team</a>
+                <div class="dropdown">
+                    <a href="portfolio.html">Portfolio <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="portfolio-steel.html">Steel Projects</a>
+                        <a href="portfolio-civil.html">Civil Projects</a>
+                    </div>
+                </div>
+                <a href="reviews.html">Reviews</a>
+                <a href="contact.html">Contact</a>
             </div>
-            <div class="about-image" data-aos="fade-left">
-                <img src="proton.jpeg" alt="Pronto Contractors fabrication yard">
-            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </div>
-</section>
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <div class="dropdown-label">Services</div>
+        <a href="services-steel.html" class="sub-link">Steel Infrastructure</a>
+        <a href="services-civil.html" class="sub-link">Civil Engineering</a>
+        <div class="dropdown-label">Portfolio</div>
+        <a href="portfolio-steel.html" class="sub-link">Steel Projects</a>
+        <a href="portfolio-civil.html" class="sub-link">Civil Projects</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="contact.html">Contact</a>
+    </div>
 
-<!-- Journey Section with banner -->
-<section id="journey">
-    <div class="container">
-        <div class="banner-image" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778539883/WhatsApp_Image_2026-05-11_at_15.49.35_c8oakt.jpg');">
-            <div class="banner-text">
-                <h3>Our Legacy of Excellence</h3>
-                <p>Building Nigeria's industrial backbone since 1977</p>
+    <a href="https://wa.me/2349055555905" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1 data-aos="fade-up">Engineering, Procurement, Construction</h1>
+            <p data-aos="fade-up" data-aos-delay="100">Delivering structural steel, offshore, civil, and industrial construction solutions across Nigeria.</p>
+            <a href="#contact-form" class="btn btn-primary" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-calculator"></i> Request a Quote (24h Response)</a>
+        </div>
+    </section>
+
+    <!-- Carousel -->
+    <section class="project-carousel-section" id="project-carousel">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Featured Project Pictures</h2>
+            <p class="section-subtitle" data-aos="fade-up">A glimpse of our heavy engineering and offshore fabrication work.</p>
+            <div class="swiper project-swiper" data-aos="fade-up">
+                <div class="swiper-wrapper" id="carouselWrapper"></div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
         </div>
-        <h2 class="section-title" data-aos="fade-up">Our Journey – Building Excellence Since 1977</h2>
-        <div class="timeline" data-aos="fade-up">
-            <div class="timeline-item"><div class="timeline-year">1977</div><div class="timeline-desc">Foundation of engineering and construction legacy</div></div>
-            <div class="timeline-item"><div class="timeline-year">2003</div><div class="timeline-desc">Expansion into industrial steel fabrication</div></div>
-            <div class="timeline-item"><div class="timeline-year">2013</div><div class="timeline-desc">Offshore capability milestone achieved (uft oil services)</div></div>
-            <div class="timeline-item"><div class="timeline-year">2018</div><div class="timeline-desc">Growth into large-scale oil & gas and industrial projects (uft oil services)</div></div>
-            <div class="timeline-item"><div class="timeline-year">2023</div><div class="timeline-desc">Strengthening of quality systems and execution standards (uft oil services)</div></div>
-            <div class="timeline-item"><div class="timeline-year">2024</div><div class="timeline-desc">Pronto Contractors Ltd – modern infrastructure delivery across Nigeria</div></div>
-        </div>
-    </div>
-</section>
+    </section>
 
-<!-- Civil Section with banner -->
-<section id="civil">
-    <div class="container">
-        <div class="banner-image" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778535973/WhatsApp_Image_2026-05-11_at_14.45.03_tx68sv.jpg');">
-            <div class="banner-text">
-                <h3>Robust Civil Infrastructure</h3>
-                <p>Foundations, roads, and concrete solutions for heavy industry</p>
+    <!-- Capabilities -->
+    <section id="capabilities">
+        <div class="container">
+            <div class="capabilities-hero" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778543419/WhatsApp_Image_2026-05-11_at_16.07.01_xzb4af.jpg');">
+                <div class="hero-content">
+                    <h2>Engineering Complex Onshore & Offshore Industrial Structures Across Nigeria</h2>
+                    <p>Offshore • Onshore • Structural Steel • Marine Infrastructure</p>
+                </div>
+            </div>
+            <h2 class="section-title" data-aos="fade-up">Capabilities</h2>
+            <p class="section-subtitle" data-aos="fade-up">Comprehensive engineering and industrial solutions.</p>
+            <div class="capabilities-grid" id="capabilitiesGrid"></div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="container">
+            <div class="banner-image" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778539542/WhatsApp_Image_2026-05-11_at_15.43.55_oddsmn.jpg');">
+                <div class="banner-text">
+                    <h3>Decades of Engineering Excellence</h3>
+                    <p>Trusted partner for heavy industrial & offshore projects</p>
+                </div>
+            </div>
+            <h2 class="section-title">Engineering the backbone of Nigerian industry</h2>
+            <div class="about-grid">
+                <div class="about-content" data-aos="fade-right">
+                    <p><strong>Pronto Contractors Ltd</strong> delivers large-scale structural steel, tank farms, gas plant construction, offshore fabrication, industrial roofing systems, and EPC support projects across Nigeria since 1977.</p>
+                    <p>From shopping malls and industrial plants to offshore platforms, gas facilities, and heavy steel infrastructure, we execute complex projects with precision, speed, and uncompromising quality.</p>
+                    <p>Our experience spans commercial, industrial, energy, and oil & gas sectors — delivering projects for major contractors and operators across Nigeria, including Julius Berger Nigeria and offshore oil & gas facilities.</p>
+                    <p>Backed by decades of fabrication and construction expertise, Pronto combines engineering, production, and on-site execution to deliver industrial infrastructure built for performance, safety, and long-term reliability.</p>
+                    <div class="about-stats">
+                        <div class="about-stat"><h4>500+</h4><p>Projects</p></div>
+                        <div class="about-stat"><h4>100%</h4><p>Client Trust</p></div>
+                        <div class="about-stat"><h4>24/7</h4><p>Support</p></div>
+                    </div>
+                    <a href="#contact-form" class="btn btn-outline"><i class="fas fa-arrow-right"></i> Talk to our team</a>
+                </div>
+                <div class="about-image" data-aos="fade-left">
+                    <img src="proton.jpeg" alt="Pronto Contractors fabrication yard">
+                </div>
             </div>
         </div>
-        <h2 class="section-title">Civil Construction & Infrastructure</h2>
-        <div class="civil-grid">
-            <div class="civil-content" data-aos="fade-right">
-                <p>Pronto Contractors delivers turnkey civil engineering solutions for industrial and energy projects.</p>
-                <ul>
-                    <li><i class="fas fa-hard-hat"></i> Foundations & piling works</li>
-                    <li><i class="fas fa-building"></i> Concrete structures</li>
-                    <li><i class="fas fa-road"></i> Roads and infrastructure</li>
-                    <li><i class="fas fa-tractor"></i> Site development and earthworks</li>
-                    <li><i class="fas fa-water"></i> Utilities and drainage works</li>
-                </ul>
+    </section>
+
+    <!-- Journey -->
+    <section id="journey">
+        <div class="container">
+            <div class="banner-image" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778539883/WhatsApp_Image_2026-05-11_at_15.49.35_c8oakt.jpg');">
+                <div class="banner-text">
+                    <h3>Our Legacy of Excellence</h3>
+                    <p>Building Nigeria's industrial backbone since 1977</p>
+                </div>
             </div>
-            <div class="civil-image" data-aos="fade-left">
-                <!-- empty as per original, kept -->
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Projects Section -->
-<section id="projects" style="background: var(--gray-light);">
-    <div class="container">
-        <h2 class="section-title" data-aos="fade-up">Featured Projects</h2>
-        <p class="section-subtitle" data-aos="fade-up">Delivering excellence across Nigeria.</p>
-        <div class="projects-grid" id="projectsGrid"></div>
-        <div style="text-align: center; margin-top: 48px;">
-            <a href="portfolio.html" class="btn btn-outline-dark">Request full case studies →</a>
-        </div>
-    </div>
-</section>
-
-<section>
-    <div class="container">
-        <h2 class="section-title" data-aos="fade-up">How We Work</h2>
-        <div class="work-grid">
-            <div class="work-card" data-aos="fade-up"><i class="fas fa-shield-alt"></i><h3>Safety First</h3><p>Zero harm culture, rigorous HSE protocols.</p></div>
-            <div class="work-card" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-microchip"></i><h3>Engineering Excellence</h3><p>API, DNV, ASME, ISO standards.</p></div>
-            <div class="work-card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-clock"></i><h3>On-Time Delivery</h3><p>Proactive planning and execution.</p></div>
-            <div class="work-card" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-clipboard-list"></i><h3>QA/QC Compliance</h3><p>Independent inspection & traceability.</p></div>
-        </div>
-    </div>
-</section>
-
-<section>
-    <div class="container">
-        <h2 class="section-title" data-aos="fade-up" style="text-align: center;">Trusted by leading contractors, EPCs, and energy‑sector clients</h2>
-        <div class="clients-logos" data-aos="fade-up">
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/Julius_Berger_ieus1n.jpg" alt="Julius Berger"><span> </span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/Pacific_Drilling_fcaxlq.png" alt="Pacific Drilling"><span> </span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/Shelf_Drilling_w8sfsd.png" alt="Shelf Drilling"><span> </span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/NCDMB_uubjxo.png" alt="NCDMB"><span></span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778542102/WhatsApp_Image_2026-05-11_at_16.19.37_dbwfag.jpg" alt="Hamilton"><span></span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/Schlumberger_i2gmxk.png" alt="Schlumberger"><span></span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/TotalEnergies_amnx5m.jpg" alt="TotalEnergies"><span></span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/Halliburton_rwq0yg.png" alt="Halliburton"><span></span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/Baker_Hughes_zfzndw.png" alt="Baker Hughes"><span> </span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/Seplat_Energy_soetjo.jpg" alt="Seplat Energy"><span> </span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/ExxonMobil_mkimpq.png" alt="ExxonMobil"><span></span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/Chevron_f8cdyd.png" alt="Chevron"><span></span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/CAT_mmsgnc.png" alt="CAT"><span></span></div>
-            <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/NLNG_rqk8oe.jpg" alt="NLNG"><span></span></div>
-        </div>
-    </div>
-</section>
-
-<section id="testimonials">
-    <div class="container">
-        <h2 class="section-title" data-aos="fade-up">What Our Clients Say</h2>
-        <p class="section-subtitle" data-aos="fade-up">Real feedback from industry leaders.</p>
-        <div class="testimonials-grid" id="testimonialsGrid"></div>
-    </div>
-</section>
-
-<section style="background: var(--gray-light);">
-    <div class="container">
-        <h2 class="section-title" data-aos="fade-up">Standards & Compliance</h2>
-        <p class="section-subtitle" data-aos="fade-up">We execute projects in line with international standards.</p>
-        <div class="standards-grid" data-aos="fade-up">
-            <div class="standard-item">DNV & ABS certified offshore equipment</div>
-            <div class="standard-item">API standards (tank construction)</div>
-            <div class="standard-item">ASME standards (piping systems)</div>
-            <div class="standard-item">ISO-aligned quality systems</div>
-            <div class="standard-item">NACE / SSPC coating standards</div>
-            <div class="standard-item">HSE compliance & site safety procedures</div>
-            <div class="standard-item">6GR certified welders</div>
-            <div class="standard-item">DNV-certified welders</div>
-        </div>
-    </div>
-</section>
-
-<section id="faq">
-    <div class="container">
-        <h2 class="section-title" data-aos="fade-up">Frequently Asked Questions</h2>
-        <div class="faq-grid" id="faqContainer">
-            <div class="faq-item"><div class="faq-question">What certifications do you hold? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">DNV 2.7-1, ISO 9001:2015, HSE ISPON, MAN registered, NIPEX registered. First DNV certified manufacturer in Nigeria.</div></div>
-            <div class="faq-item"><div class="faq-question">Do you handle offshore projects? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes – offshore production platforms, DNV skids, subsea baskets, and topside modules. Fully compliant with marine standards.</div></div>
-            <div class="faq-item"><div class="faq-question">Can you work within tight deadlines? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Absolutely. Our project planning and resource optimization ensure on-time delivery, even for complex, fast-track jobs.</div></div>
-            <div class="faq-item"><div class="faq-question">What's your service area? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Nationwide Nigeria – Port Harcourt, Lagos, Abuja, Niger Delta. We travel to any site, onshore or offshore.</div></div>
-            <div class="faq-item"><div class="faq-question">How do I get a quote for my project? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Fill out the contact form below, call us, or send your drawings via WhatsApp. We'll respond within 24 hours with an estimate.</div></div>
-        </div>
-    </div>
-</section>
-
-<section id="contact-form">
-    <div class="container">
-        <h2 class="section-title" data-aos="fade-up">Get a Project Estimate</h2>
-        <p class="section-subtitle" data-aos="fade-up">Tell us about your steel, tank, or offshore fabrication needs. We'll respond within 24 hours.</p>
-        <div class="contact-form-card">
-            <form id="leadForm" action="#" method="POST">
-                <div class="form-group"><input type="text" id="fullName" placeholder="Full name *" required></div>
-                <div class="form-group"><input type="email" id="email" placeholder="Email address *" required></div>
-                <div class="form-group"><input type="tel" id="phone" placeholder="Phone number *" required></div>
-                <div class="form-group"><select id="serviceInterest">
-                    <option value="">Select service of interest</option>
-                    <option>Structural Steel Fabrication</option>
-                    <option>Tank Farm Construction</option>
-                    <option>DNV Skids & Containers</option>
-                    <option>Piping Fabrication</option>
-                    <option>Sandblasting & Coatings</option>
-                    <option>Maintenance & Upgrades</option>
-                    <option>Offshore Platform</option>
-                    <option>Civil Construction</option>
-                </select></div>
-                <div class="form-group"><textarea id="message" rows="4" placeholder="Project details, location, timeline..."></textarea></div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;"><i class="fas fa-paper-plane"></i> Submit Request</button>
-                <p style="margin-top: 16px; font-size: 0.8rem; text-align: center;">We'll contact you within 24 hours. Your data is safe.</p>
-            </form>
-        </div>
-    </div>
-</section>
-
-<section class="final-cta-section" id="contact">
-    <div class="container">
-        <div class="final-cta-content" data-aos="zoom-in-up">
-            <h2 style="font-size: 2rem; margin-bottom: 16px;">Let’s Build Your Next Project</h2>
-            <p style="margin-bottom: 24px;">For structural steel, civil, offshore, tank farm, or industrial construction inquiries, contact Pronto Contractors Ltd.</p>
-            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-                <a href="https://wa.me/2349055555905" class="btn btn-primary" style="background: white; color: var(--navy);"><i class="fab fa-whatsapp"></i> WhatsApp +2349055555905</a>
-                <a href="tel:+234 08168886666" class="btn btn-outline" style="border-color: white; color: white;">Call Now</a>
-            </div>
-            <div class="social-links">
-                <a href="https://www.instagram.com/pronto.contractors/"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=100083270536071"><i class="fab fa-facebook-f"></i></a>
+            <h2 class="section-title" data-aos="fade-up">Our Journey – Building Excellence Since 1977</h2>
+            <div class="timeline" data-aos="fade-up">
+                <div class="timeline-item"><div class="timeline-year">1977</div><div class="timeline-desc">Foundation of engineering and construction legacy</div></div>
+                <div class="timeline-item"><div class="timeline-year">2003</div><div class="timeline-desc">Expansion into industrial steel fabrication</div></div>
+                <div class="timeline-item"><div class="timeline-year">2013</div><div class="timeline-desc">Offshore capability milestone achieved (uft oil services)</div></div>
+                <div class="timeline-item"><div class="timeline-year">2018</div><div class="timeline-desc">Growth into large-scale oil & gas and industrial projects (uft oil services)</div></div>
+                <div class="timeline-item"><div class="timeline-year">2023</div><div class="timeline-desc">Strengthening of quality systems and execution standards (uft oil services)</div></div>
+                <div class="timeline-item"><div class="timeline-year">2024</div><div class="timeline-desc">Pronto Contractors Ltd – modern infrastructure delivery across Nigeria</div></div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<footer>
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>Pronto Contractors Ltd</h4>
-                <p>DNV 2.7-1 Certified · ISO 9001:2015</p>
-                <p>Engineering, Procurement, Construction</p>
-                <p style="margin-top: 16px;">Trusted industrial partner since 1977</p>
+    <!-- Civil -->
+    <section id="civil">
+        <div class="container">
+            <div class="banner-image" data-aos="fade-up" style="background-image: url('https://res.cloudinary.com/duzgc5usb/image/upload/v1778535973/WhatsApp_Image_2026-05-11_at_14.45.03_tx68sv.jpg');">
+                <div class="banner-text">
+                    <h3>Robust Civil Infrastructure</h3>
+                    <p>Foundations, roads, and concrete solutions for heavy industry</p>
+                </div>
             </div>
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <a href="#home">Home</a>
-                <a href="#capabilities">Capabilities</a>
-                <a href="#about">About</a>
-                <a href="#civil">Civil</a>
-                <a href="#projects">Projects</a>
-                <a href="#testimonials">Testimonials</a>
-                <a href="#faq">FAQ</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <div class="footer-col">
-                <h4>Contact Info</h4>
-                <p><i class="fas fa-map-marker-alt"></i> Plot144 Transamadi Industrial Layout, Port Harcourt, Nigeria</p>
-                <p><i class="fas fa-phone"></i> +234 816 888 6666</p>
-                <p><i class="fab fa-whatsapp"></i> +234 905 5555 905 </p>
-                <p><i class="fas fa-envelope"></i> info@prontocontractor.com</p>
-                <p><i class="far fa-clock"></i> Mon–Fri: 8am – 5pm | 24/7 emergency support</p>
+            <h2 class="section-title">Civil Construction & Infrastructure</h2>
+            <div class="civil-grid">
+                <div class="civil-content" data-aos="fade-right">
+                    <p>Pronto Contractors delivers turnkey civil engineering solutions for industrial and energy projects.</p>
+                    <ul>
+                        <li><i class="fas fa-hard-hat"></i> Foundations & piling works</li>
+                        <li><i class="fas fa-building"></i> Concrete structures</li>
+                        <li><i class="fas fa-road"></i> Roads and infrastructure</li>
+                        <li><i class="fas fa-tractor"></i> Site development and earthworks</li>
+                        <li><i class="fas fa-water"></i> Utilities and drainage works</li>
+                    </ul>
+                </div>
+                <div class="civil-image" data-aos="fade-left">
+                    <!-- empty as per original, kept -->
+                </div>
             </div>
         </div>
-        <div class="copyright">
-            <p>© 2026 Pronto Contractors Ltd — Constructing A Better Future.</p>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" style="background: var(--gray-light);">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Featured Projects</h2>
+            <p class="section-subtitle" data-aos="fade-up">Delivering excellence across Nigeria.</p>
+            <div class="projects-grid" id="projectsGrid"></div>
+            <div style="text-align: center; margin-top: 48px;">
+                <a href="portfolio.html" class="btn btn-outline-dark">Request full case studies →</a>
+            </div>
         </div>
-        <div class="design-credit">
-    Designed by 
-    <strong>
-        <a href="https://kreationdigitals.com" target="_blank" rel="noopener noreferrer">
-            Kreation Digitals
-        </a>
-    </strong> 
-    | Web & Brand Identity
-</div>
-</footer>
+    </section>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-    // Capabilities data (unchanged)
-    const capabilitiesData = [
-        { title: "Structural Steel Fabrication & Erection", tagline: "Heavy industrial & commercial steel structures",
-          desc: "Complete steel solutions from shop drawings to final erection. We deliver certified, high-strength steel frameworks for factories, warehouses, and commercial complexes.",
-          capabilities: ["Certified welders (6GR, DNV)", "S275/S355 structural steel", "Long‑span roofing & mezzanine floors", "Heavy lift & crane-assisted erection"],
-          standards: ["ISO 9001:2015", "DNV 2.7-1", "API", "BS EN 1090"] },
-        { title: "Industrial Buildings & Warehousing", tagline: "Turnkey industrial facilities",
-          desc: "Design, fabrication and erection of complete industrial buildings – from foundation to roof, fully insulated and ready for operations.",
-          capabilities: ["Pre-engineered steel buildings", "Insulated sandwich panels (PU/EPS)", "Overhead crane beams", "Ventilation & industrial doors"],
-          standards: ["BS EN 1993", "ISO 9001", "Nigerian Building Codes"] },
-        { title: "Tank Farm Construction — API Standard", tagline: "Safe, leak-proof storage solutions",
-          desc: "Floating and fixed roof tanks fully compliant with API 650 and RS2654. We handle everything from foundation to internal piping.",
-          capabilities: ["API 650 / RS2654 compliant", "Floating & fixed roof designs", "Hydrostatic testing & NDT", "Corrosion protection systems"],
-          standards: ["API 650", "RS2654", "NACE", "SSPC"] },
-        { title: "Offshore Platforms Fabrication & Installation", tagline: "Rigorous marine engineering",
-          desc: "DNV-certified fabrication of topside modules, jackets, helidecks, and complete production platforms. Proven track record in the Niger Delta.",
-          capabilities: ["DNV 2.7-1 / ABS certified", "Topside module assembly", "Heavy lift & load-out", "Offshore hook‑up & commissioning"],
-          standards: ["DNV", "ABS", "API 2B", "ISO 19900"] },
-        { title: "Piping Fabrication & Installation — ASME Standard", tagline: "High-integrity process piping",
-          desc: "Pre-fabrication and installation of carbon steel, stainless steel and alloy piping systems for process plants and refineries.",
-          capabilities: ["GTAW, SMAW, FCAW welding", "NDT, X-ray & hydrotesting", "Material traceability", "ASME B31.3 compliance"],
-          standards: ["ASME B31.3", "API 570", "ISO 15614"] },
-        { title: "DNV & ABS Compatible / Certified Containers, Skids & Offshore Equipment", tagline: "Offshore‑ready certified equipment",
-          desc: "Design and manufacture of DNV 2.7-1 containers, baskets, and modular skids for subsea and topside use.",
-          capabilities: ["DNV 2.7-1 / ISO 10855", "Load-out & lifting lugs design", "Corrosion-resistant coatings", "Full documentation pack"],
-          standards: ["DNV 2.7-1", "ISO 10855-1", "ABS", "Lloyd’s Register"] },
-        { title: "Civil Construction & Infrastructure Works", tagline: "Foundations for heavy industry",
-          desc: "Full civil engineering scope: earthworks, foundations, concrete structures, roads, drainage and site development.",
-          capabilities: ["Piling & deep foundations", "Reinforced concrete structures", "Roads & drainage networks", "Site preparation & grading"],
-          standards: ["BS 8110", "Nigerian General Specification", "ISO 9001"] },
-        { title: "Sandblasting, Coating & Corrosion Protection", tagline: "Long-lasting surface protection",
-          desc: "Sa 2.5 blast cleaning, industrial coating systems, and cathodic protection to extend asset life.",
-          capabilities: ["Sa 2.5 white metal cleanness", "NACE / SSPC certified applicators", "Zinc-rich primers & topcoats", "Field touch-up & repair"],
-          standards: ["NACE No. 2", "SSPC-SP 10", "ISO 12944", "API RP 5L2"] },
-        { title: "Rope Access Services", tagline: "Safe, efficient work at height",
-          desc: "IRATA/SPRAT certified technicians for inspection, maintenance, and installation without scaffolding.",
-          capabilities: ["NDT & asset integrity inspection", "Confined space access", "High‑altitude repair & coating", "Rope access installation"],
-          standards: ["IRATA International", "SPRAT", "BS 7985"] },
-        { title: "Scaffolding Systems", tagline: "Temporary works & access solutions",
-          desc: "Tube & fitting, modular systems, mobile towers – fully designed with load calculations.",
-          capabilities: ["Design & load calculation", "Erection & dismantling", "Inspection & maintenance", "Customised access platforms"],
-          standards: ["BS 1139", "NASC TG20", "EN 12810"] },
-        { title: "Offshore Manpower & Equipment Support", tagline: "Skilled personnel & reliable gear",
-          desc: "Supply of certified offshore technicians, welders, riggers, and equipment rentals for marine operations.",
-          capabilities: ["DNV-certified personnel", "Generator & welding machine rentals", "Flexible contract terms", "HSE-compliant workforce"],
-          standards: ["OPITO", "BOSIET", "HSE ISPON"] }
-    ];
+    <!-- How We Work -->
+    <section>
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">How We Work</h2>
+            <div class="work-grid">
+                <div class="work-card" data-aos="fade-up"><i class="fas fa-shield-alt"></i><h3>Safety First</h3><p>Zero harm culture, rigorous HSE protocols.</p></div>
+                <div class="work-card" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-microchip"></i><h3>Engineering Excellence</h3><p>API, DNV, ASME, ISO standards.</p></div>
+                <div class="work-card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-clock"></i><h3>On-Time Delivery</h3><p>Proactive planning and execution.</p></div>
+                <div class="work-card" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-clipboard-list"></i><h3>QA/QC Compliance</h3><p>Independent inspection & traceability.</p></div>
+            </div>
+        </div>
+    </section>
 
-    const gridContainer = document.getElementById('capabilitiesGrid');
-    gridContainer.innerHTML = '';
-    capabilitiesData.forEach((item, idx) => {
-        const card = document.createElement('div');
-        card.className = 'capability-card';
-        card.setAttribute('data-index', idx);
-        card.innerHTML = `<h3>${item.title}</h3><div class="service-tagline">${item.tagline}</div>`;
-        const detailDiv = document.createElement('div');
-        detailDiv.className = 'service-detail';
-        detailDiv.id = `service-detail-${idx}`;
-        detailDiv.innerHTML = `<p>${item.desc}</p><strong>Key capabilities:</strong><ul>${item.capabilities.map(c=>`<li>${c}</li>`).join('')}</ul><strong>Standards & specifications:</strong><ul>${item.standards.map(s=>`<li>${s}</li>`).join('')}</ul><a href="#projects" class="btn-sm">View Related Projects →</a>`;
-        gridContainer.appendChild(card);
-        gridContainer.appendChild(detailDiv);
-    });
+    <!-- Trusted Clients -->
+    <section>
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up" style="text-align: center;">Trusted by leading contractors, EPCs, and energy‑sector clients</h2>
+            <div class="clients-logos" data-aos="fade-up">
+                <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/Julius_Berger_ieus1n.jpg" alt="Julius Berger"><span> </span></div>
+                <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/Pacific_Drilling_fcaxlq.png" alt="Pacific Drilling"><span> </span></div>
+                <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/Shelf_Drilling_w8sfsd.png" alt="Shelf Drilling"><span> </span></div>
+                <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/NCDMB_uubjxo.png" alt="NCDMB"><span></span></div>
+                <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778542102/WhatsApp_Image_2026-05-11_at_16.19.37_dbwfag.jpg" alt="Hamilton"><span></span></div>
+                <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/Schlumberger_i2gmxk.png" alt="Schlumberger"><span></span></div>
+                <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/TotalEnergies_amnx5m.jpg" alt="TotalEnergies"><span></span></div>
+                <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/Halliburton_rwq0yg.png" alt="Halliburton"><span></span></div>
+                <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/Baker_Hughes_zfzndw.png" alt="Baker Hughes"><span> </span></div>
+                <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253650/Seplat_Energy_soetjo.jpg" alt="Seplat Energy"><span> </span></div>
+                <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/ExxonMobil_mkimpq.png" alt="ExxonMobil"><span></span></div>
+                <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/Chevron_f8cdyd.png" alt="Chevron"><span></span></div>
+                <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253648/CAT_mmsgnc.png" alt="CAT"><span></span></div>
+                <div class="client-logo-item"><img src="https://res.cloudinary.com/duzgc5usb/image/upload/v1778253649/NLNG_rqk8oe.jpg" alt="NLNG"><span></span></div>
+            </div>
+        </div>
+    </section>
 
-    document.querySelectorAll('.capability-card').forEach(card => {
-        card.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const idx = this.getAttribute('data-index');
-            const detail = document.getElementById(`service-detail-${idx}`);
-            document.querySelectorAll('.service-detail').forEach(d => { if (d !== detail) d.classList.remove('active'); });
-            detail.classList.toggle('active');
-            if (detail.classList.contains('active')) detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    <!-- Testimonials -->
+    <section id="testimonials">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">What Our Clients Say</h2>
+            <p class="section-subtitle" data-aos="fade-up">Real feedback from industry leaders.</p>
+            <div class="testimonials-grid" id="testimonialsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Standards -->
+    <section style="background: var(--gray-light);">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Standards & Compliance</h2>
+            <p class="section-subtitle" data-aos="fade-up">We execute projects in line with international standards.</p>
+            <div class="standards-grid" data-aos="fade-up">
+                <div class="standard-item">DNV & ABS certified offshore equipment</div>
+                <div class="standard-item">API standards (tank construction)</div>
+                <div class="standard-item">ASME standards (piping systems)</div>
+                <div class="standard-item">ISO-aligned quality systems</div>
+                <div class="standard-item">NACE / SSPC coating standards</div>
+                <div class="standard-item">HSE compliance & site safety procedures</div>
+                <div class="standard-item">6GR certified welders</div>
+                <div class="standard-item">DNV-certified welders</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Frequently Asked Questions</h2>
+            <div class="faq-grid" id="faqContainer">
+                <div class="faq-item"><div class="faq-question">What certifications do you hold? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">DNV 2.7-1, ISO 9001:2015, HSE ISPON, MAN registered, NIPEX registered. First DNV certified manufacturer in Nigeria.</div></div>
+                <div class="faq-item"><div class="faq-question">Do you handle offshore projects? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes – offshore production platforms, DNV skids, subsea baskets, and topside modules. Fully compliant with marine standards.</div></div>
+                <div class="faq-item"><div class="faq-question">Can you work within tight deadlines? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Absolutely. Our project planning and resource optimization ensure on-time delivery, even for complex, fast-track jobs.</div></div>
+                <div class="faq-item"><div class="faq-question">What's your service area? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Nationwide Nigeria – Port Harcourt, Lagos, Abuja, Niger Delta. We travel to any site, onshore or offshore.</div></div>
+                <div class="faq-item"><div class="faq-question">How do I get a quote for my project? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Fill out the contact form below, call us, or send your drawings via WhatsApp. We'll respond within 24 hours with an estimate.</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact-form">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Get a Project Estimate</h2>
+            <p class="section-subtitle" data-aos="fade-up">Tell us about your steel, tank, or offshore fabrication needs. We'll respond within 24 hours.</p>
+            <div class="contact-form-card">
+                <form id="leadForm" action="#" method="POST">
+                    <div class="form-group"><input type="text" id="fullName" placeholder="Full name *" required></div>
+                    <div class="form-group"><input type="email" id="email" placeholder="Email address *" required></div>
+                    <div class="form-group"><input type="tel" id="phone" placeholder="Phone number *" required></div>
+                    <div class="form-group"><select id="serviceInterest">
+                        <option value="">Select service of interest</option>
+                        <option>Structural Steel Fabrication</option>
+                        <option>Tank Farm Construction</option>
+                        <option>DNV Skids & Containers</option>
+                        <option>Piping Fabrication</option>
+                        <option>Sandblasting & Coatings</option>
+                        <option>Maintenance & Upgrades</option>
+                        <option>Offshore Platform</option>
+                        <option>Civil Construction</option>
+                    </select></div>
+                    <div class="form-group"><textarea id="message" rows="4" placeholder="Project details, location, timeline..."></textarea></div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;"><i class="fas fa-paper-plane"></i> Submit Request</button>
+                    <p style="margin-top: 16px; font-size: 0.8rem; text-align: center;">We'll contact you within 24 hours. Your data is safe.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta-section" id="contact">
+        <div class="container">
+            <div class="final-cta-content" data-aos="zoom-in-up">
+                <h2 style="font-size: 2rem; margin-bottom: 16px;">Let’s Build Your Next Project</h2>
+                <p style="margin-bottom: 24px;">For structural steel, civil, offshore, tank farm, or industrial construction inquiries, contact Pronto Contractors Ltd.</p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://wa.me/2349055555905" class="btn btn-primary" style="background: white; color: var(--navy);"><i class="fab fa-whatsapp"></i> WhatsApp +2349055555905</a>
+                    <a href="tel:+2348168886666" class="btn btn-outline" style="border-color: white; color: white;">Call Now</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/pronto.contractors/"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=100083270536071"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Pronto Contractors Ltd</h4>
+                    <p>DNV 2.7-1 Certified · ISO 9001:2015</p>
+                    <p>Engineering, Procurement, Construction</p>
+                    <p style="margin-top: 16px;">Trusted industrial partner since 1977</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="#home">Home</a>
+                    <a href="#capabilities">Capabilities</a>
+                    <a href="#about">About</a>
+                    <a href="#civil">Civil</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#testimonials">Testimonials</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Plot144 Transamadi Industrial Layout, Port Harcourt, Nigeria</p>
+                    <p><i class="fas fa-phone"></i> +234 816 888 6666</p>
+                    <p><i class="fab fa-whatsapp"></i> +234 905 5555 905</p>
+                    <p><i class="fas fa-envelope"></i> info@prontocontractor.com</p>
+                    <p><i class="far fa-clock"></i> Mon–Fri: 8am – 5pm | 24/7 emergency support</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Pronto Contractors Ltd — Constructing A Better Future.</p>
+            </div>
+            <div class="design-credit">
+                Designed by 
+                <strong>
+                    <a href="https://kreationdigitals.com" target="_blank" rel="noopener noreferrer">
+                        Kreation Digitals
+                    </a>
+                </strong> 
+                | Web & Brand Identity
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Capabilities data
+        const capabilitiesData = [
+            { title: "Structural Steel Fabrication & Erection", tagline: "Heavy industrial & commercial steel structures",
+              desc: "Complete steel solutions from shop drawings to final erection. We deliver certified, high-strength steel frameworks for factories, warehouses, and commercial complexes.",
+              capabilities: ["Certified welders (6GR, DNV)", "S275/S355 structural steel", "Long‑span roofing & mezzanine floors", "Heavy lift & crane-assisted erection"],
+              standards: ["ISO 9001:2015", "DNV 2.7-1", "API", "BS EN 1090"] },
+            { title: "Industrial Buildings & Warehousing", tagline: "Turnkey industrial facilities",
+              desc: "Design, fabrication and erection of complete industrial buildings – from foundation to roof, fully insulated and ready for operations.",
+              capabilities: ["Pre-engineered steel buildings", "Insulated sandwich panels (PU/EPS)", "Overhead crane beams", "Ventilation & industrial doors"],
+              standards: ["BS EN 1993", "ISO 9001", "Nigerian Building Codes"] },
+            { title: "Tank Farm Construction — API Standard", tagline: "Safe, leak-proof storage solutions",
+              desc: "Floating and fixed roof tanks fully compliant with API 650 and RS2654. We handle everything from foundation to internal piping.",
+              capabilities: ["API 650 / RS2654 compliant", "Floating & fixed roof designs", "Hydrostatic testing & NDT", "Corrosion protection systems"],
+              standards: ["API 650", "RS2654", "NACE", "SSPC"] },
+            { title: "Offshore Platforms Fabrication & Installation", tagline: "Rigorous marine engineering",
+              desc: "DNV-certified fabrication of topside modules, jackets, helidecks, and complete production platforms. Proven track record in the Niger Delta.",
+              capabilities: ["DNV 2.7-1 / ABS certified", "Topside module assembly", "Heavy lift & load-out", "Offshore hook‑up & commissioning"],
+              standards: ["DNV", "ABS", "API 2B", "ISO 19900"] },
+            { title: "Piping Fabrication & Installation — ASME Standard", tagline: "High-integrity process piping",
+              desc: "Pre-fabrication and installation of carbon steel, stainless steel and alloy piping systems for process plants and refineries.",
+              capabilities: ["GTAW, SMAW, FCAW welding", "NDT, X-ray & hydrotesting", "Material traceability", "ASME B31.3 compliance"],
+              standards: ["ASME B31.3", "API 570", "ISO 15614"] },
+            { title: "DNV & ABS Compatible / Certified Containers, Skids & Offshore Equipment", tagline: "Offshore‑ready certified equipment",
+              desc: "Design and manufacture of DNV 2.7-1 containers, baskets, and modular skids for subsea and topside use.",
+              capabilities: ["DNV 2.7-1 / ISO 10855", "Load-out & lifting lugs design", "Corrosion-resistant coatings", "Full documentation pack"],
+              standards: ["DNV 2.7-1", "ISO 10855-1", "ABS", "Lloyd’s Register"] },
+            { title: "Civil Construction & Infrastructure Works", tagline: "Foundations for heavy industry",
+              desc: "Full civil engineering scope: earthworks, foundations, concrete structures, roads, drainage and site development.",
+              capabilities: ["Piling & deep foundations", "Reinforced concrete structures", "Roads & drainage networks", "Site preparation & grading"],
+              standards: ["BS 8110", "Nigerian General Specification", "ISO 9001"] },
+            { title: "Sandblasting, Coating & Corrosion Protection", tagline: "Long-lasting surface protection",
+              desc: "Sa 2.5 blast cleaning, industrial coating systems, and cathodic protection to extend asset life.",
+              capabilities: ["Sa 2.5 white metal cleanness", "NACE / SSPC certified applicators", "Zinc-rich primers & topcoats", "Field touch-up & repair"],
+              standards: ["NACE No. 2", "SSPC-SP 10", "ISO 12944", "API RP 5L2"] },
+            { title: "Rope Access Services", tagline: "Safe, efficient work at height",
+              desc: "IRATA/SPRAT certified technicians for inspection, maintenance, and installation without scaffolding.",
+              capabilities: ["NDT & asset integrity inspection", "Confined space access", "High‑altitude repair & coating", "Rope access installation"],
+              standards: ["IRATA International", "SPRAT", "BS 7985"] },
+            { title: "Scaffolding Systems", tagline: "Temporary works & access solutions",
+              desc: "Tube & fitting, modular systems, mobile towers – fully designed with load calculations.",
+              capabilities: ["Design & load calculation", "Erection & dismantling", "Inspection & maintenance", "Customised access platforms"],
+              standards: ["BS 1139", "NASC TG20", "EN 12810"] },
+            { title: "Offshore Manpower & Equipment Support", tagline: "Skilled personnel & reliable gear",
+              desc: "Supply of certified offshore technicians, welders, riggers, and equipment rentals for marine operations.",
+              capabilities: ["DNV-certified personnel", "Generator & welding machine rentals", "Flexible contract terms", "HSE-compliant workforce"],
+              standards: ["OPITO", "BOSIET", "HSE ISPON"] }
+        ];
+
+        const gridContainer = document.getElementById('capabilitiesGrid');
+        gridContainer.innerHTML = '';
+        capabilitiesData.forEach((item, idx) => {
+            const card = document.createElement('div');
+            card.className = 'capability-card';
+            card.setAttribute('data-index', idx);
+            card.innerHTML = `<h3>${item.title}</h3><div class="service-tagline">${item.tagline}</div>`;
+            const detailDiv = document.createElement('div');
+            detailDiv.className = 'service-detail';
+            detailDiv.id = `service-detail-${idx}`;
+            detailDiv.innerHTML = `<p>${item.desc}</p><strong>Key capabilities:</strong><ul>${item.capabilities.map(c=>`<li>${c}</li>`).join('')}</ul><strong>Standards & specifications:</strong><ul>${item.standards.map(s=>`<li>${s}</li>`).join('')}</ul><a href="#projects" class="btn-sm">View Related Projects →</a>`;
+            gridContainer.appendChild(card);
+            gridContainer.appendChild(detailDiv);
         });
-    });
 
-    const projects = [
-        { title: "HyperCity Mall – Eastern Bypass", location: "Port Harcourt", scope: "Complete structural steel framework, 12,000 sqm", desc: "Multi‑storey retail complex with long‑span roofing system.", img: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777848040/WhatsApp_Image_2026-05-03_at_09.13.21_7_uzn0cu.jpg" },
-        { title: "Garden City Mall – Roof Trusses", location: "Port Harcourt", scope: "40m wide span steel roof trusses", desc: "Clear span roofing for major shopping centre.", img: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778007112/WhatsApp_Image_2026-05-05_at_11.27.47_rkwqf6.jpg?auto=compress&cs=tinysrgb&w=800" },
-        { title: "Feed / Soy Mill Processing Plant", location: "Rivers State", scope: "Complete industrial steel structure", desc: "Full fabrication and erection for agricultural processing.", img: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777834593/WhatsApp_Image_2026-05-01_at_15.50.53_nojntc.jpg" },
-        { title: "BBL Tank Farm", location: "Lagos", scope: "API 650 storage tanks", desc: "Industrial Tank & Storage Projects.", img: "https://res.cloudinary.com/duzgc5usb/image/upload/v1779981736/WhatsApp_Image_2026-05-28_at_07.28.17_fsoklh.jpg" },
-        { title: "Brittania-U Offshore Platform", location: "Niger Delta", scope: "32m x 16m production platform", desc: "1000+ Tons Offshore Structural Steel Fabrication & Installation for Britannia-U", img: "https://res.cloudinary.com/duzgc5usb/image/upload/v1779980492/WhatsApp_Image_2026-05-28_at_06.48.09_2_fgmj6f.jpg?auto=compress&cs=tinysrgb&w=800" }
-    ];
-    const projectsGrid = document.getElementById('projectsGrid');
-    projectsGrid.innerHTML = projects.map(p => `<a href="portfolio.html" class="project-link"><div class="project-block"><div class="project-image" style="background-image: url('${p.img}');"></div><div class="project-content"><h3>${p.title}</h3><div class="project-location"><i class="fas fa-map-marker-alt"></i> ${p.location}</div><p><strong>Scope:</strong> ${p.scope}</p><p class="project-scope">${p.desc}</p></div></div></a>`).join('');
+        document.querySelectorAll('.capability-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const idx = this.getAttribute('data-index');
+                const detail = document.getElementById(`service-detail-${idx}`);
+                document.querySelectorAll('.service-detail').forEach(d => { if (d !== detail) d.classList.remove('active'); });
+                detail.classList.toggle('active');
+                if (detail.classList.contains('active')) detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+        });
 
-    const testimonials = [
-        { name: "Engr. James Oke", role: "Project Director, Strukton Nigeria", text: "Pronto delivered the steel structure for our 5,000sqm warehouse three weeks ahead of schedule. Quality was impeccable.", stars: 5 },
-        { name: "Mrs. Adeola Williams", role: "Procurement Lead, Major Oil & Gas", text: "DNV certified skids arrived with full documentation. No customs delay, no offshore rejection.", stars: 5 },
-        { name: "Mr. Chidi Okonkwo", role: "Facility Manager, Industrial Storage", text: "API 650 tank farm constructed on time and budget. Zero leaks after 2 years.", stars: 5 }
-    ];
-    const testimonialsGrid = document.getElementById('testimonialsGrid');
-    if (testimonialsGrid) {
-        testimonialsGrid.innerHTML = testimonials.map(t => `<div class="testimonial-card" data-aos="fade-up"><div class="testimonial-stars">${'★'.repeat(t.stars)}${'☆'.repeat(5-t.stars)}</div><p class="testimonial-text">“${t.text}”</p><p class="testimonial-author">${t.name}</p><p class="testimonial-role">${t.role}</p></div>`).join('');
-    }
+        const projects = [
+            { title: "HyperCity Mall – Eastern Bypass", location: "Port Harcourt", scope: "Complete structural steel framework, 12,000 sqm", desc: "Multi‑storey retail complex with long‑span roofing system.", img: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777848040/WhatsApp_Image_2026-05-03_at_09.13.21_7_uzn0cu.jpg" },
+            { title: "Garden City Mall – Roof Trusses", location: "Port Harcourt", scope: "40m wide span steel roof trusses", desc: "Clear span roofing for major shopping centre.", img: "https://res.cloudinary.com/duzgc5usb/image/upload/v1778007112/WhatsApp_Image_2026-05-05_at_11.27.47_rkwqf6.jpg?auto=compress&cs=tinysrgb&w=800" },
+            { title: "Feed / Soy Mill Processing Plant", location: "Rivers State", scope: "Complete industrial steel structure", desc: "Full fabrication and erection for agricultural processing.", img: "https://res.cloudinary.com/duzgc5usb/image/upload/v1777834593/WhatsApp_Image_2026-05-01_at_15.50.53_nojntc.jpg" },
+            { title: "BBL Tank Farm", location: "Lagos", scope: "API 650 storage tanks", desc: "Industrial Tank & Storage Projects.", img: "https://res.cloudinary.com/duzgc5usb/image/upload/v1779981736/WhatsApp_Image_2026-05-28_at_07.28.17_fsoklh.jpg" },
+            { title: "Brittania-U Offshore Platform", location: "Niger Delta", scope: "32m x 16m production platform", desc: "1000+ Tons Offshore Structural Steel Fabrication & Installation for Britannia-U", img: "https://res.cloudinary.com/duzgc5usb/image/upload/v1779980492/WhatsApp_Image_2026-05-28_at_06.48.09_2_fgmj6f.jpg?auto=compress&cs=tinysrgb&w=800" }
+        ];
+        const projectsGrid = document.getElementById('projectsGrid');
+        projectsGrid.innerHTML = projects.map(p => `<a href="portfolio.html" class="project-link"><div class="project-block"><div class="project-image" style="background-image: url('${p.img}');"></div><div class="project-content"><h3>${p.title}</h3><div class="project-location"><i class="fas fa-map-marker-alt"></i> ${p.location}</div><p><strong>Scope:</strong> ${p.scope}</p><p class="project-scope">${p.desc}</p></div></div></a>`).join('');
 
-    const carouselImages = [
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780173004/WhatsApp_Image_2026-05-30_at_12.51.51_2_tchfut.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780173003/WhatsApp_Image_2026-05-30_at_12.51.51_4_isv3me.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780173003/WhatsApp_Image_2026-05-30_at_12.51.51_1_sxnd7s.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780173002/WhatsApp_Image_2026-05-30_at_12.51.51_3_t0bizz.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780173001/WhatsApp_Image_2026-05-30_at_12.51.50_4_e1imza.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780173000/WhatsApp_Image_2026-05-30_at_12.51.54_2_mgah8n.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172999/WhatsApp_Image_2026-05-30_at_12.51.54_3_cmbntu.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172999/WhatsApp_Image_2026-05-30_at_12.51.50_2_s0bfef.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172998/WhatsApp_Image_2026-05-30_at_12.51.54_kfdefa.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172998/WhatsApp_Image_2026-05-30_at_12.51.54_1_lq1tem.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172998/WhatsApp_Image_2026-05-30_at_12.51.50_h3axpu.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172996/WhatsApp_Image_2026-05-30_at_12.51.53_3_wng63d.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172996/WhatsApp_Image_2026-05-30_at_12.51.54_4_swipie.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172996/WhatsApp_Image_2026-05-30_at_12.51.53_hartfc.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172994/WhatsApp_Image_2026-05-30_at_12.51.53_4_l9u6fd.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172994/WhatsApp_Image_2026-05-30_at_12.51.53_2_djdxtq.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172994/WhatsApp_Image_2026-05-30_at_12.51.50_3_e9vtua.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172992/WhatsApp_Image_2026-05-30_at_12.51.52_1_hljkia.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172993/WhatsApp_Image_2026-05-30_at_12.51.50_1_ppyeuf.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172992/WhatsApp_Image_2026-05-30_at_12.51.49_nqtigl.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172992/WhatsApp_Image_2026-05-30_at_12.51.48_jb2h4t.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172992/WhatsApp_Image_2026-05-30_at_12.51.53_1_bvx48h.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172991/WhatsApp_Image_2026-05-30_at_12.51.49_1_m1gavo.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172990/WhatsApp_Image_2026-05-30_at_12.51.52_2_our6r2.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172990/WhatsApp_Image_2026-05-30_at_12.51.52_z4ojvz.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172990/WhatsApp_Image_2026-05-30_at_12.51.52_3_mnmdhl.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172989/WhatsApp_Image_2026-05-30_at_12.51.51_kq5qqu.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
-        { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172987/WhatsApp_Image_2026-05-30_at_12.51.48_1_jhvkj0.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" }
-    ];
-    const carouselWrapper = document.getElementById('carouselWrapper');
-    if (carouselWrapper) {
-        carouselWrapper.innerHTML = carouselImages.map(img => `<div class="swiper-slide"><img src="${img.url}" alt="${img.caption}"><div class="slide-caption">${img.caption}</div></div>`).join('');
-    }
-    new Swiper('.project-swiper', {
-        loop: true, autoplay: { delay: 3000, disableOnInteraction: false }, speed: 800,
-        pagination: { el: '.swiper-pagination', clickable: true },
-        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-        breakpoints: { 640: { slidesPerView: 1, spaceBetween: 20 }, 768: { slidesPerView: 2, spaceBetween: 30 }, 1024: { slidesPerView: 3, spaceBetween: 30 } }
-    });
+        const testimonials = [
+            { name: "Engr. James Oke", role: "Project Director, Strukton Nigeria", text: "Pronto delivered the steel structure for our 5,000sqm warehouse three weeks ahead of schedule. Quality was impeccable.", stars: 5 },
+            { name: "Mrs. Adeola Williams", role: "Procurement Lead, Major Oil & Gas", text: "DNV certified skids arrived with full documentation. No customs delay, no offshore rejection.", stars: 5 },
+            { name: "Mr. Chidi Okonkwo", role: "Facility Manager, Industrial Storage", text: "API 650 tank farm constructed on time and budget. Zero leaks after 2 years.", stars: 5 }
+        ];
+        const testimonialsGrid = document.getElementById('testimonialsGrid');
+        if (testimonialsGrid) {
+            testimonialsGrid.innerHTML = testimonials.map(t => `<div class="testimonial-card" data-aos="fade-up"><div class="testimonial-stars">${'★'.repeat(t.stars)}${'☆'.repeat(5-t.stars)}</div><p class="testimonial-text">“${t.text}”</p><p class="testimonial-author">${t.name}</p><p class="testimonial-role">${t.role}</p></div>`).join('');
+        }
 
-    document.querySelectorAll('.faq-question').forEach(q => q.addEventListener('click', function() { this.parentElement.classList.toggle('active'); }));
-    document.getElementById('leadForm').addEventListener('submit', function(e) { e.preventDefault(); alert('Thank you! Your project request has been received. We will contact you within 24 hours.'); this.reset(); });
-    const mobileBtn = document.getElementById('mobileMenuBtn'), mobNav = document.getElementById('mobileNav'), mobOverlay = document.getElementById('mobileMenuOverlay');
-    mobileBtn.addEventListener('click', () => { mobNav.classList.toggle('show'); mobOverlay.classList.toggle('active'); });
-    mobOverlay.addEventListener('click', () => { mobNav.classList.remove('show'); mobOverlay.classList.remove('active'); });
-    AOS.init({ duration: 800, once: true });
-</script>
+        const carouselImages = [
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780173004/WhatsApp_Image_2026-05-30_at_12.51.51_2_tchfut.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780173003/WhatsApp_Image_2026-05-30_at_12.51.51_4_isv3me.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780173003/WhatsApp_Image_2026-05-30_at_12.51.51_1_sxnd7s.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780173002/WhatsApp_Image_2026-05-30_at_12.51.51_3_t0bizz.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780173001/WhatsApp_Image_2026-05-30_at_12.51.50_4_e1imza.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780173000/WhatsApp_Image_2026-05-30_at_12.51.54_2_mgah8n.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172999/WhatsApp_Image_2026-05-30_at_12.51.54_3_cmbntu.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172999/WhatsApp_Image_2026-05-30_at_12.51.50_2_s0bfef.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172998/WhatsApp_Image_2026-05-30_at_12.51.54_kfdefa.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172998/WhatsApp_Image_2026-05-30_at_12.51.54_1_lq1tem.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172998/WhatsApp_Image_2026-05-30_at_12.51.50_h3axpu.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172996/WhatsApp_Image_2026-05-30_at_12.51.53_3_wng63d.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172996/WhatsApp_Image_2026-05-30_at_12.51.54_4_swipie.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172996/WhatsApp_Image_2026-05-30_at_12.51.53_hartfc.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172994/WhatsApp_Image_2026-05-30_at_12.51.53_4_l9u6fd.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172994/WhatsApp_Image_2026-05-30_at_12.51.53_2_djdxtq.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172994/WhatsApp_Image_2026-05-30_at_12.51.50_3_e9vtua.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172992/WhatsApp_Image_2026-05-30_at_12.51.52_1_hljkia.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172993/WhatsApp_Image_2026-05-30_at_12.51.50_1_ppyeuf.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172992/WhatsApp_Image_2026-05-30_at_12.51.49_nqtigl.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172992/WhatsApp_Image_2026-05-30_at_12.51.48_jb2h4t.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172992/WhatsApp_Image_2026-05-30_at_12.51.53_1_bvx48h.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172991/WhatsApp_Image_2026-05-30_at_12.51.49_1_m1gavo.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172990/WhatsApp_Image_2026-05-30_at_12.51.52_2_our6r2.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172990/WhatsApp_Image_2026-05-30_at_12.51.52_z4ojvz.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172990/WhatsApp_Image_2026-05-30_at_12.51.52_3_mnmdhl.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172989/WhatsApp_Image_2026-05-30_at_12.51.51_kq5qqu.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" },
+            { url: "https://res.cloudinary.com/duzgc5usb/image/upload/v1780172987/WhatsApp_Image_2026-05-30_at_12.51.48_1_jhvkj0.jpg?auto=compress&cs=tinysrgb&w=800", caption: "" }
+        ];
+        const carouselWrapper = document.getElementById('carouselWrapper');
+        if (carouselWrapper) {
+            carouselWrapper.innerHTML = carouselImages.map(img => `<div class="swiper-slide"><img src="${img.url}" alt="${img.caption}"><div class="slide-caption">${img.caption}</div></div>`).join('');
+        }
+        new Swiper('.project-swiper', {
+            loop: true, autoplay: { delay: 3000, disableOnInteraction: false }, speed: 800,
+            pagination: { el: '.swiper-pagination', clickable: true },
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+            breakpoints: { 640: { slidesPerView: 1, spaceBetween: 20 }, 768: { slidesPerView: 2, spaceBetween: 30 }, 1024: { slidesPerView: 3, spaceBetween: 30 } }
+        });
+
+        document.querySelectorAll('.faq-question').forEach(q => q.addEventListener('click', function() { this.parentElement.classList.toggle('active'); }));
+        document.getElementById('leadForm').addEventListener('submit', function(e) { e.preventDefault(); alert('Thank you! Your project request has been received. We will contact you within 24 hours.'); this.reset(); });
+        const mobileBtn = document.getElementById('mobileMenuBtn'), mobNav = document.getElementById('mobileNav'), mobOverlay = document.getElementById('mobileMenuOverlay');
+        mobileBtn.addEventListener('click', () => { mobNav.classList.toggle('show'); mobOverlay.classList.toggle('active'); });
+        mobOverlay.addEventListener('click', () => { mobNav.classList.remove('show'); mobOverlay.classList.remove('active'); });
+        AOS.init({ duration: 800, once: true });
+    </script>
 </body>
 </html>
