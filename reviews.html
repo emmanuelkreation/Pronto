@@ -71,7 +71,8 @@
             background: var(--navy);
             color: white;
         }
-        /* Header */
+
+        /* ===== NAVBAR WITH DROPDOWN ===== */
         .navbar {
             background: rgba(255,255,255,0.96);
             backdrop-filter: blur(12px);
@@ -96,9 +97,62 @@
         .logo-icon { height: 42px; width: auto; border-radius: 12px; }
         .logo-text { font-size: 1.7rem; font-weight: 800; color: var(--navy); }
         .logo-text span { color: var(--orange); }
-        .desktop-nav { display: flex; gap: 32px; align-items: center; }
-        .desktop-nav a { text-decoration: none; font-weight: 600; color: #1e293b; transition: 0.2s; }
+
+        .desktop-nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        .desktop-nav a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #1e293b;
+            transition: 0.2s;
+        }
         .desktop-nav a:hover, .desktop-nav a.active { color: var(--orange); }
+
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown > a {
+            cursor: pointer;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            border-radius: 16px;
+            z-index: 1000;
+            padding: 8px 0;
+            border: 1px solid #edf2f7;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content a {
+            display: block;
+            padding: 12px 20px;
+            color: #1e293b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+        .dropdown-content a:hover {
+            background: #f8fafc;
+            color: var(--orange);
+        }
+        .dropdown-content a.active {
+            color: var(--orange);
+            background: #fef2f2;
+        }
+
         .mobile-menu-btn {
             display: none;
             font-size: 1.8rem;
@@ -141,8 +195,48 @@
             align-items: flex-start;
         }
         .mobile-nav.show { right: 0; }
-        .mobile-nav a { text-decoration: none; font-weight: 600; font-size: 1.2rem; color: #1e293b; }
+        .mobile-nav a {
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #1e293b;
+        }
         .mobile-nav a:hover, .mobile-nav a.active { color: var(--orange); }
+        .mobile-nav .dropdown-label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1e293b;
+            margin-top: 12px;
+            margin-bottom: 4px;
+        }
+        .mobile-nav .sub-link {
+            font-weight: 400;
+            font-size: 0.95rem;
+            padding-left: 20px;
+            color: #475569;
+            display: block;
+        }
+        .mobile-nav .sub-link.active {
+            color: var(--orange);
+        }
+
+        @media (max-width: 900px) {
+            .desktop-nav { display: none; }
+            .mobile-menu-btn { display: block; }
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                padding-left: 16px;
+                border: none;
+                background: transparent;
+            }
+            .dropdown-content a {
+                padding: 8px 0;
+                font-size: 0.9rem;
+            }
+        }
+        /* ===== END NAVBAR ===== */
+
         /* Hero */
         .hero {
             position: relative;
@@ -277,6 +371,17 @@
             .hero h1 { font-size: 2rem; }
             .section-title { font-size: 2rem; }
             .submit-form { padding: 32px 24px; }
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                padding-left: 16px;
+                border: none;
+                background: transparent;
+            }
+            .dropdown-content a {
+                padding: 8px 0;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -291,8 +396,20 @@
         <div class="desktop-nav">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
-            <a href="services.html">Services</a>
-            <a href="portfolio.html">Portfolio</a>
+            <div class="dropdown">
+                <a href="services.html">Services <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="services-steel.html">Steel Infrastructure</a>
+                    <a href="services-civil.html">Civil Engineering</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="portfolio.html">Portfolio <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="portfolio-steel.html">Steel Projects</a>
+                    <a href="portfolio-civil.html">Civil Projects</a>
+                </div>
+            </div>
             <a href="reviews.html" class="active">Reviews</a>
             <a href="contact.html">Contact</a>
         </div>
@@ -303,8 +420,12 @@
 <div class="mobile-nav" id="mobileNav">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
-    <a href="services.html">Services</a>
-    <a href="portfolio.html">Portfolio</a>
+    <div class="dropdown-label">Services</div>
+    <a href="services-steel.html" class="sub-link">Steel Infrastructure</a>
+    <a href="services-civil.html" class="sub-link">Civil Engineering</a>
+    <div class="dropdown-label">Portfolio</div>
+    <a href="portfolio-steel.html" class="sub-link">Steel Projects</a>
+    <a href="portfolio-civil.html" class="sub-link">Civil Projects</a>
     <a href="reviews.html" class="active">Reviews</a>
     <a href="contact.html">Contact</a>
 </div>
