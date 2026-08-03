@@ -215,15 +215,27 @@
                 <form id="projectForm" class="form-grid">
                     <input type="hidden" id="projectId">
                     <input type="text" id="projTitle" placeholder="Project Title *" required>
-                    <select id="projCategory">
-                        <option value="Structural Steel">Structural Steel</option>
-                        <option value="Industrial Buildings">Industrial Buildings</option>
-                        <option value="Tank Farms">Tank Farms</option>
-                        <option value="Offshore & DNV">Offshore & DNV</option>
-                        <option value="Piping">Piping</option>
-                        <option value="Coatings">Coatings</option>
-                        <option value="Maintenance">Maintenance</option>
+                    
+                    <!-- NEW CATEGORY DROPDOWN WITH GROUPS -->
+                    <select id="projCategory" required>
+                        <option value="">Select Category *</option>
+                        <optgroup label="🏗️ Steel Infrastructure">
+                            <option value="Steel Structures">Steel Structures</option>
+                            <option value="Industrial Buildings">Industrial Buildings</option>
+                            <option value="Tank Farms">Tank Farms</option>
+                            <option value="Offshore">Offshore</option>
+                            <option value="Roofing Systems">Roofing Systems</option>
+                            <option value="Offshore Fabrication & Services">Offshore Fabrication & Services</option>
+                        </optgroup>
+                        <optgroup label="🛣️ Civil Engineering">
+                            <option value="Civil Works">Civil Works</option>
+                            <option value="Civil Engineering">Civil Engineering</option>
+                            <option value="Infrastructure">Infrastructure</option>
+                            <option value="Roads & Bridges">Roads & Bridges</option>
+                            <option value="Drainage & Earthworks">Drainage & Earthworks</option>
+                        </optgroup>
                     </select>
+
                     <input type="text" id="projThumb" placeholder="Thumbnail Image URL (optional – leave empty to use first gallery image)">
                     <input type="text" id="projLocation" placeholder="Location (e.g., Eastern Bypass, Rivers State)">
                     <input type="text" id="projRoofType" placeholder="Roof / Structure type">
@@ -278,8 +290,6 @@
 <!-- Firebase SDKs (v9 compat) -->
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
-
-<!-- No separate storage SDK needed – we use ImageKit directly -->
 
 <script>
     // Firebase Config (your existing config)
@@ -426,7 +436,7 @@
         if (projects.length === 0) { container.innerHTML = '<p>No projects yet. Add one above.</p>'; return; }
         container.innerHTML = projects.map(p => `
             <div class="portfolio-item">
-                <div><strong>${escapeHtml(p.title)}</strong> <span class="badge">${p.category}</span>
+                <div><strong>${escapeHtml(p.title)}</strong> <span class="badge">${p.category || 'Uncategorized'}</span>
                 <p style="font-size:0.8rem; margin-top:4px;">📍 ${p.location || ''} | ⏱️ ${p.duration || ''}</p></div>
                 <div class="portfolio-actions">
                     <button class="btn-outline edit-proj" data-id="${p.id}" style="padding:6px 12px;">✏️ Edit</button>
@@ -446,7 +456,9 @@
         editingId = id;
         document.getElementById('projectId').value = p.id;
         document.getElementById('projTitle').value = p.title;
-        document.getElementById('projCategory').value = p.category;
+        // Set the category dropdown to the correct value
+        const catSelect = document.getElementById('projCategory');
+        if (p.category) catSelect.value = p.category;
         document.getElementById('projThumb').value = p.thumb || '';
         document.getElementById('projLocation').value = p.location || '';
         document.getElementById('projRoofType').value = p.roofType || '';
@@ -488,6 +500,8 @@
         const id = editingId || Date.now().toString();
         const title = document.getElementById('projTitle').value.trim();
         if (!title) { alert('Project title is required'); return; }
+        const category = document.getElementById('projCategory').value;
+        if (!category) { alert('Please select a category.'); return; }
         
         const submitBtn = document.getElementById('submitBtn');
         const originalText = submitBtn.innerHTML;
@@ -502,7 +516,7 @@
             const project = {
                 id: id,
                 title: title,
-                category: document.getElementById('projCategory').value,
+                category: category,
                 thumb: document.getElementById('projThumb').value || (uploadedImages[0]?.url || ''),
                 location: document.getElementById('projLocation').value,
                 roofType: document.getElementById('projRoofType').value,
