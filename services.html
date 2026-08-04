@@ -256,16 +256,23 @@
         }
         /* ===== END NAVBAR ===== */
 
-        /* Hero */
+        /* ===== HERO WITH FULL PAGE IMAGE (UPDATED) ===== */
         .hero {
             position: relative;
-            background: linear-gradient(135deg, rgba(11,43,79,0.85), rgba(11,43,79,0.7)), url('https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=1600');
+            background: linear-gradient(135deg, rgba(11,43,79,0.55), rgba(0,0,0,0.5)), url('https://res.cloudinary.com/duzgc5usb/image/upload/v1777834593/WhatsApp_Image_2026-05-01_at_15.51.22_kli8hf.jpg?auto=compress&cs=tinysrgb&w=1600');
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
             color: white;
+            min-height: 85vh;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
             text-align: center;
-            padding: 120px 0;
+            padding-bottom: 12vh;
+        }
+        .hero .container {
+            width: 100%;
         }
         .hero h1 {
             font-size: 3.2rem;
@@ -277,6 +284,16 @@
             max-width: 700px;
             margin: 0 auto;
             opacity: 0.9;
+        }
+        @media (max-width: 900px) {
+            .hero {
+                min-height: 85vh;
+                padding-bottom: 10vh;
+                background-attachment: scroll;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
         }
 
         /* Service Cards Split View */
@@ -346,7 +363,6 @@
             font-size: 0.9rem;
         }
 
-        /* Service features list inside cards */
         .service-features {
             list-style: none;
             text-align: left;
@@ -459,7 +475,6 @@
         @media (max-width: 900px) {
             .desktop-nav { display: none; }
             .mobile-menu-btn { display: block; }
-            .hero h1 { font-size: 2.2rem; }
             .section-title { font-size: 2rem; }
             .service-split { grid-template-columns: 1fr; gap: 24px; }
             .service-split-card { padding: 32px 24px; }
@@ -528,7 +543,7 @@
 
 <a href="https://wa.me/2349055555905" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-<!-- Hero Section -->
+<!-- Hero Section with full page image -->
 <section class="hero">
     <div class="container">
         <h1 data-aos="fade-up">Complete Engineering & Construction Services</h1>
